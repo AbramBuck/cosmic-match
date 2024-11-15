@@ -1,7 +1,8 @@
 import "../MatchGame/MatchGame.css"
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import matchSnd from '../../audio/CardMatched.mp3'
-import { useState } from "react";
+import noMatchSnd from '../../audio/NoCardMatch.mp3'
+import { useEffect, useState } from "react";
 import SignleCard from "../SingleCard/SingleCard";
 
 
@@ -17,10 +18,15 @@ const cardDeck = [
 
 function MatchGame() {
     let matchedAudio = new Audio(matchSnd);
+    let noMatchedAudio = new Audio(noMatchSnd);
+
 
     const [cards, setCards] = useState([]);
     const [turns, setTurns] = useState(0);
+    const [choiceOne, setChoiceOne] = useState(null)
+    const [choiceTwo, setChoiceTwo] = useState(null)
 
+    
     //shuffle
     const shuffleCards = () => {
         const shuffledCards = [...cardDeck, ...cardDeck]
@@ -31,12 +37,39 @@ function MatchGame() {
         setTurns(0)
     }
 
-    console.log("Cards //////////:", cards, "Turns ////////", turns)
+    const handleChoice = (card) => {
+        choiceOne ? setChoiceTwo(card) : setChoiceOne(card)
+    }
+
+    const resetTurn = () => {
+        setChoiceOne(null)
+        setChoiceTwo(null)
+    }
 
     const gotMatch = () => {
         confetti()
         matchedAudio.play();
     }
+
+    const noMatch = () => {
+        noMatchedAudio.play()
+    };
+
+    //compare both cards
+    useEffect(() => {
+        if (choiceOne && choiceTwo) {
+
+            if (choiceOne.src === choiceTwo.src) {
+                console.log('Matched Baby!')
+                gotMatch()
+                resetTurn()
+            } else {
+                console.log("No match")
+                noMatch()
+                resetTurn()
+            }
+        }
+    }, [choiceOne, choiceTwo])
 
     return(
         <div className="page-wrapper">
@@ -46,7 +79,11 @@ function MatchGame() {
             <button onClick={shuffleCards}>Start New Game</button>
             <div className="card-grid">
                 {cards.map(card =>(
-                    <SignleCard key={card.id} card={card} />
+                    <SignleCard 
+                        key={card.id} 
+                        card={card}
+                        handleChoice={handleChoice}
+                         />
                 ))}
             </div>
             </div>
