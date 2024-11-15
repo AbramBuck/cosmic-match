@@ -69,11 +69,13 @@ function MatchGame() {
                         }
                     })
                 })
-                gotMatch()
+                setTimeout(() => gotMatch(), 500)
                 resetTurn()
             } else {
-                noMatch()
-                resetTurn()
+                setTimeout(() => noMatch(), 500)
+                
+                setTimeout(() => resetTurn(), 1000)
+                
             }
         }
     }, [choiceOne, choiceTwo])
@@ -91,6 +93,7 @@ function MatchGame() {
                         key={card.id} 
                         card={card}
                         handleChoice={handleChoice}
+                        flipped={card === choiceOne || card === choiceTwo || card.matched}
                          />
                 ))}
             </div>

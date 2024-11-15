@@ -1,7 +1,7 @@
 import './SingleCard.css'
 
 
-function SignleCard({card, handleChoice}) {
+function SignleCard({card, handleChoice, flipped}) {
 
     const handleClick = () => {
         handleChoice(card);
@@ -10,7 +10,7 @@ function SignleCard({card, handleChoice}) {
 
     return(
             <div className="card">
-            <div>
+            <div className={ flipped ? "flipped" : ""}>
                 <img className="front" src={card.src} alt="card front" />
                 <img 
                     className="back" 
