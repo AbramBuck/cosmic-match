@@ -14,9 +14,14 @@
 }
 
 .game-area{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
     width: 70%;
     height: 100%;
     min-height: 800px;
     background-color: rgb(172, 223, 255);
     border-radius: 10pet;
 }
+
