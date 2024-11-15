@@ -2,7 +2,8 @@ import "../MatchGame/MatchGame.css"
 import confetti from 'https://cdn.skypack.dev/canvas-confetti';
 import matchSnd from '../../audio/CardMatched.mp3'
 import { useState } from "react";
-import cardBack from '../../../src/images/cover.png';
+import SignleCard from "../SingleCard/SingleCard";
+
 
 const cardDeck = [
     { "src" : "../../../src/images/helmet-1.png"},
@@ -45,12 +46,7 @@ function MatchGame() {
             <button onClick={shuffleCards}>Start New Game</button>
             <div className="card-grid">
                 {cards.map(card =>(
-                    <div className="card" key={card.id}>
-                        <div>
-                            <img className="front" src={card.src} alt="card front" />
-                            <img className="back" src="../../../src/images/cover.png" alt="card back"/>
-                        </div>
-                    </div>
+                    <SignleCard key={card.id} card={card} />
                 ))}
             </div>
             </div>
