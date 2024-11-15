@@ -1,11 +1,13 @@
 import './SingleCard.css'
 
 
-function SignleCard({card, handleChoice, flipped}) {
+function SignleCard({card, handleChoice, flipped, disabled}) {
 
     const handleClick = () => {
-        handleChoice(card);
-        console.log('selected card')
+        if (!disabled) {
+            handleChoice(card);
+            console.log('selected card')
+        }
     }
 
     return(

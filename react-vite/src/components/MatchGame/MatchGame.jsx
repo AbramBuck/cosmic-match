@@ -1,10 +1,9 @@
 import "../MatchGame/MatchGame.css"
-import confetti from 'https://cdn.skypack.dev/canvas-confetti';
+import confetti from 'https://cdn.skypack.dev/canvas-confetti'
 import matchSnd from '../../audio/CardMatched.mp3'
 import noMatchSnd from '../../audio/NoCardMatch.mp3'
-import { useEffect, useState } from "react";
-import SignleCard from "../SingleCard/SingleCard";
-
+import { useEffect, useState } from "react"
+import SignleCard from "../SingleCard/SingleCard"
 
 const cardDeck = [
     { "src" : "../../../src/images/helmet-1.png", matched: false },
@@ -21,11 +20,11 @@ function MatchGame() {
     let noMatchedAudio = new Audio(noMatchSnd);
 
 
-    const [cards, setCards] = useState([]);
-    const [turns, setTurns] = useState(0);
+    const [cards, setCards] = useState([])
+    const [turns, setTurns] = useState(0)
     const [choiceOne, setChoiceOne] = useState(null)
     const [choiceTwo, setChoiceTwo] = useState(null)
-
+    const [disabled, setDisabled] = useState(false)
     
     //shuffle
     const shuffleCards = () => {
@@ -33,6 +32,8 @@ function MatchGame() {
             .sort(() => Math.random() -0.5)
             .map((card) => ({...card, id: Math.random()}))
         
+        setChoiceOne(null)
+        setChoiceTwo(null)
         setCards(shuffledCards)
         setTurns(0)
     }
@@ -44,6 +45,8 @@ function MatchGame() {
     const resetTurn = () => {
         setChoiceOne(null)
         setChoiceTwo(null)
+        setTurns(prevTurns => prevTurns + 1)
+        setDisabled(false)
     }
 
     const gotMatch = () => {
@@ -55,10 +58,16 @@ function MatchGame() {
         noMatchedAudio.play()
     };
 
+    //Engage Mission
+    useEffect(() => {
+        shuffleCards()
+    }, [])
+
     //compare both cards
     useEffect(() => {
+        
         if (choiceOne && choiceTwo) {
-
+            setDisabled(true)
             if (choiceOne.src === choiceTwo.src) {
                 setCards(prevCards => {
                     return prevCards.map(card => {
@@ -73,7 +82,6 @@ function MatchGame() {
                 resetTurn()
             } else {
                 setTimeout(() => noMatch(), 500)
-                
                 setTimeout(() => resetTurn(), 1000)
                 
             }
@@ -86,7 +94,7 @@ function MatchGame() {
             <h1 className="mg-title">Planet Zarros</h1>
             <div className="game-area">
             <button onClick={gotMatch}>Matched Card</button>
-            <button onClick={shuffleCards}>Start New Game</button>
+            <h2>Turns:{turns}</h2>
             <div className="card-grid">
                 {cards.map(card =>(
                     <SignleCard 
@@ -94,6 +102,7 @@ function MatchGame() {
                         card={card}
                         handleChoice={handleChoice}
                         flipped={card === choiceOne || card === choiceTwo || card.matched}
+                        disabled={disabled}
                          />
                 ))}
             </div>
