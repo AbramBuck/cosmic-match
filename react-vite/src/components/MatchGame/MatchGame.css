@@ -9,13 +9,14 @@
 }
 
 .mg-title{
-    margin: 20px 0;
+    margin: 20px 0px 40px 0px;
     padding: 0px;
 }
 
 .game-area{
-    width: 80%;
+    width: 70%;
     height: 100%;
-    min-height: 500px;
+    min-height: 800px;
     background-color: rgb(172, 223, 255);
+    border-radius: 10pet;
 }
