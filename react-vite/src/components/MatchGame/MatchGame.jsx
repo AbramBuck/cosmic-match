@@ -7,12 +7,12 @@ import SignleCard from "../SingleCard/SingleCard";
 
 
 const cardDeck = [
-    { "src" : "../../../src/images/helmet-1.png"},
-    { "src" : "../../../src/images/potion-1.png"},
-    { "src" : "../../../src/images/ring-1.png"},
-    { "src" : "../../../src/images/scroll-1.png"},
-    { "src" : "../../../src/images/shield-1.png"},
-    { "src" : "../../../src/images/sword-1.png"},
+    { "src" : "../../../src/images/helmet-1.png", matched: false },
+    { "src" : "../../../src/images/potion-1.png", matched: false },
+    { "src" : "../../../src/images/ring-1.png", matched: false },
+    { "src" : "../../../src/images/scroll-1.png", matched: false },
+    { "src" : "../../../src/images/shield-1.png", matched: false },
+    { "src" : "../../../src/images/sword-1.png", matched: false },
 ]
 
 
@@ -60,17 +60,25 @@ function MatchGame() {
         if (choiceOne && choiceTwo) {
 
             if (choiceOne.src === choiceTwo.src) {
-                console.log('Matched Baby!')
+                setCards(prevCards => {
+                    return prevCards.map(card => {
+                        if (card.src === choiceOne.src) {
+                            return {...card, matched: true}
+                        } else {
+                            return card
+                        }
+                    })
+                })
                 gotMatch()
                 resetTurn()
             } else {
-                console.log("No match")
                 noMatch()
                 resetTurn()
             }
         }
     }, [choiceOne, choiceTwo])
 
+    console.log(cards)
     return(
         <div className="page-wrapper">
             <h1 className="mg-title">Planet Zarros</h1>
