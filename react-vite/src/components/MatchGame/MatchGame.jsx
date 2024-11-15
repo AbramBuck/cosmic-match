@@ -1,6 +1,16 @@
+import "../MatchGame/MatchGame.css"
+
 function MatchGame() {
 
     return(
-        <h1>Match Game</h1>
+        <div className="page-wrapper">
+            <h1 className="mg-title">Match Game</h1>
+            <div className="game-area">
+
+            </div>
+        </div>    
     )
 }
+
+
+export default MatchGame
