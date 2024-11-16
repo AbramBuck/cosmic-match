@@ -16,7 +16,7 @@ function SignleCard({card, handleChoice, flipped, disabled}) {
                 <img className="front" src={card.src} alt="card front" />
                 <img 
                     className="back" 
-                    src="../../../src/images/cover.png" 
+                    src="../../../src/images/items/cosmic-match-bg2.jpg" 
                     alt="card back"
                     onClick={handleClick}
                     />

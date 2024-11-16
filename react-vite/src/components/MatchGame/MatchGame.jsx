@@ -4,8 +4,10 @@ import matchSnd from '../../audio/CardMatched.mp3'
 import noMatchSnd from '../../audio/NoCardMatch.mp3'
 import { useEffect, useState } from "react"
 import SignleCard from "../SingleCard/SingleCard"
+import YouDiedModal from "./YouDiedModal"
+import { useModal } from '../../context/Modal';
 
-const cardDeck = [
+const testDeck = [
     { "src" : "../../../src/images/helmet-1.png", matched: false },
     { "src" : "../../../src/images/potion-1.png", matched: false },
     { "src" : "../../../src/images/ring-1.png", matched: false },
@@ -14,6 +16,14 @@ const cardDeck = [
     { "src" : "../../../src/images/sword-1.png", matched: false },
 ]
 
+const cardDeck= [
+    { "src" : "../../../src/images/enemies/alien_enemy.jpg", matched: false, hostile: true },
+    { "src" : "../../../src/images/enemies/alien_green_enemy.jpg", matched: false, hostile: true },
+    { "src" : "../../../src/images/items/cosmic-blossom.jpg", matched: false, hostile: false },
+    { "src" : "../../../src/images/terrain/cold_planet.jpg", matched: false, hostile: false },
+    { "src" : "../../../src/images/terrain/space_city.jpg", matched: false, hostile: false },
+    { "src" : "../../../src/images/terrain/majestic_forest.jpg", matched: false, hostile: false },
+]
 
 function MatchGame() {
     let matchedAudio = new Audio(matchSnd);
@@ -25,6 +35,17 @@ function MatchGame() {
     const [choiceOne, setChoiceOne] = useState(null)
     const [choiceTwo, setChoiceTwo] = useState(null)
     const [disabled, setDisabled] = useState(false)
+    const [shields, setShields] = useState(3)
+    const [fuel, setFuel] = useState(5)
+    const [showModal, setShowModal] = useState(false)
+    const [gold, setGold ] = useState(0)
+    
+    //Game Management
+    useEffect(() => {
+        if (fuel <= 0 || shields <= 0) {
+            setTimeout(() => setShowModal(true), 1000)
+        }    
+    }, [fuel, shields])
     
     //shuffle
     const shuffleCards = () => {
@@ -46,6 +67,7 @@ function MatchGame() {
         setChoiceOne(null)
         setChoiceTwo(null)
         setTurns(prevTurns => prevTurns + 1)
+        setFuel(prevFuel => prevFuel - 1)
         setDisabled(false)
     }
 
@@ -55,8 +77,13 @@ function MatchGame() {
     }
 
     const noMatch = () => {
+        console.log(choiceOne.hostile)
+        if (choiceOne.hostile === true && choiceTwo.hostile !==true || choiceOne.hostile !== true && choiceTwo.hostile ===true){
+            setShields(prevShields => prevShields - 1)
+        }
         noMatchedAudio.play()
     };
+
 
     //Engage Mission
     useEffect(() => {
@@ -93,18 +120,27 @@ function MatchGame() {
         <div className="page-wrapper">
             <h1 className="mg-title">Planet Zarros</h1>
             <div className="game-area">
-            <button onClick={gotMatch}>Matched Card</button>
-            <h2>Turns:{turns}</h2>
+            <div className="hud">
+            <h2>Shields: {shields}</h2>
+            <h2>|</h2>
+            <h2>Fuel: {fuel}</h2>
+            <h2>|</h2>
+            <h2>Gold: {gold}</h2>
+            <h2>|</h2>
+            <h2>Turns: {turns}</h2>
+            </div>
             <div className="card-grid">
-                {cards.map(card =>(
+                { !showModal ? 
+                cards.map(card =>(
                     <SignleCard 
                         key={card.id} 
                         card={card}
                         handleChoice={handleChoice}
                         flipped={card === choiceOne || card === choiceTwo || card.matched}
                         disabled={disabled}
-                         />
-                ))}
+                         /> 
+                ))
+                : <YouDiedModal fuel={fuel} shields={shields} gold={gold} turns={turns}/>}
             </div>
             </div>
         </div>    

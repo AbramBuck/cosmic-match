@@ -26,8 +26,21 @@
 }
 
 .card-grid{
-    margin-top: 40px;
+    margin: 40px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
+}
+
+.hud{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: center;
+    gap: 20px;
+    padding: 10px 35px;
+    margin-top: 40px;
+    border: 5px solid rgb(21, 106, 138);
+    border-radius: 10px;
+    width: fit-content;
 }
