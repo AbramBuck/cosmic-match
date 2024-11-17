@@ -24,13 +24,14 @@
     font-style: normal;
   }
   
-  .modal-content {
+  .fail-modal-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     position: absolute;
     top: 200px;
-    left: 23%;
+    left: 50%;
+    transform: translateX(-50%);
     min-width: 800px;
     background:#ff3d3d;  
     padding: 20px;
@@ -41,6 +42,24 @@
     border-radius: 5px;            
   }
   
+  .won-modal-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 800px;
+    background:#1bb3ff;  
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 400px;        
+    width: 100%;
+    border-radius: 5px;            
+  }
+
   .modal-buttons {
     display: flex;
     justify-content: center;
