@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login - Sample App</title>
+    </head>
+    <body>
+        <h1>Login</h1>
+        <h2>Please login to continue</h2>
+        <form action="/posts/new" method="POST" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            <p>{{ form.username(placeholder="Enter user name") }}</p>
+            <p>{{ form.password(placeholder="Enter your password") }}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    </body>
+</html>
