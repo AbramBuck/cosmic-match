@@ -1,3 +1,4 @@
+import React from "react"
 import "../MatchGame/MatchGame.css"
 import confetti from 'https://cdn.skypack.dev/canvas-confetti'
 import matchSnd from '../../audio/CardMatched.mp3'
@@ -41,7 +42,15 @@ function MatchGame() {
     const [showModal, setShowModal] = useState(false)
     const [gold, setGold ] = useState(0)
 
-    const allMatched = cards.every(card => card.matched);   
+    const allMatched = cards.every(card => card.matched === true) 
+    
+    //Bonus Gold
+    React.useEffect(() => {
+        if (allMatched && turns > 0) {
+          setGold(prevGold => prevGold + 100);
+        }
+      }, [allMatched]); 
+    
     //Game Management
     useEffect(() => {
         if (fuel <= 0 || shields <= 0) {
@@ -140,7 +149,7 @@ function MatchGame() {
             <h2>Turns: {turns}</h2>
             </div>
             <div className="card-grid">
-                {showModal && allMatched ? < YouWonModal /> : "" }
+                {showModal && allMatched ? < YouWonModal/> : "" }
                 {showModal && !allMatched ? <YouDiedModal fuel={fuel} shields={shields} gold={gold} turns={turns}/> : "" }
                 { !showModal ? cards.map(card =>(
                     <SignleCard 
