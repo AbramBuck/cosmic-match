@@ -4,7 +4,7 @@ import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MatchGame from '../components/MatchGame/MatchGame';
 import ImageForm from '../components/ImageForm/ImageForm'
-
+import SpaceStationHub from '../components/SpaceStationHub/SpaceStationHub';
 
 export const router = createBrowserRouter([
   {
@@ -12,7 +12,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <h1>Welcome!</h1>,
+        element: <SpaceStationHub />,
       },
       {
         path: "login",
