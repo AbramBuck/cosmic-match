@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const UploadPicture = () => {
-    const history = useHistory(); // so that you can redirect after the image upload is successful
+    const navigate = useNavigate(); // so that you can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
-    
+    const dispatch = useDispatch();
     
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -16,7 +17,7 @@ const UploadPicture = () => {
         // some sort of loading message is a good idea
         setImageLoading(true);
         await dispatch(createPost(formData));
-        history.push("/images");
+        navigate.push("/images");
     }
      
     return (
