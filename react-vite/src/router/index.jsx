@@ -3,6 +3,8 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MatchGame from '../components/MatchGame/MatchGame';
+import ImageForm from '../components/ImageForm/ImageForm'
+
 
 export const router = createBrowserRouter([
   {
@@ -23,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path:"mission",
         element: <MatchGame />,
+      },
+      {
+        path:"images",
+        element: <ImageForm />,
       },
     ],
   },
