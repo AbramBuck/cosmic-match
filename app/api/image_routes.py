@@ -1,4 +1,4 @@
-from flask import Blueprint,render_template, request
+from flask import Blueprint,render_template, request, redirect
 from app.models import db, Image
 from flask_login import current_user, login_required
 from app.forms import ImageForm
