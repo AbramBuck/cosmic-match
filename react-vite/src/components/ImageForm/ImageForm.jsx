@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createImage } from "../../redux/imageThunk";
 
 const UploadPicture = () => {
     const navigate = useNavigate(); // so that you can redirect after the image upload is successful
@@ -16,7 +17,7 @@ const UploadPicture = () => {
         // aws uploads can be a bit slow—displaying
         // some sort of loading message is a good idea
         setImageLoading(true);
-        await dispatch(createPost(formData));
+        await dispatch(createImage(formData));
         navigate.push("/images");
     }
      
