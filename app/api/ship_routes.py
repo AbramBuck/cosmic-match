@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import Ship
 
-ship_routes = Blueprint('ships', __name__, url_prefix="api/ships")
+ship_routes = Blueprint('ships', __name__)
 
 
 @ship_routes.route('/', methods=['GET'])
@@ -14,6 +14,7 @@ def ships():
     ships = Ship.query.filter_by(owner_id=current_user.id)
     return {'ships': [ship.to_dict() for ship in ships]}
 
+
 @ship_routes.route('/<int:ship_id>', methods=['GET'])
 @login_required
 def handle_ship(ship_id):
@@ -21,6 +22,8 @@ def handle_ship(ship_id):
         id=ship_id,
         owner_id=current_user.id
     ).first_or_404()
+
+    
     if request.method == 'GET':
         return jsonify({
             'id': ship.id,
