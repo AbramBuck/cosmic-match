@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import "./Modal.css";
 
 
 
+
 function YouDiedModal({gold,turns, shields, fuel }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [name, setName] = useState("")
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
@@ -17,7 +20,7 @@ function YouDiedModal({gold,turns, shields, fuel }) {
       e.preventDefault();
       //submit gold and ship turns and lifetime turns to the server
         
-        alert("You Failed");
+      navigate("/");
     };
   
     return (

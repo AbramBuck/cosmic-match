@@ -1,5 +1,5 @@
 export const createImage = (post) => async (dispatch) => {
-    const response = await fetch(`/images/new`, {
+    const response = await fetch(`api/images/new`, {
       method: "POST",
       body: post
     });

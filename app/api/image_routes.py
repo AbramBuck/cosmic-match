@@ -5,10 +5,10 @@ from app.forms import ImageForm
 from app.s3_helpers import (
     upload_file_to_s3, get_unique_filename)
 
-image_routes = Blueprint("images", __name__)
+image_routes = Blueprint("images", __name__, url_prefix="/api/images")
 
 
-@image_routes.route("", methods=["POST"])
+@image_routes.route("/new", methods=["POST"])
 @login_required
 def upload_image():
     form = ImageForm()

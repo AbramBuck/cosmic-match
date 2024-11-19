@@ -23,6 +23,7 @@ function SpaceStationHub() {
                 <h2>Total Runs: {User.total_runs}</h2>
             </div>
             <Link to={"/mission"}>LAUNCH MISSION</Link>
+            <Link to={"/images"}>Upload Picture</Link>
         </div>
     )
 }
