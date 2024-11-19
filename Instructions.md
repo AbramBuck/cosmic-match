@@ -1,9 +1,10 @@
 # NPM Testing/ Build Deployment
 
 Run npm Commands from react-vite folder
-Run `npm run dev` to start your development server / run your app. 
-Run `npm run build` to build a production version of your app
 
+Run `npm run dev` to start your development server / run your app. 
+
+Run `npm run build` to build a production version of your app
 
 
 # Flask Testing/ Build Deployment
@@ -12,6 +13,8 @@ Run Flask Command from Root Folder
 Install dependencies `pipenv install -r requirements.txt`
 
 Get into your pipenv `pipenv shell` 
+
+Create a new migration file `flask db migrate -m "Description of the migration"` 
 
 Migrate your database `flask db upgrade`
 
