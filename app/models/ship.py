@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 from flask_login import UserMixin
 
-class Image(db.Model, UserMixin):
+class Ship(db.Model, UserMixin):
     __tablename__ = 'ships'
 
     if environment == "production":
@@ -14,10 +14,12 @@ class Image(db.Model, UserMixin):
     name = db.Column(db.String(40), nullable=False)
     fuel = db.Column(db.Integer, nullable=False)
     shields = db.Column(db.Integer, nullable=False)
-    image_url = db.Column(db.String(80), unique=True, nullable=False)
+    image_url = db.Column(db.String(255), nullable=False)
     runs_completed = db.Column(db.Integer, nullable=False, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+    owner = db.relationship('User', back_populates='ships')
 
     def __repr__(self):
         return f"<Ship(id={self.id}, owner_id={self.owner_id}, name={self.name}, fuel={self.fuel}, shields={self.shields}, runs_completed={self.runs_completed}, image_url={self.image_url})>"

@@ -18,8 +18,8 @@ class User(db.Model, UserMixin):
     total_runs = db.Column(db.Integer, default=0)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-
-
+    ships = db.relationship('Ship', back_populates='owner')
+    
     @property
     def password(self):
         return self.hashed_password
