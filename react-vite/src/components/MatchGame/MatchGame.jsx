@@ -136,7 +136,7 @@ function MatchGame() {
 
 
     return(
-        <div className="page-wrapper">
+        <div className="game-page-wrapper">
             <h1 className="mg-title">Planet Zarros</h1>
             <div className="game-area">
             <div className="hud">

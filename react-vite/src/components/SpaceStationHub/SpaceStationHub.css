@@ -1,0 +1,114 @@
+.hub-page-wrapper{
+    background-color: rgb(16, 4, 40);
+    height: 1000px;
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(2, 39, 84, 0.92), rgba(52, 13, 99, 0.47)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg') no-repeat center center;
+    background-size: cover; 
+}
+
+.hub-title-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+.hub-title{
+    text-align: center;
+    margin: 25px 0px 0px 0px;
+    padding: 10px;
+    color: rgb(171, 245, 255);
+    text-shadow:  rgb(166, 249, 249) 0px 0px 6px;
+    width: 30%;
+    height: 35px;
+    border-radius: 85px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover;  
+}
+
+.hub-page-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    padding: 40px;
+    /* width: 100%;
+    height: 900px; */
+
+}
+
+/* LEFT SHIP BAR  */
+.left-ship-bar {
+    grid-column: 1;
+    grid-row: 1/ span 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+    padding-bottom: 20px;
+    /* width: 20%; */
+    /* margin: 40px 20px 0px 40px; */
+    background-color: rgb(36, 115, 144);
+    border-radius: 10px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover;    
+}
+
+.current-ship-img {
+    width: 70%;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 4px rgb(171, 245, 255) solid;
+}
+
+.ship-info-div {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    width: 70%;
+    margin-left: 45px;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.ship-info-div h2{
+    padding: 0px;
+    margin: 0px;
+}
+
+/* CAPTAIN STATS HORIZONTAL BAR */
+
+.top-stat-bar {
+    grid-column: 2 / span 3;
+    grid-row: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* width: 80%; */
+    /* margin: 40px; */
+    /* height: 400px; */
+    background-color: rgb(36, 115, 144);
+    border-radius: 10px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover;    
+}
+
+.bottom-planets-bar{
+    grid-column: 2 / span 3;
+    grid-row: 2 /span 3;
+    margin-top: 40px;
+    /* height: 500px; */
+    background-color: rgb(36, 115, 144);
+    border-radius: 10px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover;    
+}
