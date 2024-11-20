@@ -1,6 +1,6 @@
 .hub-page-wrapper{
     background-color: rgb(16, 4, 40);
-    height: 1000px;
+    height: 100%;
     width: 100%;
     background: linear-gradient(to bottom, rgba(2, 39, 84, 0.92), rgba(52, 13, 99, 0.47)), 
     url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg') no-repeat center center;
@@ -59,6 +59,10 @@
     background-size: cover;    
 }
 
+.left-ship-bar h2{
+    color: rgb(171, 245, 255);
+}
+
 .current-ship-img {
     width: 70%;
     overflow: hidden;
@@ -86,9 +90,10 @@
 .top-stat-bar {
     grid-column: 2 / span 3;
     grid-row: 1;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    display: grid;
+    padding: 15px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
     /* width: 80%; */
     /* margin: 40px; */
     /* height: 400px; */
@@ -100,6 +105,108 @@
     background-size: cover;    
 }
 
+.top-stat-bar h2{
+    color: rgb(171, 245, 255);
+}
+
+.cpt-name-hub{
+    grid-column: 1 /span 3;
+    grid-row: 1;
+}
+
+.stat-bar-stat-lvl{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.stat-bar-stat-gold{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.stat-bar-stat-runs{
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.stat-bar-btn-1{
+
+    grid-column: 1;
+    grid-row: 3;
+    text-align: center;
+    padding-top: 10px;
+    background-color: rgb(34, 73, 105);
+    border-radius: 20px;
+    border: 4px rgb(171, 245, 255) solid;
+    margin: 10px;
+    font-family: "Zen Dots", sans-serif;
+    color: rgb(152, 236, 255);
+    text-decoration: none;
+}
+
+.stat-bar-btn-1:hover {
+    background-color: aqua;
+    color: rgb(33, 67, 95);
+}
+
+.stat-bar-btn-2{
+    grid-column: 2;
+    grid-row: 3;
+    text-align: center;
+    padding-top: 10px;
+    background-color: rgb(34, 73, 105);
+    border-radius: 20px;
+    border: 4px rgb(171, 245, 255) solid;
+    margin: 10px;
+    font-family: "Zen Dots", sans-serif;
+    color: rgb(152, 236, 255);
+    text-decoration: none;
+}
+
+.stat-bar-btn-2:hover {
+    background-color: aqua;
+    color: rgb(33, 67, 95);
+}
+
+.stat-bar-btn-3{
+    grid-column: 3;
+    grid-row: 3;
+    text-align: center;
+    padding-top: 10px;
+    background-color: rgb(34, 73, 105);
+    border-radius: 20px;
+    border: 4px rgb(171, 245, 255) solid;
+    margin: 10px;
+    font-family: "Zen Dots", sans-serif;
+    color: rgb(152, 236, 255);
+    text-decoration: none;
+}
+
+.stat-bar-btn-3:hover {
+    background-color: aqua;
+    color: rgb(33, 67, 95);
+}
+
+.stat-bar-btn-4{
+    grid-column: 4;
+    grid-row: 3;
+    text-align: center;
+    padding-top: 10px;
+    background-color: rgb(55, 171, 221);
+    border-radius: 20px;
+    border: 4px rgb(171, 245, 255) solid;
+    margin: 10px;
+    font-family: "Zen Dots", sans-serif;
+    color:rgb(17, 37, 53);
+    text-decoration: none;
+}
+
+.stat-bar-btn-4:hover {
+    color: aqua;
+    background-color: rgb(0, 157, 255);
+}
+
+/* Bottom Planets Bar */
 .bottom-planets-bar{
     grid-column: 2 / span 3;
     grid-row: 2 /span 3;

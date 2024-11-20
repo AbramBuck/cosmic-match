@@ -30,12 +30,15 @@ function SpaceStationHub() {
 
                 </div>
                 <div className="top-stat-bar">
-                    <h2>Commander {User.username}</h2>
-                    <h2>Level: {level}</h2>
-                    <h2>Gold: {User.gold}</h2>
-                    <h2>Total Runs: {User.total_runs}</h2>
-                    <Link to={"/mission"}>LAUNCH MISSION</Link>
-                    <Link to={"/images"}>Upload Picture</Link>
+                    <h2 className="cpt-name-hub">Commander {User.username}</h2>
+                    <h2 className="stat-bar-stat-lvl">Level: {level}</h2>
+                    <h2 className="stat-bar-stat-gold">Gold: {User.gold}</h2>
+                    <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
+                    <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
+                    <Link to={"/mission"} className="stat-bar-btn-2">LAUNCH MISSION</Link>
+                    <Link to={"/mission"} className="stat-bar-btn-3">LAUNCH MISSION</Link>
+                    <Link to={"/mission"} className="stat-bar-btn-4">LAUNCH MISSION</Link>
+                    
                 </div>
                 <div className="bottom-planets-bar">
                 </div>
