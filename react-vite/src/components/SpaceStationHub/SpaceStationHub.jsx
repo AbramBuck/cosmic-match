@@ -1,10 +1,44 @@
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import CreateShipForm from '../SpaceStationHub/CreateShipForm';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import '../SpaceStationHub/SpaceStationHub.css';
+
 
 function SpaceStationHub() {
     const User = useSelector((state) => state.session.user);
+    const [showMenu, setShowMenu] = useState(false);
     console.log("USER INFO:////////", User);
+
+    const toggleMenu = (e) => {
+        e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+        setShowMenu(!showMenu);
+      };
+    
+      useEffect(() => {
+        if (!showMenu) return;
+    
+        const closeMenu = (e) => {
+          if (!ulRef.current.contains(e.target)) {
+            setShowMenu(false);
+          }
+        };
+    
+        document.addEventListener('click', closeMenu);
+    
+        return () => document.removeEventListener("click", closeMenu);
+      }, [showMenu]);
+    
+      const closeMenu = () => setShowMenu(false);
+    
+      const logout = (e) => {
+        e.preventDefault();
+        dispatch(sessionActions.logout());
+        closeMenu();
+        navigate('/');
+      };
+
 
     let level = 1;
 
@@ -26,6 +60,9 @@ function SpaceStationHub() {
                         <h2>Level: </h2>
                         <h2>Shields: </h2>
                         <h2>Fuel: </h2>
+                        <div className="button-div">
+                        <OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/>
+                        </div> 
                     </div>
 
                 </div>

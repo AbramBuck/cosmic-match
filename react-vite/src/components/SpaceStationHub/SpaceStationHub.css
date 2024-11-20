@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zen+Dots&display=swap');
+
 .hub-page-wrapper{
     background-color: rgb(16, 4, 40);
     height: 100%;
@@ -114,6 +116,10 @@
     grid-row: 1;
 }
 
+.cpt-name-hub h2{
+    font-family: "Zen Dots", sans-serif;
+}
+
 .stat-bar-stat-lvl{
     grid-column: 1;
     grid-row: 2;
@@ -147,6 +153,7 @@
 .stat-bar-btn-1:hover {
     background-color: aqua;
     color: rgb(33, 67, 95);
+    cursor: pointer;
 }
 
 .stat-bar-btn-2{
@@ -166,6 +173,7 @@
 .stat-bar-btn-2:hover {
     background-color: aqua;
     color: rgb(33, 67, 95);
+    cursor: pointer;
 }
 
 .stat-bar-btn-3{
@@ -185,6 +193,7 @@
 .stat-bar-btn-3:hover {
     background-color: aqua;
     color: rgb(33, 67, 95);
+    cursor: pointer;
 }
 
 .stat-bar-btn-4{
@@ -204,6 +213,33 @@
 .stat-bar-btn-4:hover {
     color: aqua;
     background-color: rgb(0, 157, 255);
+    cursor: pointer;
+}
+
+.button-div{
+    text-align: center;
+}
+
+
+
+.create-a-ship{
+    grid-column: 4;
+    grid-row: 3;
+    text-align: center;
+    padding-top: 10px;
+    background-color: rgb(55, 171, 221);
+    border-radius: 20px;
+    border: 4px rgb(171, 245, 255) solid;
+    margin: 10px;
+    font-family: "Zen Dots", sans-serif;
+    color:rgb(17, 37, 53);
+    text-decoration: none;
+}
+
+.create-a-ship:hover {
+    color: aqua;
+    background-color: rgb(0, 157, 255);
+    cursor: pointer;
 }
 
 /* Bottom Planets Bar */

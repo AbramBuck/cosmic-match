@@ -2,14 +2,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Zen+Dots&display=swap');
 
 button{
+    font-family: "Zen Dots", sans-serif;
     width: fit-content;
     height: 20px;
-    color: aquamarine;
-    background-color: rgb(30, 146, 213);
-    border-color: aqua;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 2px;
+    padding: 20px 20px 35px 20px;
+    text-align: center;
+    align-self: center;
+    color: rgb(152, 236, 255);
+    background-color: rgb(34, 73, 105);
+    border-radius: 30px;
+    border: 4px rgb(171, 245, 255) solid;
+}
+
+button:hover{
+  cursor: pointer;
+  color:rgb(17, 37, 53);
+  background-color: rgb(55, 171, 221);
 }
 
 h1{
