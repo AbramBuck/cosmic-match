@@ -1,4 +1,3 @@
-import { csrfFetch } from "./csrf";
 
 //Reducer initial state
 const initialState = { 
@@ -9,6 +8,9 @@ const initialState = {
 const GET_SHIPS = "ships/getShips"
 const ADD_SHIP = "ships/addShip";
 const ADD_IMAGE_TO_SHIP = "ships/addImageToShip";
+const GET_SHIP_DETAILS = "ships/getShipDetails";
+const DELETE_A_SHIP = "ships/deleteShip"
+const UPDATE_SHIP = "ships/updateShip"
 
 //Action Creators - the func that returns the variable that holds the action type
 const getShips = (ships) => ({
@@ -31,7 +33,7 @@ const deleteShip = (shipId) => ({
     shipId,
 });
 
-const updateShipAction = (updatedShip) => ({
+const updateShip = (updatedShip) => ({
     type: UPDATE_SHIP,
     updatedShip,
 });
@@ -58,26 +60,23 @@ export const fetchSpotDetails = (spotId) => async (dispatch) => {
 };
 
 //CREATE SHIP Thunk
-export const createSpot = (addedSpot) => async (dispatch) => {
-    const { country, address, city, state, description, name, price, lat, lng } = addedSpot;
+export const createShip = (addedShip) => async (dispatch) => {
+    console.log("Inside Thunk - ADDED SHIP INFO:", addedShip)
+    const { name, shields, fuel, image_url, runs_completed} = addedShip;
     try {
-        const response = await csrfFetch("/api/spots/", {
+        const response = await fetch("/api/ships/", {
             method: "POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-                country,
-                address,
-                city,
-                state,
-                description,
                 name,
-                price,
-                lat,
-                lng
+                shields,
+                fuel,
+                image_url,
+                runs_completed
             })
         });
         const data = await response.json();
-
+        console.log("Data retruend", data)
         if (!response.ok) {
 
             if (response.status === 400) {
@@ -174,24 +173,24 @@ export const updateSpot = (shipId, ship) => async (dispatch) => {
 };
 
 //SPOT REDUCER//////////////////////////////////////////////////////////////////////////////////////
-const spotsReducer = (state = initialState, action) => {
+const shipsReducer = (state = initialState, action) => {
     switch(action.type) {
-        case GET_SPOTS:
+        case GET_SHIPS:
             return {
                 ...state,
                 spots: action.spots,
             };
-        case GET_SPOT_DETAILS:
+        case GET_SHIP_DETAILS:
             return {
                 ...state,
                 spotDetails: action.spotDetails,
             };
-        case ADD_SPOT:
+        case ADD_SHIP:
             return {
                 ...state,
-                spots: [...state.spots, action.addedSpot],
+                ships: [...state.ships, action.addedShip],
             };
-        case ADD_IMAGE_TO_SPOT:
+        case ADD_IMAGE_TO_SHIP:
             return {
                 ...state,
                 spots: state.spots.map((spot) =>
@@ -200,18 +199,13 @@ const spotsReducer = (state = initialState, action) => {
                     :spot
                 ), 
             };
-        case GET_USER_SPOTS:
-            return {
-                ...state,
-                userSpots: action.userSpots,
-            };
-        case DELETE_A_SPOT:
+        case DELETE_A_SHIP:
         return {
             ...state,
             spots: state.spots.filter(spot => spot.id !== action.spotId),
             userSpots: state.userSpots.filter(spot => spot.id !== action.spotId),
         };
-        case UPDATE_SPOT:
+        case UPDATE_SHIP:
             return {
                 ...state,
                 userSpots: state.userSpots.map((spot) =>
@@ -224,4 +218,4 @@ const spotsReducer = (state = initialState, action) => {
     }
 };
 
-export default spotsReducer;
+export default shipsReducer;

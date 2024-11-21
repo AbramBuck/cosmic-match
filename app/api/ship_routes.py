@@ -23,7 +23,6 @@ def handle_ship(ship_id):
         owner_id=current_user.id
     ).first_or_404()
 
-    
     if request.method == 'GET':
         return jsonify({
             'id': ship.id,
