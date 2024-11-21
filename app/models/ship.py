@@ -19,7 +19,9 @@ class Ship(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
+
     owner = db.relationship('User', back_populates='ships')
+
 
     def __repr__(self):
         return f"<Ship(id={self.id}, owner_id={self.owner_id}, name={self.name}, fuel={self.fuel}, shields={self.shields}, runs_completed={self.runs_completed}, image_url={self.image_url})>"
