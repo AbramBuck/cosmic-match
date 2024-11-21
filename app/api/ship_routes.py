@@ -30,6 +30,8 @@ def handle_ship(ship_id):
             'owner_id': ship.owner_id,
             'fuel': ship.fuel,
             'shields': ship.shields,
+            'gold': ship.gold,
+            'level': ship.level,
             'created_at': ship.created_at,
             'updated_at': ship.updated_at,
         })
@@ -76,6 +78,8 @@ def create_ship():
         'name': ship.name,
         'fuel': ship.fuel,
         'shields': ship.shields,
+        'gold': ship.gold,
+        'level': ship.level,
         'image_url': ship.image_url,
         'runs_completed': ship.runs_completed,
         'created_at': ship.created_at,

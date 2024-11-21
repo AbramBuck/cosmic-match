@@ -5,6 +5,7 @@ import CreateShipForm from '../SpaceStationHub/CreateShipForm';
 import { fetchShips } from "../../redux/ship";
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import '../SpaceStationHub/SpaceStationHub.css';
+import { thunkUpdate } from "../../redux/session";
 
 
 function SpaceStationHub() {
@@ -33,6 +34,15 @@ function SpaceStationHub() {
             setCurrentShip(foundShip || null); // Set null if no ship matches
         }
     }, [Ships, User]);
+
+    const addGold = async () => {
+      console.log("FIRED OFF ADD GOLD")
+      const amount = 50
+     
+     
+      await dispatch(thunkUpdate(amount))
+     
+    };
 
 
     const toggleMenu = (e) => {
@@ -106,7 +116,7 @@ function SpaceStationHub() {
                     <h2 className="stat-bar-stat-gold">Gold: {User.gold}</h2>
                     <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
                     <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
-                    <Link to={"/mission"} className="stat-bar-btn-2">LAUNCH MISSION</Link>
+                    <button onClick={addGold} className="stat-bar-btn-2">ADD 50 GOLD</button>
                     <Link to={"/mission"} className="stat-bar-btn-3">LAUNCH MISSION</Link>
                     <Link to={"/mission"} className="stat-bar-btn-4">LAUNCH MISSION</Link>
                     

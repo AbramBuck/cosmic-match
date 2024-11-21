@@ -1,5 +1,6 @@
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const UPDATE_USER = 'session/updateUser'
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -9,6 +10,12 @@ const setUser = (user) => ({
 const removeUser = () => ({
   type: REMOVE_USER
 });
+
+const updateUser = (user) => ({
+  type: UPDATE_USER,
+  payload: user
+});
+
 
 export const thunkAuthenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/");
@@ -21,6 +28,38 @@ export const thunkAuthenticate = () => async (dispatch) => {
 		dispatch(setUser(data));
 	}
 };
+
+
+export const thunkUpdate = (amount) => async dispatch => {
+  console.log("In the User Update Thunk");
+  try {
+    const response = await fetch(`/api/users/update/`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        gold: amount
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Data from User Update Thunk", data);
+      dispatch(updateUser(data)); // Assuming `updateUser` is your action creator
+      return data; // Return the updated data for further use
+    } else if (response.status < 500) {
+      const errorMessages = await response.json();
+      console.error("Error messages from server:", errorMessages);
+      return errorMessages; // Return for the caller to handle
+    } else {
+      console.error("Server error occurred.");
+      return { server: "Something went wrong when trying to update user. Please try again" };
+    }
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    return { server: "An unexpected error occurred. Please try again" };
+  }
+};
+
 
 export const thunkLogin = (credentials) => async dispatch => {
   const response = await fetch("/api/auth/login", {
@@ -71,6 +110,8 @@ function sessionReducer(state = initialState, action) {
       return { ...state, user: action.payload };
     case REMOVE_USER:
       return { ...state, user: null };
+    case UPDATE_USER:
+      return { ...state, user: action.payload };
     default:
       return state;
   }

@@ -14,6 +14,8 @@ class Ship(db.Model, UserMixin):
     name = db.Column(db.String(40), nullable=False)
     fuel = db.Column(db.Integer, nullable=False)
     shields = db.Column(db.Integer, nullable=False)
+    gold = db.Column(db.Integer, nullable=False, default=0)
+    level = db.Column(db.Integer, nullable=False, default=0)
     image_url = db.Column(db.String(255), nullable=False)
     runs_completed = db.Column(db.Integer, nullable=False, default=0)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
@@ -33,6 +35,8 @@ class Ship(db.Model, UserMixin):
             'name': self.name,
             'fuel': self.fuel,
             'shields': self.shields,
+            'gold': self.gold,
+            'level': self.level,
             'runs_completed': self.runs_completed,
             'image_url': self.image_url,
         }

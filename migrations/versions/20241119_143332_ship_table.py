@@ -24,6 +24,8 @@ def upgrade():
     sa.Column('name', sa.String(length=40), nullable=False),
     sa.Column('fuel', sa.Integer(), nullable=False),
     sa.Column('shields', sa.Integer(), nullable=False),
+    sa.Column('gold', sa.Integer(), nullable=False),
+    sa.Column('level', sa.Integer(), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=False),
     sa.Column('runs_completed', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
