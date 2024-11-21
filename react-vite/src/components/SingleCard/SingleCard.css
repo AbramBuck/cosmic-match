@@ -29,3 +29,23 @@
     transform: rotateY(90deg);
     transition-delay: 0s;
 }
+
+
+@keyframes pulseOutline {
+    0% {
+        outline-width: 4px;
+    }
+    50% {
+        outline-width: 8px; 
+    }
+    100% {
+        outline-width: 4px; 
+    }
+}
+
+.hostile {
+    border-radius: 5px;
+    outline: 4px solid red; 
+    outline-offset: 1px;  
+    animation: pulseOutline 1s ease-in-out infinite;
+}

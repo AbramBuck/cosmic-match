@@ -163,7 +163,7 @@ function MatchGame() {
     }, [choiceOne, choiceTwo])
 
 
-
+    
 
     return(
         <div className="game-page-wrapper">
@@ -188,6 +188,7 @@ function MatchGame() {
                         handleChoice={handleChoice}
                         flipped={card === choiceOne || card === choiceTwo || card.matched}
                         disabled={disabled}
+                        hostile={card.hostile}
                          /> 
                 )) : ""
                 }

@@ -1,17 +1,22 @@
 import './SingleCard.css'
 
 
-function SignleCard({card, handleChoice, flipped, disabled}) {
+function SignleCard({card, handleChoice, flipped, disabled, hostile}) {
 
     const handleClick = () => {
         if (!disabled) {
             handleChoice(card);
-            console.log('selected card')
+            console.log('selected card', hostile)
         }
     }
 
+    // const flipVersion = () => {
+    //     if (flipped && hostile) 
+    // }
+
     return(
             <div className="card">
+            <div className={ flipped && hostile ? "hostile" : ""}>
             <div className={ flipped ? "flipped" : ""}>
                 <img className="front" src={card.src} alt="card front" />
                 <img 
@@ -20,6 +25,7 @@ function SignleCard({card, handleChoice, flipped, disabled}) {
                     alt="card back"
                     onClick={handleClick}
                     />
+            </div>
             </div>
             </div>
           )
