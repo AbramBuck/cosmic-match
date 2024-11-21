@@ -18,7 +18,7 @@ const getShips = (ships) => ({
 
 const addShip = (addedShip) => ({
     type: ADD_SHIP,
-    addedShip,
+    payload: addedShip,
 });
 
 const addImage = (image) => ({
@@ -69,8 +69,14 @@ export const createShip = (addedShip) => async (dispatch) => {
                 runs_completed
             })
         });
-        const data = await response.json();
-        console.log("Data retruend", data)
+
+        if (response.ok){
+            const data = await response.json();
+            dispatch(addImageToShip(data.ships));
+            dispatch(getShips());
+            console.log("Data retruend", data)
+        }
+
         if (!response.ok) {
 
             if (response.status === 400) {
@@ -128,6 +134,12 @@ const shipsReducer = (state = initialState, action) => {
                 ...state,
                 ships: action.payload,
             };
+        
+        case ADD_SHIP:
+            return{
+                ...state,
+                ships: action.payload
+            }
 
         default: 
         return state;

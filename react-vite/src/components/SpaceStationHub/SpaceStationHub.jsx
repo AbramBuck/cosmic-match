@@ -11,23 +11,29 @@ function SpaceStationHub() {
     const dispatch = useDispatch();
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
+    const [level, setLevel] = useState(1);
+    const [shipLevel, setShipLevel] = useState(1);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
-    
-    const getCurrentShip = Ships.find((e) => e.id === User.current_ship);
+    let getCurrentShip = {};
 
     console.log("USER INFO:////////", User.current_ship);
     console.log("SHIP INFO:////////", Ships);
     console.log("TESTERSSSSSSSSS",getCurrentShip)
 
 
-    
-
     useEffect(() => {
         dispatch(fetchShips())
-        const getCurrentShip = Ships.filter((e) => e.id === User.current_ship);
-        setCurrentShip(...getCurrentShip)
       },[dispatch]);
+
+
+      useEffect(() => {
+        if (Ships.length && User.current_ship) {
+            const foundShip = Ships.find((e) => e.id === User.current_ship);
+            setCurrentShip(foundShip || null); // Set null if no ship matches
+        }
+    }, [Ships, User]);
+
 
     const toggleMenu = (e) => {
         e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -58,21 +64,22 @@ function SpaceStationHub() {
       };
 
 
-    let level = 1;
+    useEffect(() => {
+        if (User.total_runs < 20) {
+            setLevel(0);
+        } else {
+            setLevel(User.total_runs / 20);
+        }
+    }, [User.total_runs]);
 
-    if (User.total_runs < 20) {
-        level = 0;
+    useEffect(() => {
+      if (currentShip && currentShip.runs_completed < 20) {
+        setShipLevel(0)
     } else {
-        level = User.total_runs / 20
+        setShipLevel(currentShip.runs_completed / 20)
     }
-
-    // let shipLevel = 1;
-
-    // if (currentShip.runs_completed < 20) {
-    //     shipLevel = 0;
-    // } else {
-    //     shipLevel = currentShip.runs_completed / 20
-    // }
+  }, [Ships, User.current_ship]);
+    
 
 
     return (
@@ -83,10 +90,10 @@ function SpaceStationHub() {
                     <h2>Current Ship</h2>
                     <img className="current-ship-img" src="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid" alt="current ship" />
                     <div className="ship-info-div">
-                        <h2>"SHIP NAME"</h2>
-                        <h2>Level:  </h2>
-                        <h2>Shields:</h2>
-                        <h2>Fuel: </h2>
+                        <h2>{currentShip.name}</h2>
+                        <h2>Level: {shipLevel}  </h2>
+                        <h2>Shields: {currentShip.shields}</h2>
+                        <h2>Fuel: {currentShip.fuel}</h2>
                         <div className="button-div">
                         <OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/>
                         </div> 

@@ -1,10 +1,12 @@
 import React from "react"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { fetchShips } from "../../redux/ship";
 import "../MatchGame/MatchGame.css"
 import confetti from 'https://cdn.skypack.dev/canvas-confetti'
 import matchSnd from '../../audio/CardMatched.mp3'
 import noMatchSnd from '../../audio/NoCardMatch.mp3'
 import gameAudio from '../../audio/gameAudio.mp3'
-import { useEffect, useState } from "react"
 import SignleCard from "../SingleCard/SingleCard"
 import YouDiedModal from "./YouDiedModal"
 import YouWonModal from "./YouWonModal"
@@ -27,11 +29,17 @@ const cardDeck= [
     { "src" : "../../../src/images/terrain/majestic_forest.jpg", matched: false, hostile: false, reward: 10 },
 ]
 
+
 function MatchGame() {
     let matchedAudio = new Audio(matchSnd);
     let noMatchedAudio = new Audio(noMatchSnd);
     let gameMusic = new Audio(gameAudio);
     
+    const dispatch = useDispatch();
+    const User = useSelector((state) => state.session.user);
+    const Ships = useSelector((state) => state.ships.ships);
+
+
     const [cards, setCards] = useState([])
     const [turns, setTurns] = useState(0)
     const [choiceOne, setChoiceOne] = useState(null)
@@ -41,9 +49,31 @@ function MatchGame() {
     const [fuel, setFuel] = useState(10)
     const [showModal, setShowModal] = useState(false)
     const [gold, setGold ] = useState(0)
+    const [currentShip, setCurrentShip] = useState([])
 
     const allMatched = cards.every(card => card.matched === true) 
+       
+    useEffect(() => {
+        dispatch(fetchShips())
+      },[dispatch]);
     
+    useEffect(() => {
+        if (Ships.length && User.current_ship) {
+            const foundShip = Ships.find((e) => e.id === User.current_ship);
+            setCurrentShip(foundShip || null); // Set null if no ship matches
+        }
+    }, [Ships, User]);
+
+
+    useEffect(() => {
+        const startingFuel = currentShip.fuel
+        const startingShields = currentShip.shields
+        
+        setFuel(startingFuel)
+        setShields(startingShields)
+    }, [Ships, User])
+
+
     //Bonus Gold
     React.useEffect(() => {
         if (allMatched && turns > 0) {

@@ -87,8 +87,8 @@ function CreateShipForm({User}) {
           />
         </label>
         {errors.name && <p className="error-message">{errors.name}</p>}
-        <h2 className='subhead'>Test Photo URL</h2>
-        <caption className='caption'>Test</caption>
+        <h2 className='subhead'>Photo URL</h2>
+        <caption className='caption'>Add a photo url here</caption>
         <label className='label'>
           <input className='fullInputWidth'
             type="text"
