@@ -131,7 +131,7 @@ function SpaceStationHub() {
                     <h2 className="stat-bar-stat-gold">Credits: {User.gold}</h2>
                     <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
                     <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
-                    <button onClick={updateUserInfo} className="stat-bar-btn-2">ADD 50 GOLD</button>
+                    <Link to={"/planets"} className="stat-bar-btn-2">Manage Planets</Link>
                     <button onClick={updateShipInfo} className="stat-bar-btn-3">ADD 20 RUNS TO SHIP</button>
                     <Link to={"/mission"} className="stat-bar-btn-4">LAUNCH MISSION</Link>
                     

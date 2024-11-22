@@ -24,11 +24,17 @@ def get_planets():
 def create_planet():
     data = request.get_json()
     name = data.get('name')
+    image = data.get('image_url')
+    deck_size = data.get('deck_size')
+
+
     if not name:
         return jsonify({'error': 'Planet name is required'}), 400
     planet = Planet(
         name=name,
-        owner_id=current_user.id
+        owner_id=current_user.id,
+        image_url=image,
+        deck_size=deck_size
     )
     db.session.add(planet)
     db.session.commit()
@@ -40,7 +46,7 @@ def create_planet():
         'updated_at': planet.updated_at
     }), 201
 
-@planet_routes.route('/<int:planetk_id>', methods=['GET', 'PUT', 'DELETE'])
+@planet_routes.route('/<int:planet_id>', methods=['GET', 'PUT', 'DELETE'])
 @login_required
 def handle_planet(planet_id):
     planet = Planet.query.filter_by(

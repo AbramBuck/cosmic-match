@@ -5,6 +5,9 @@ import Layout from './Layout';
 import MatchGame from '../components/MatchGame/MatchGame';
 import ImageForm from '../components/ImageForm/ImageForm'
 import SpaceStationHub from '../components/SpaceStationHub/SpaceStationHub';
+import CreatePlanet from '../components/Planet/CreatePlanet';
+import ManagePlanets from '../components/Planet/ManagePlanets';
+
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +32,14 @@ export const router = createBrowserRouter([
       {
         path:"images",
         element: <ImageForm />,
+      },
+      {
+        path:"planets",
+        element: <ManagePlanets />,
+      },
+      {
+        path:"planets/new",
+        element: <CreatePlanet />,
       },
     ],
   },
