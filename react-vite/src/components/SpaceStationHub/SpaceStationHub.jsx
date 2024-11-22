@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import CreateShipForm from '../SpaceStationHub/CreateShipForm';
@@ -10,17 +10,16 @@ import { thunkUpdate } from "../../redux/session";
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
     const [level, setLevel] = useState(1);
     const [shipLevel, setShipLevel] = useState(1);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
-    // let getCurrentShip = {};
 
-    // console.log("USER INFO:////////", User.gold);
-    // console.log("SHIP INFO:////////", Ships);
-    // console.log("TESTERSSSSSSSSS",getCurrentShip)
+
+    if (!User) navigate(`/login`);
 
 
     useEffect(() => {
@@ -31,7 +30,7 @@ function SpaceStationHub() {
       useEffect(() => {
         if (Ships.length && User.current_ship) {
             const foundShip = Ships.find((e) => e.id === User.current_ship)
-            setCurrentShip(foundShip || null); // Set null if no ship matches
+            setCurrentShip(foundShip || null);
         }
     }, [Ships, User]);
 
@@ -61,7 +60,7 @@ function SpaceStationHub() {
 
 
     const toggleMenu = (e) => {
-        e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+        e.stopPropagation();
         setShowMenu(!showMenu);
       };
     

@@ -50,9 +50,12 @@ function MatchGame() {
     const [showModal, setShowModal] = useState(false)
     const [gold, setGold ] = useState(0)
     const [currentShip, setCurrentShip] = useState([])
-
     const allMatched = cards.every(card => card.matched === true) 
        
+    
+    if (!User) navigate(`/login`);
+
+
     useEffect(() => {
         dispatch(fetchShips())
       },[dispatch]);
