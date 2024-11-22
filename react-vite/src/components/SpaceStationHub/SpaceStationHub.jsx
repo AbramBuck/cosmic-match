@@ -116,7 +116,7 @@ function SpaceStationHub() {
                     <img className="current-ship-img" src="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid" alt="current ship" />
                     <div className="ship-info-div">
                         <h2>{currentShip.name}</h2>
-                        <h2>Level: {shipLevel}  </h2>
+                        <h2>Ship Level: {shipLevel}  </h2>
                         <h2>Shields: {currentShip.shields}</h2>
                         <h2>Fuel: {currentShip.fuel}</h2>
                         <h2>Runs: {currentShip.runs_completed}</h2>
