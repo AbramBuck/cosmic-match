@@ -103,14 +103,14 @@ export const createShip = (addedShip) => async (dispatch) => {
 };
 
 
-export const thunkShipUpdate = (shipId, amount) => async dispatch => {
+export const thunkShipUpdate = (shipId, updates) => async dispatch => {
     console.log("In the User Update Thunk");
     try {
       const response = await fetch(`/api/ships/${shipId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          gold: amount
+          runs_completed: updates.runs_completed
         }),
       });
   

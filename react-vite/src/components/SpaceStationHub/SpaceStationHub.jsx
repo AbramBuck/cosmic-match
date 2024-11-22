@@ -6,7 +6,7 @@ import { fetchShips } from "../../redux/ship";
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import '../SpaceStationHub/SpaceStationHub.css';
 import { thunkShipUpdate } from "../../redux/ship";
-
+import { thunkUpdate } from "../../redux/session";
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function SpaceStationHub() {
     const [currentShip, setCurrentShip] = useState([]);
     let getCurrentShip = {};
 
-    console.log("USER INFO:////////", User.current_ship);
+    console.log("USER INFO:////////", User.gold);
     console.log("SHIP INFO:////////", Ships);
     console.log("TESTERSSSSSSSSS",getCurrentShip)
 
@@ -35,12 +35,22 @@ function SpaceStationHub() {
         }
     }, [Ships, User]);
 
-    const addGold = async () => {
-      console.log("FIRED OFF ADD GOLD")
-      const amount = 50
+    const updateUserInfo = async () => {
+      console.log("FIRED OFF Update User Info")
+      const amount = User.gold += 150
       const shipId = currentShip.id
      
-      await dispatch(thunkShipUpdate(shipId, amount))
+      await dispatch(thunkUpdate(amount))
+     
+    };
+
+
+    const updateShipInfo = async () => {
+      console.log("FIRED OFF Update Ship Info")
+      const updates = { runs_completed: currentShip.runs_completed += 20, }
+      const shipId = currentShip.id
+     
+      await dispatch(thunkShipUpdate(shipId, updates))
      
     };
 
@@ -113,11 +123,11 @@ function SpaceStationHub() {
                 <div className="top-stat-bar">
                     <h2 className="cpt-name-hub">Commander {User.username}</h2>
                     <h2 className="stat-bar-stat-lvl">Level: {level}</h2>
-                    <h2 className="stat-bar-stat-gold">Gold: {currentShip.gold}</h2>
-                    <h2 className="stat-bar-stat-runs">Ship Runs: {currentShip.runs_completed}</h2>
+                    <h2 className="stat-bar-stat-gold">Gold: {User.gold}</h2>
+                    <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
                     <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
-                    <button onClick={addGold} className="stat-bar-btn-2">ADD 50 GOLD</button>
-                    <Link to={"/mission"} className="stat-bar-btn-3">LAUNCH MISSION</Link>
+                    <button onClick={updateUserInfo} className="stat-bar-btn-2">ADD 50 GOLD</button>
+                    <button onClick={updateShipInfo} className="stat-bar-btn-3">ADD 20 RUNS TO SHIP</button>
                     <Link to={"/mission"} className="stat-bar-btn-4">LAUNCH MISSION</Link>
                     
                 </div>
