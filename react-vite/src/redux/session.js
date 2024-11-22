@@ -30,16 +30,13 @@ export const thunkAuthenticate = () => async (dispatch) => {
 };
 
 
-export const thunkUpdate = (amount) => async dispatch => {
+export const thunkUpdate = (updates) => async dispatch => {
   console.log("In the User Update Thunk");
   try {
     const response = await fetch(`/api/users/update`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        gold: amount,
-        total_runs: 1200
-      }),
+      body: JSON.stringify(updates),
     });
 
     if (response.ok) {

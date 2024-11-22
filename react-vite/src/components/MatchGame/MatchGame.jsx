@@ -174,12 +174,12 @@ function MatchGame() {
             <h2>|</h2>
             <h2>Fuel: {fuel}</h2>
             <h2>|</h2>
-            <h2>Gold: {gold}</h2>
+            <h2>Credits: {gold}</h2>
             <h2>|</h2>
             <h2>Turns: {turns}</h2>
             </div>
             <div className="card-grid">
-                {showModal && allMatched ? < YouWonModal/> : "" }
+                {showModal && allMatched ? < YouWonModal gold={gold} turns={turns}/> : "" }
                 {showModal && !allMatched ? <YouDiedModal fuel={fuel} shields={shields} gold={gold} turns={turns}/> : "" }
                 { !showModal ? cards.map(card =>(
                     <SignleCard 

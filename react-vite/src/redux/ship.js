@@ -109,9 +109,7 @@ export const thunkShipUpdate = (shipId, updates) => async dispatch => {
       const response = await fetch(`/api/ships/${shipId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          runs_completed: updates.runs_completed
-        }),
+        body: JSON.stringify(updates),
       });
   
       if (response.ok) {
