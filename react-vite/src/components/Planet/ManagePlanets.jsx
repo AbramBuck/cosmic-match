@@ -5,6 +5,7 @@ import { getAllPlanets, deleteAPLANET } from "../../redux/planet";
 import { IoPlanet } from "react-icons/io5";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditModal from "./EditModal";
+import DeleteConfirmModal from "./DeleteConfirmModal";
 // import DeleteNotebookConfirmModal from "./DeleteNotebookConfirmModal";
 
 
@@ -15,38 +16,34 @@ function ManagePlanets() {
   const [error, setErrors] = useState(null);
   // const user = useSelector((store) => store.session.user);
   const planets = useSelector((state) => state.planets.planets);
-//   const notes = useSelector((state) => state.notes.notes);
   
-//   console.log("Planets:///////",planets)
 
-//   const notesInNotebook = notes.reduce((acc, note) => {
-//     const id = note.notebook_id;
+//   const cardsOnPlanet = cards.reduce((acc, note) => {
+//     const id = card.planet_id;
 //     acc[id] = (acc[id] || 0) + 1; 
 //     return acc;
 //   }, {});
 
-//   console.log("NotesInNotebook:///////",notesInNotebook)
   
-//   const alertDelete = () =>{
-//     alert('You Cannot Delete a Notebook that has Notes')
-//   }
+  const alertDelete = () =>{
+    alert('You Cannot Delete a Planet that has Cards')
+  }
 
 
-const handleDelete = async (e) => {
-    e.preventDefault();
-    try {
-        await dispatch(deleteAPLANET(4))
-        await dispatch(getAllPlanets())
-        // window.location.href = `/planets/manage`;
-    } catch (error) {
-        setErrors({ submission: "Error when trying to create a planet." })
-    }
-};
+// const handleDelete = async (e) => {
+//     e.preventDefault();
+//     try {
+//         await dispatch(deleteAPLANET(4))
+//         await dispatch(getAllPlanets())
+//         // window.location.href = `/planets/manage`;
+//     } catch (error) {
+//         setErrors({ submission: "Error when trying to create a planet." })
+//     }
+// };
 
 
   useEffect(() => { 
     dispatch(getAllPlanets())
-    // dispatch(thunkFetchNotes());
 }, [dispatch], planets);
 
   
@@ -70,10 +67,9 @@ const handleDelete = async (e) => {
                   </div>
                   <div className="edit-delete-btn-area">
                   <OpenModalButton buttonText="Edit"  modalComponent={<EditModal planet={planet}/>}/>
-                    {/* 
-                    {notesInPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletePlanetConfirmModal planetId={planet.id}/>}/>}
-                     */}
-                    <button onClick={handleDelete}>DELETE</button>
+                  <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal planetId={planet.id}/>}/>
+                    {/* {cardsOnPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletePlanetConfirmModal planetId={planet.id}/>}/>} */}
+                    
                   </div>                
                 </div>
               ))}
