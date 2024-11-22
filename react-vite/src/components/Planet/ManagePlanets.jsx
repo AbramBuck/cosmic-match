@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getAllPlanets } from "../../redux/planet";
-import { deleteAPLANET } from "../../redux/planet";
+import { getAllPlanets, deleteAPLANET } from "../../redux/planet";
 import { IoPlanet } from "react-icons/io5";
-// import OpenModalButton from "./OpenModalButton";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import EditModal from "./EditModal";
 // import DeleteNotebookConfirmModal from "./DeleteNotebookConfirmModal";
-// import EditNotebookModal from "./EditNotebookModal";
+
 
 
 
@@ -60,6 +60,7 @@ const handleDelete = async (e) => {
               {planets.map((planet) => (
                 <div className="planet-instance" key={planet.id}>
                   <h3>{planet.name}</h3>
+                  <img src={planet.image_url} width='200px'></img>
                   <Link to={`/planets/${planet.id}`}>
                     <h1 className="planet-icon"><IoPlanet /></h1>
                   </Link>
@@ -68,7 +69,8 @@ const handleDelete = async (e) => {
                     {/* <h3>Cards:{ cardsInPlanet[planet.id] ? cardsInPlanet[planet.id] : 0 } </h3> */}
                   </div>
                   <div className="edit-delete-btn-area">
-                    {/* <OpenModalButton buttonText="Edit"  modalComponent={<EditPlanetModal planet={planet}/>}/>
+                  <OpenModalButton buttonText="Edit"  modalComponent={<EditModal planet={planet}/>}/>
+                    {/* 
                     {notesInPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletePlanetConfirmModal planetId={planet.id}/>}/>}
                      */}
                     <button onClick={handleDelete}>DELETE</button>

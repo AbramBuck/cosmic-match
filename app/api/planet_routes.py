@@ -13,6 +13,7 @@ def get_planets():
             'id': planet.id,
             'name': planet.name,
             'owner_id': planet.owner_id,
+            'image_url': planet.image_url,
             'created_at': planet.created_at.isoformat() if planet.created_at else None,
             'updated_at': planet.updated_at.isoformat() if planet.updated_at else None
         }
@@ -41,6 +42,7 @@ def create_planet():
     return jsonify({
         'id': planet.id,
         'name': planet.name,
+        'image_url': planet.image_url,
         'owner_id': planet.owner_id,
         'created_at': planet.created_at,
         'updated_at': planet.updated_at
@@ -74,14 +76,17 @@ def handle_planet(planet_id):
     elif request.method == 'PUT':
         data = request.get_json()
         name = data.get('name')
+        image_url = data.get('image_url')
         if not name:
             return jsonify({'error': 'Planet name is required'}), 400
         planet.name = name
+        planet.image_url = image_url
         db.session.commit()
         return jsonify({
             'id': planet.id,
             'name': planet.name,
             'owner_id': planet.owner_id,
+            'image_url': planet.image_url,
             'created_at': planet.created_at,
             'updated_at': planet.updated_at
         })
