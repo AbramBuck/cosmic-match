@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useModal } from "../../context/Modal";
-import { useNavigate } from "react-router-dom";
-import { thunkShipUpdate } from "../../redux/ship";
-import { thunkUpdate } from "../../redux/session";
-import "./Modal.css";
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { useModal } from "../../context/Modal"
+import { useNavigate } from "react-router-dom"
+import { thunkShipUpdate } from "../../redux/ship"
+import { thunkUpdate } from "../../redux/session"
+import "./Modal.css"
 
 
 
 function YouDiedModal({gold,turns, shields, fuel }) {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const User = useSelector((state) => state.session.user);
-    const Ships = useSelector((state) => state.ships.ships);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const User = useSelector((state) => state.session.user)
+    const Ships = useSelector((state) => state.ships.ships)
     const [name, setName] = useState("")
     const [currentShip, setCurrentShip] = useState([])
     const [errors, setErrors] = useState({});
@@ -58,4 +58,4 @@ function YouDiedModal({gold,turns, shields, fuel }) {
     );
   }
   
-  export default YouDiedModal;
+  export default YouDiedModal

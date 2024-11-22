@@ -1,12 +1,16 @@
-import { NavLink } from "react-router-dom";
-import ProfileButton from "./ProfileButton";
-import "./Navigation.css";
+import { NavLink } from "react-router-dom"
+import { useSelector } from "react-redux"
+import ProfileButton from "./ProfileButton"
+import "./Navigation.css"
+
 
 function Navigation() {
+  const User = useSelector((state) => state.session.user)
+
   return (
     <div className="topnav">
       <div>        
-        <NavLink to="/">Home</NavLink>
+      {!User ? "" : <NavLink to="/">Space Station Hub</NavLink>} 
       </div>
       <div className="profile-button">        
         <ProfileButton />
@@ -16,4 +20,4 @@ function Navigation() {
   );
 }
 
-export default Navigation;
+export default Navigation
