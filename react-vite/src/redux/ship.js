@@ -8,6 +8,7 @@ const initialState = {
 //Action Type - a variable holding the action type (so redundant)
 const GET_SHIPS = "ships/getShips"
 const ADD_SHIP = "ships/addShip";
+const UPDATE_SHIP = "ships/updateShip";
 
 
 //Action Creators - the func that returns the variable that holds the action type
@@ -19,6 +20,11 @@ const getShips = (ships) => ({
 const addShip = (addedShip) => ({
     type: ADD_SHIP,
     payload: addedShip,
+});
+
+const updateShip = (ships) => ({
+    type: UPDATE_SHIP,
+    payload: ships
 });
 
 const addImage = (image) => ({
@@ -97,8 +103,41 @@ export const createShip = (addedShip) => async (dispatch) => {
 };
 
 
+export const thunkShipUpdate = (shipId, amount) => async dispatch => {
+    console.log("In the User Update Thunk");
+    try {
+      const response = await fetch(`/api/ships/${shipId}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          gold: amount
+        }),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Data from User Update Thunk", data);
+        dispatch(updateShip(data)); // Assuming `updateUser` is your action creator
+        return data; // Return the updated data for further use
+      } else if (response.status < 500) {
+        const errorMessages = await response.json();
+        console.error("Error messages from server:", errorMessages);
+        return errorMessages; // Return for the caller to handle
+      } else {
+        console.error("Server error occurred.");
+        return { server: "Something went wrong when trying to update user. Please try again" };
+      }
+    } catch (error) {
+      console.error("Unexpected error:", error);
+      return { server: "An unexpected error occurred. Please try again" };
+    }
+  };
+  
+
+
 //Add Image Thunk
 export const addImageToShip = (shipId, imageUrl) => async (dispatch) => {
+    let spotId = 1;
     try {
       const response = await fetch(`/api/spots/${spotId}/images`, {
         method: 'POST',
@@ -136,6 +175,12 @@ const shipsReducer = (state = initialState, action) => {
             };
         
         case ADD_SHIP:
+            return{
+                ...state,
+                ships: action.payload
+            }
+
+        case UPDATE_SHIP:
             return{
                 ...state,
                 ships: action.payload

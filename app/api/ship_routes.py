@@ -15,7 +15,7 @@ def ships():
     return {'ships': [ship.to_dict() for ship in ships]}
 
 
-@ship_routes.route('/<int:ship_id>', methods=['GET'])
+@ship_routes.route('/<int:ship_id>', methods=['GET', 'PUT', 'DELETE'])
 @login_required
 def handle_ship(ship_id):
     ship = Ship.query.filter_by(
@@ -35,6 +35,23 @@ def handle_ship(ship_id):
             'created_at': ship.created_at,
             'updated_at': ship.updated_at,
         })
+
+
+    if request.method == "PUT":
+        data = request.get_json()
+        if not data:
+            return jsonify({'error': 'No data provided'}), 400
+
+        updatable_fields = ['gold', 'level', 'runs_completed', 'image_url', 'fuel', 'shields', 'name']
+        for field in updatable_fields:
+            if field in data:
+                setattr(ship, field, data[field])
+
+        # Commit changes
+        db.session.commit()
+
+        return jsonify(ship.to_dict()), 200
+
 
 @ship_routes.route('/all', methods=['GET'])
 @login_required
