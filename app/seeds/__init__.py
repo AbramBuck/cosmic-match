@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .ships import seed_ships, undo_ships
 from .images import seed_images, undo_images
+from .planets import seed_planets, undo_planets
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -20,9 +21,11 @@ def seed():
         undo_users()
         undo_ships()
         undo_images()
+        undo_planets()        
     seed_users()
     seed_ships()
     seed_images()
+    seed_planets()
     # Add other seed functions here
 
 
@@ -32,4 +35,5 @@ def undo():
     undo_users()
     undo_ships()
     undo_images()
+    undo_planets()
     # Add other undo functions here

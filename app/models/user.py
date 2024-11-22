@@ -20,6 +20,8 @@ class User(db.Model, UserMixin):
 
     ships = db.relationship('Ship', back_populates='owner')
     image = db.relationship('Image', back_populates='owner')
+    planets = db.relationship('Planet', back_populates='owner')
+
 
     @property
     def password(self):
