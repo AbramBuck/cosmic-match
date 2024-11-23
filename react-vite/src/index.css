@@ -41,7 +41,6 @@ h3{
   font-weight: 200;
   font-style: normal;
   font-size: 15px;
-  padding: 5px;
 }
 
 
@@ -49,6 +48,10 @@ p{
   font-family: "Ubuntu", serif;
   font-weight: 500;
   font-style: normal;
+}
+
+a{
+  font-family: "Zen Dots", sans-serif;
 }
 
 label{

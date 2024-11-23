@@ -50,7 +50,7 @@ function YouDiedModal({gold,turns, shields, fuel }) {
         { fuel <= 0 && shields > 0 ? <h2>You ran out of fuel. Upgrade your ship to travel further.</h2> : ""}
         { shields <= 0 || shields <=0 && fuel <=0 ? <h2>Hostile aliens destroyed your shields and your ship went down.</h2> : ""}
 
-        <div className="modal-buttons">
+        <div className="fail-modal-buttons">
             <button type="submit" onClick={handleSubmit}>Return To Space Station</button>
         </div>
       </div>

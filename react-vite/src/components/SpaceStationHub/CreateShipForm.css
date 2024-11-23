@@ -1,10 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Rakkas&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Arsenal+SC:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-.modal-container {
+.ship-modal-container {
     max-width: 100%;
-    padding: 15px;
+    padding: 80px;
     border-radius: 25px;
+    background: linear-gradient(to bottom, rgba(19, 2, 54, 0.92), rgba(52, 13, 99, 0.47)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732056608/ship_example_hz14se.jpg') no-repeat center center;
+    background-size: cover; 
+    border: 2px rgb(171, 245, 255) solid !important;
+    box-shadow: rgb(171, 245, 255, 0.4) 1px 1px 32px !important;
+}
+
+.create-ship-form-glass{
+    color:  rgb(171, 245, 255) !important;
+    margin: 100px;
+    padding: 65px !important;
+    max-width: 600px !important;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .fullInputWidth {

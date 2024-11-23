@@ -57,7 +57,8 @@ function CreateShipForm({User}) {
 
   return (
     <>
-    <div className='modal-container'>
+    <div className='ship-modal-container'>
+      <div className='create-ship-form-glass'>
       <h1 className='titleText'>Create a New Ship</h1>
       <h2 className='subhead'>Give your ship name some flair!</h2>
       <form 
@@ -101,6 +102,7 @@ function CreateShipForm({User}) {
         {errors.previewUrl && <p>{errors.previewUrl}</p>}
         <button type="submit" onClick={handleSubmit}>Create Ship</button>
     </form>
+    </div>
     </div>
     </>
   );

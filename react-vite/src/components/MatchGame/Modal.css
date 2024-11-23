@@ -60,6 +60,14 @@
     border-radius: 5px;            
   }
 
+  .fail-modal-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    width: fit-content !important;
+    gap: 20px; 
+  }
+
   .modal-buttons {
     display: flex;
     justify-content: center;

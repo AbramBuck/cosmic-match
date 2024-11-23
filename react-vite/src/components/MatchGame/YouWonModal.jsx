@@ -46,7 +46,7 @@ function YouDiedModal({gold,turns, shields, fuel }) {
         <h2>You explored the planet and you returned safely.</h2>
         <h2>Completion Bonus: +100 Gold</h2>
 
-        <div className="modal-buttons">
+        <div className="fail-modal-buttons">
             <button type="submit" onClick={handleSubmit}>Return To Space Station</button>
         </div>
       </div>

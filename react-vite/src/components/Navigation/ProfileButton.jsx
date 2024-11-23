@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
+import { BiSolidPlanet } from "react-icons/bi";
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
@@ -42,39 +42,37 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <div className="button-icon"><FaUserCircle /></div>
-      </button>
-      {showMenu && (
-        <ul className={"profile-dropdown"} ref={ulRef}>
-          {user ? (
-            <>
-            <div className="button-bg">
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
-            </div>
-            </>
-          ) : (
-            <>
-            <div className="button-bg">
-              <OpenModalMenuItem
-                itemText="Log In"
-                onItemClick={closeMenu}
-                modalComponent={<LoginFormModal />}
-              />
-              <OpenModalMenuItem
-                itemText="Sign Up"
-                onItemClick={closeMenu}
-                modalComponent={<SignupFormModal />}
-              />
-            </div>
-            </>
-          )}
-        </ul>
-      )}
+        <button className="nav-button" onClick={toggleMenu}>
+          <div className="button-icon"><BiSolidPlanet font-size="50px" />{user ? "User Info" : "Login"}</div>
+        </button>
+        {showMenu && (
+          <ul className={"profile-dropdown"} ref={ulRef}>
+            {user ? (
+              <>
+              <div className="button-bg">
+               <h3> {user.username}</h3>
+                <h3>{user.email}</h3>
+                  <button onClick={logout}>Log Out</button>
+              </div>
+              </>
+            ) : (
+              <>
+              <div className="button-bg">
+                <OpenModalMenuItem
+                  itemText="Log In"
+                  onItemClick={closeMenu}
+                  modalComponent={<LoginFormModal />}
+                />
+                <OpenModalMenuItem
+                  itemText="Sign Up"
+                  onItemClick={closeMenu}
+                  modalComponent={<SignupFormModal />}
+                />
+              </div>
+              </>
+            )}
+          </ul>
+        )}
     </>
   );
 }

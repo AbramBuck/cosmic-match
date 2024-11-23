@@ -1,10 +1,14 @@
+
+
 .button-bg {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-family: Zen;
     position: absolute;
     right: 8px;
-    top:60px;
-    padding: 30px;
-    max-width: 350px;
-    width: 100% !important;
+    top:-5px;
+    max-width: 250px;
     background-color: #F7F7F7;
     margin: 0 auto;
     border-radius: 2px;
@@ -13,6 +17,16 @@
     font-family: roboto;
     line-height: 25px;
     z-index: 1;
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 60px;
+    color: white;
+    
 }
 
 .profile-button {
@@ -35,11 +49,26 @@
     padding-left: 15px;
 }
 
-.button-icon {
-    padding-top: 5px;
-    width: 30px;
-    height: 20px;
+.nav-button{
+    position: relative;
+    top: 5px;
+    right: -45px;
+    width: 175px;
+    height: 75px;
+    padding: 20px;
+    margin: 0px;
 }
+
+.button-icon {
+    position: absolute;
+    top:5px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    padding-top: 5px;
+
+}
+
 
 .create-item-link {
     color: rgb(234, 199, 22);

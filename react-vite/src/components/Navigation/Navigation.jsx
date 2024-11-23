@@ -10,7 +10,7 @@ function Navigation() {
   return (
     <div className="topnav">
       <div>        
-      {!User ? "" : <NavLink to="/">Space Station Hub</NavLink>} 
+      {!User ? "" : <NavLink to="/">Go To Space Station Hub</NavLink>} 
       </div>
       <div className="profile-button">        
         <ProfileButton />

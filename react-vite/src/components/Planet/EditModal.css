@@ -10,7 +10,10 @@
     align-items: center;     
     z-index: 1000;           
   }
- 
+
+  .form-group{
+    border-radius: 15px;
+  }
 
 
   .form-title{
@@ -24,23 +27,47 @@
     font-style: normal;
   }
   
-  .modal-content {
+  .edit-modal-content {
+    display: flex;
+    justify-content: center;
     background: antiquewhite;
-    padding: 20px;
+    padding: 75px;
     border-radius: 8px;
     text-align: center;
-    max-width: 400px;        
+    max-width: 600px;        
     width: 100%;
-    border-radius: 5px;            
+    border-radius: 5px;
+    border-radius: 15px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(2, 39, 84, 0.92), rgba(52, 13, 99, 0.47)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg') no-repeat center center;
+    background-size: cover;         
   }
   
   .modal-buttons {
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
+    align-items: center;
     margin-top: 20px;
     width: fit-content;
     gap: 20px; 
   }
+
+  .modal-buttons button{
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 15px;
+    height: 60px;
+    width: 170px;
+  }
+
+  .shell{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
  .confirm-del-notebtn,
  .cancel-de-note-btn {
     width:30%
