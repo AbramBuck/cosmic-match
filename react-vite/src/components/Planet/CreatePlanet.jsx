@@ -9,13 +9,12 @@ const CreatePlanet = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [name, setName] = useState('');
-    const [image, setImageUrl] = useState("");
+    const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg");
     const [deckSize, setDeckSize] = useState(6);
     const [error, setErrors] = useState(null); 
 
     const handleChange = async (e) => {
-        e.preventDefault();
-        setDeckSize(e.target.value)
+        setDeckSize(Number(e.target.value))
       }
     
     const handleSubmit = async (e) => {
@@ -69,8 +68,8 @@ const CreatePlanet = () => {
                   <label className="deck-label">
                     <input
                       type="radio"
-                      name="deck 6"
-                      value="deckSize"
+                      name="deck"
+                      value="6"
                       checked={deckSize === 6}
                       onChange={handleChange}
                     />
@@ -80,8 +79,8 @@ const CreatePlanet = () => {
                   <label className="deck-label">
                     <input
                       type="radio"
-                      name="deck 12"
-                      value="deckSize"
+                      name="deck"
+                      value="12"
                       checked={deckSize === 12}
                       onChange={handleChange}
                     />

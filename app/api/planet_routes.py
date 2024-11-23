@@ -1,18 +1,20 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
 from app.models import db, Planet
+from sqlalchemy import desc
 
 planet_routes = Blueprint('planets', __name__, url_prefix="/api/planets")
 
 @planet_routes.route('', methods=['GET'])
 @login_required
 def get_planets():
-    planets = Planet.query.filter_by(owner_id=current_user.id).all()
+    planets = Planet.query.filter_by(owner_id=current_user.id).order_by(desc(Planet.created_at)).all()
     return jsonify([
         {
             'id': planet.id,
-            'name': planet.name,
             'owner_id': planet.owner_id,
+            'name': planet.name,
+            'deck_size': planet.deck_size,
             'image_url': planet.image_url,
             'created_at': planet.created_at.isoformat() if planet.created_at else None,
             'updated_at': planet.updated_at.isoformat() if planet.updated_at else None
@@ -41,9 +43,10 @@ def create_planet():
     db.session.commit()
     return jsonify({
         'id': planet.id,
-        'name': planet.name,
-        'image_url': planet.image_url,
         'owner_id': planet.owner_id,
+        'name': planet.name,
+        'deck_size': planet.deck_size,
+        'image_url': planet.image_url,
         'created_at': planet.created_at,
         'updated_at': planet.updated_at
     }), 201
@@ -58,8 +61,10 @@ def handle_planet(planet_id):
     if request.method == 'GET':
         return jsonify({
             'id': planet.id,
-            'name': planet.name,
             'owner_id': planet.owner_id,
+            'name': planet.name,
+            'deck_size': planet.deck_size,
+            'image_url': planet.image_url,
             'created_at': planet.created_at,
             'updated_at': planet.updated_at,
             'cards': [
@@ -86,6 +91,7 @@ def handle_planet(planet_id):
             'id': planet.id,
             'name': planet.name,
             'owner_id': planet.owner_id,
+            'deck_size': planet.deck_size,
             'image_url': planet.image_url,
             'created_at': planet.created_at,
             'updated_at': planet.updated_at
