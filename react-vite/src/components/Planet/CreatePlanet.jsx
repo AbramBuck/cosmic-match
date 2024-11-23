@@ -1,11 +1,13 @@
 import  { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createPlanet } from '../../redux/planet';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const CreatePlanet = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [image, setImageUrl] = useState("");
     const [deckSize, setDeckSize] = useState(6);
@@ -26,10 +28,10 @@ const CreatePlanet = () => {
         };
 
         try {
-            await dispatch(createPlanet(planetData));
-            // window.location.href = `/planets/manage`;
+            await dispatch(createPlanet(planetData))
+            navigate('/planets')
         } catch (error) {
-            setErrors({ submission: "Error when trying to create a planet." });
+            setErrors({ submission: "Error when trying to create a planet." })
         }
     };
 
