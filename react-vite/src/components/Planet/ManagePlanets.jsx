@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
-import { getAllPlanets, deleteAPLANET } from "../../redux/planet";
+import { getAllPlanets } from "../../redux/planet";
 import { IoPlanet } from "react-icons/io5";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditModal from "./EditModal";
 import DeleteConfirmModal from "./DeleteConfirmModal";
-// import DeleteNotebookConfirmModal from "./DeleteNotebookConfirmModal";
-
+import './ManagePlanets.css'
 
 
 
@@ -30,18 +29,6 @@ function ManagePlanets() {
   }
 
 
-// const handleDelete = async (e) => {
-//     e.preventDefault();
-//     try {
-//         await dispatch(deleteAPLANET(4))
-//         await dispatch(getAllPlanets())
-//         // window.location.href = `/planets/manage`;
-//     } catch (error) {
-//         setErrors({ submission: "Error when trying to create a planet." })
-//     }
-// };
-
-
   useEffect(() => { 
     dispatch(getAllPlanets())
 }, [dispatch], planets);
@@ -50,31 +37,32 @@ function ManagePlanets() {
   return (
     <div className="page-wrapper">
       {/* NavBar End */}
-      <div className="planets-area">
-            <h1 className="manage-planet-header">PLANETS</h1>
-            <Link to={"/planets/new"}>Create a Planet</Link>
-            <div className="planets-page-populated-area">
+      
+      <div className="planets-content-area">
+      <h1 className="manage-planet-header">PLANETS</h1>
+      <Link to={"/planets/new"}>Create a Planet</Link>s
+        <div className="planets-area">
               {planets.map((planet) => (
                 <div className="planet-instance" key={planet.id}>
-                  <h3>{planet.name}</h3>
-                  <img src={planet.image_url} width='200px'></img>
+                  <h2><IoPlanet />{planet.name}</h2>
                   <Link to={`/planets/${planet.id}`}>
-                    <h1 className="planet-icon"><IoPlanet /></h1>
+                  <div className="crop-container"></div>
+                  <img src={planet.image_url}></img>
                   </Link>
-                  <div className="manage-planet-title">
-                    
-                    {/* <h3>Cards:{ cardsInPlanet[planet.id] ? cardsInPlanet[planet.id] : 0 } </h3> */}
-                  </div>
                   <div className="edit-delete-btn-area">
                   <OpenModalButton buttonText="Edit"  modalComponent={<EditModal planet={planet}/>}/>
                   <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal planetId={planet.id}/>}/>
                     {/* {cardsOnPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletePlanetConfirmModal planetId={planet.id}/>}/>} */}
+                  </div>      
+                  <div className="manage-planet-title">
                     
-                  </div>                
+                    {/* <h3>Cards:{ cardsInPlanet[planet.id] ? cardsInPlanet[planet.id] : 0 } </h3> */}
+                  </div>
+          
                 </div>
               ))}
               </div>
-      </div>
+        </div>
     </div>
 
 )
