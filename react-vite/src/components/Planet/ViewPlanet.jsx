@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getAllPlanets } from "../../redux/planet";
+import { thunkFetchCards } from "../../redux/cards";
 import { IoPlanet } from "react-icons/io5";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditModal from "./EditModal";
@@ -16,50 +17,64 @@ function ManagePlanets() {
   const [error, setErrors] = useState(null)
   const user = useSelector((store) => store.session.user)
   const planets = useSelector((state) => state.planets.planets)
-  
-  if (!user) navigate(`/login`);
+  const cards = useSelector((state) => state.cards.cards)
+  const [currentPlanet, setCurrentPlanet] = useState([]); 
+  const [currentCards, setCurrentCards] = useState([]); 
+  const { planetId } = useParams();
 
-//   const cardsOnPlanet = cards.reduce((acc, note) => {
-//     const id = card.planet_id;
-//     acc[id] = (acc[id] || 0) + 1; 
-//     return acc;
-//   }, {});
 
-  
+  console.log("Planet ID Use Params////////", planetId)
+  console.log("Current Planet/////////////",currentPlanet)
+  console.log("PLanets/////", planets)
+
+  if (!user) navigate(`/login`)
+
+    useEffect(() => { 
+        dispatch(getAllPlanets())
+    }, [dispatch], planets);
+
+    useEffect(() => { 
+        dispatch(thunkFetchCards())
+    }, [dispatch], cards);
+
+    useEffect(() => {
+        const thisPlanet = planets.find((planet) => planet.id == planetId);
+        setCurrentPlanet(thisPlanet)
+    }, [planets]);
+
+    useEffect(() => { 
+        const theseCards = cards.filter((card) => card.planet_id == planetId);
+        setCurrentCards(theseCards)
+    },[cards]);
+
+
   const alertDelete = () =>{
     alert('You Cannot Delete a Planet that has Cards')
   }
-
-
-  useEffect(() => { 
-    dispatch(getAllPlanets())
-}, [dispatch], planets);
-
   
   return (
     <div className="page-wrapper">
-      {/* NavBar End */}
       
       <div className="planets-content-area">
-      <h1 className="manage-planet-header">PLANETS </h1>
-      <h2 className="create-planet-btn">      <Link to={"/planets/new"}>Create A New Planet</Link>
+      <h1 className="manage-planet-header">{currentPlanet.name}</h1>
+      <h2 className="create-planet-btn">      <Link to={"/planets/new"}>Create A New Card</Link>
       </h2>
         <div className="planets-area">
-              {planets.map((planet) => (
-                <div className="planet-instance" key={planet.id}>
-                  <div className="planet-title ubuntu-regular"><IoPlanet />{planet.name}</div>
-                  <Link to={`/planets/${planet.id}`}>
-                  <div className="crop-container"><img className="crop-container" src={planet.image_url}></img></div>
+              {currentCards.map((card) => (
+                <div className="card-instance" key={card.id}>
+                  <div className="card-title ubuntu-regular"><IoPlanet />{card.name}</div>
+                  <Link to={`/cards/${card.id}`}>
+                  <div className="crop-container"><img className="crop-container" src={card.image_url}></img></div>
                   
                   </Link>
                   <div className="edit-delete-btn-area">
-                  <OpenModalButton buttonText="Edit"  modalComponent={<EditModal planet={planet}/>}/>
-                  <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal planetId={planet.id}/>}/>
-                    {/* {cardsOnPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletePlanetConfirmModal planetId={planet.id}/>}/>} */}
+                  <OpenModalButton buttonText="Edit"  modalComponent={<EditModal card={card}/>}/>
+                  <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal cardId={card.id}/>}/>
+                    {/* {cardsOncard[card.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletecardConfirmModal cardId={card.id}/>}/>} */}
                   </div>      
-                  <div className="manage-planet-title">
+                  <div className="manage-card-title">
                     
-                    {/* <h3>Cards:{ cardsInPlanet[planet.id] ? cardsInPlanet[planet.id] : 0 } </h3> */}
+                    {/* <h3>Cards:{ cardsIncard[card.id] ? cardsIncard[card.id] : 0 } </h3> */}
                   </div>
           
                 </div>
