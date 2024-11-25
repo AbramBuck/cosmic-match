@@ -217,3 +217,12 @@ top: 50%;
 left: 50%;          
 transform: translate(-50%, -50%);
 }
+
+.planet-crop-container:hover {   
+    overflow: hidden;
+    filter: brightness(4.1) contrast(0.9);
+    filter: drop-shadow(8px 8px 10px gray);
+    filter: contrast(200%);
+    filter: hue-rotate(90deg);
+    filter: saturate(8);
+    }

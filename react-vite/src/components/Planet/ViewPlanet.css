@@ -49,10 +49,10 @@
 .manage-cards-header{
     text-align: center;
     margin: 25px 0px 25px 0px;
-    padding: 10px;
+    padding: 10px 25px;
     color: rgb(171, 245, 255);
     text-shadow:  rgb(166, 249, 249) 0px 0px 6px;
-    width: 30%;
+    width: fit-content;
     height: 35px;
     border-radius: 85px;
     border: 4px rgb(171, 245, 255) solid;

@@ -2,10 +2,10 @@ import  { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlanet } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
-import './CreatePlanet.css'
+import '../Planet/CreatePlanet.css'
 
 
-const CreatePlanet = () => {
+const CreateCard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.session.user);
@@ -101,4 +101,4 @@ const CreatePlanet = () => {
   );
 };
 
-export default CreatePlanet;
+export default CreateCard;
