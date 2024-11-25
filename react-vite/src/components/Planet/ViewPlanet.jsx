@@ -23,7 +23,7 @@ function ManageCards() {
   const [currentPlanet, setCurrentPlanet] = useState([]); 
   const [currentCards, setCurrentCards] = useState([]); 
   const { planetId } = useParams();
-
+  
 
   console.log("Planet ID Use Params////////", planetId)
   console.log("Current Planet/////////////",currentPlanet)
@@ -31,6 +31,7 @@ function ManageCards() {
   console.log("Cards ////////", currentCards)
 
   if (!user) navigate(`/login`)
+
 
     useEffect(() => { 
         dispatch(getAllPlanets())
@@ -59,7 +60,7 @@ function ManageCards() {
     <div className="card-page-wrapper">
       
       <div className="cards-content-area">
-      <h1 className="manage-cards-header"><IoPlanet />  {currentPlanet.name}</h1>
+      <h1 className="manage-cards-header"><IoPlanet />  {currentPlanet ? currentPlanet.name : "Planet View" }</h1>
       <h2 className="create-card-btn">      
         <Link to={"/planets/new"}><MdSdCard /> Create A New Card</Link>
       </h2>
@@ -69,13 +70,12 @@ function ManageCards() {
         <div className="cards-area">
               {currentCards.map((card) => (
                 <div className="card-instance" key={card.id}>
-                  <Link to={`/cards/${card.id}`}>
+                  <div>
                   <div className="crop-container"><img className="crop-container" src={card.image_url}></img></div>
-                  
-                  </Link>
+                  </div>
                   <div className="card-title ubuntu-regular"><MdSdCard />{card.name}</div>
                   <div className="card-stats">
-                    <h4>Planet: {currentPlanet.name}</h4>
+                    <h4>Planet: {currentPlanet ? currentPlanet.name : ""}</h4>
                     <h4>Name: {card.name}</h4>
                     <h4>Hostile: {card.hostile ? "True" : "False"}</h4>
                     <h4>Match Reward: {card.reward * 2}</h4>

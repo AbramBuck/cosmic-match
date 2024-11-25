@@ -9,7 +9,6 @@ import DeleteConfirmModal from "./DeleteConfirmModal";
 import './ManagePlanets.css'
 
 
-
 function ManagePlanets() {
   const dispatch = useDispatch()
   const navigate = useNavigate()

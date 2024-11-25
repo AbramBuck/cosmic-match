@@ -63,6 +63,9 @@
 
 
 .create-planet-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: absolute;
     top:11%;
     left:4%;
@@ -90,7 +93,7 @@
 
   
 .create-planet-btn a:hover {
-    color: white;
+    color: rgb(9, 21, 91);
     text-decoration: underline;
     background-color: aqua;
     border-radius: 10px;
