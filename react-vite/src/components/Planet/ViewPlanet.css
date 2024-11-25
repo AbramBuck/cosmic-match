@@ -38,11 +38,11 @@
     padding: 50px;
     margin-bottom: 75px;
     background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); /* Blur effect for the background */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
     border: 4px rgb(171, 245, 255) solid;
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 15px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     color: white; 
  }
 
@@ -77,7 +77,7 @@
     height: 35px;
     border-radius: 85px;
     border: 4px rgb(171, 245, 255) solid;
-    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    background: linear-gradient(to bottom, rgb(6, 201, 201, .8), rgb(6, 55, 85, .7)), 
     url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
     background-size: cover; 
     text-decoration: none;
@@ -114,7 +114,7 @@
     height: 35px;
     border-radius: 85px;
     border: 4px rgb(171, 245, 255) solid;
-    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    background: linear-gradient(to bottom, rgb(6, 201, 201, .8), rgb(6, 55, 85, .7)), 
     url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
     background-size: cover; 
     text-decoration: none;

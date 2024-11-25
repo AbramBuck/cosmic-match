@@ -38,11 +38,11 @@
     padding: 50px;
     margin-bottom: 75px;
     background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px); /* Blur effect for the background */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
     border: 4px rgb(171, 245, 255) solid;
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border-radius: 15px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
     color: white; 
  }
 
@@ -78,7 +78,7 @@
     height: 35px;
     border-radius: 85px;
     border: 4px rgb(171, 245, 255) solid;
-    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    background: linear-gradient(to bottom, rgb(6, 201, 201, .8), rgb(6, 55, 85, .7)), 
     url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
     background-size: cover; 
     text-decoration: none;
@@ -96,7 +96,46 @@
     color: rgb(9, 21, 91);
     text-decoration: underline;
     background-color: aqua;
-    border-radius: 10px;
+    border-radius: 25px;
+    padding: 2px;
+  }
+
+  .return-station-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    top:11%;
+    left:18%;
+    text-align: center;
+    margin: 25px 0px 0px 0px;
+    padding: 10px;
+    color: rgb(171, 245, 255);
+    text-shadow:  rgb(166, 249, 249) 0px 0px 6px;
+    width: 10%;
+    height: 35px;
+    border-radius: 85px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgb(6, 201, 201, .8), rgb(6, 55, 85, .7)),
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover;  
+    text-decoration: none;
+    z-index: 1;
+    font-size: 15px;
+}
+
+.return-station-btn a:visited {
+    color: white;
+    text-decoration: none; 
+  }
+
+  
+.return-station-btn a:hover {
+    color: rgb(9, 21, 91);
+    text-decoration: underline;
+    background-color: aqua;
+    border-radius: 25px;
+    padding: 7px 7px ;
   }
 
 .planet-icon{
@@ -152,23 +191,29 @@
     gap: 25px;
 }
 
+.card-count-icon{
+    display: flex;
+    font-size: 30px;
+    padding: 0px;
+    margin: 10px 0px 0px 0px;
+}
 
-  .crop-container {
-    width: 200px;       
-    height: 200px;      
-    overflow: hidden;    
-    position: relative;
-    border-radius: 25px;
-    border: 4px rgb(171, 245, 255) solid;
-    box-shadow: rgb(159, 255, 241) 4px 3px 13px;
-    margin-bottom: 25px;
-  }
-  
-  .crop-container img {
-    width: auto;        
-    height: 100%;       
-    position: absolute; 
-    top: 50%;           
-    left: 50%;          
-    transform: translate(-50%, -50%);
-  }
+.crop-container {
+width: 200px;       
+height: 200px;      
+overflow: hidden;    
+position: relative;
+border-radius: 25px;
+border: 4px rgb(171, 245, 255) solid;
+box-shadow: rgb(159, 255, 241) 4px 3px 13px;
+margin-bottom: 25px;
+}
+
+.crop-container img {
+width: auto;        
+height: 100%;       
+position: absolute; 
+top: 50%;           
+left: 50%;          
+transform: translate(-50%, -50%);
+}
