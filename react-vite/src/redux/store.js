@@ -8,12 +8,15 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import shipsReducer from "./ship";
 import planetsReducer from "./planet";
+import cardsReducer from "./cards";
 
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   ships: shipsReducer,
   planets: planetsReducer,
+  cards: cardsReducer,
+
 });
 
 let enhancer;

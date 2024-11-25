@@ -7,6 +7,7 @@ import ImageForm from '../components/ImageForm/ImageForm'
 import SpaceStationHub from '../components/SpaceStationHub/SpaceStationHub';
 import CreatePlanet from '../components/Planet/CreatePlanet';
 import ManagePlanets from '../components/Planet/ManagePlanets';
+import ViewPlanet from '../components/Planet/ViewPlanet'
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path:"planets/new",
         element: <CreatePlanet />,
+      },
+      {
+        path:"planets/:planetId",
+        element: <ViewPlanet />,
       },
     ],
   },
