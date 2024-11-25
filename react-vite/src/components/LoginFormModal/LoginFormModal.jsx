@@ -29,12 +29,14 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-modal-wrapper">
+      <div className="login-modal-glass">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
           Email
           <input
+            className="form-input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -45,6 +47,7 @@ function LoginFormModal() {
         <label>
           Password
           <input
+            className="form-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -54,7 +57,8 @@ function LoginFormModal() {
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
+  </div>
   );
 }
 

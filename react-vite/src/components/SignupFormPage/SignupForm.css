@@ -1,0 +1,48 @@
+.signup-page-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(2, 39, 84, 0.92), rgba(52, 13, 99, 0.47)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg') no-repeat center center;
+    background-size: cover;
+    border-radius: 25px;
+}
+
+.signup-form-glass{
+    color: rgb(195, 255, 255);
+    width: 700px;
+    padding: 65px !important;
+    border-radius: 25px;
+    max-width: 600px !important;
+    border: 2px rgb(171, 245, 255) solid !important;
+    box-shadow: rgb(171, 245, 255, 0.4) 1px 1px 32px !important;
+}
+
+.deck-options{
+    font-size: 20px;
+    margin-bottom:20px ;
+}
+
+.deck-btn{
+    font-size: 30px;
+}
+
+form button{
+    width: 60%;
+    font-size: 20px;
+    margin-left: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+form label{
+    font-size: 20px;
+    
+}
+
+.form-input{
+    font-size: 20px;
+    width: 90%;
+}

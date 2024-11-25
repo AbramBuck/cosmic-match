@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createPlanet } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
 import './CreatePlanet.css'
@@ -8,11 +8,13 @@ import './CreatePlanet.css'
 const CreatePlanet = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector((state) => state.session.user);
     const [name, setName] = useState('');
     const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg");
     const [deckSize, setDeckSize] = useState(6);
     const [error, setErrors] = useState(null); 
 
+    if (!user) navigate(`/login`);
 
     const handleChange = async (e) => {
         setDeckSize(Number(e.target.value))

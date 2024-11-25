@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { thunkSignup } from "../../redux/session";
-import "./SignupForm.css";
+import "../SignupFormPage/SignupForm.css";
 
 function SignupFormModal() {
   const dispatch = useDispatch();
@@ -39,13 +39,15 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+  <div className="signup-page-wrapper">
+    <div className="signup-form-glass">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Email
           <input
+            className="form-input"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -56,6 +58,7 @@ function SignupFormModal() {
         <label>
           Username
           <input
+            className="form-input"
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
@@ -66,6 +69,7 @@ function SignupFormModal() {
         <label>
           Password
           <input
+            className="form-input"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -76,6 +80,7 @@ function SignupFormModal() {
         <label>
           Confirm Password
           <input
+            className="form-input"
             type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -85,7 +90,8 @@ function SignupFormModal() {
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
+  </div>
   );
 }
 
