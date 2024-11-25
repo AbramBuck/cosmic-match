@@ -5,12 +5,77 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_cards():
     card_one = Card(
-        owner_id='1', name='Female Alien',  description='enemy',  hostile=True,  reward=30, planet_id='1', base_game=True, image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305611/alien_female_blue_twozql.jpg")
+        owner_id='1',
+        name='Female Alien', 
+        description='enemy', 
+        hostile=True,
+        reward=30,
+        planet_id='1',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305611/alien_female_blue_twozql.jpg",
+        )
+    
     card_two = Card(
-        owner_id='1', name='Snake',   description='snake', hostile=False,  reward=15, planet_id='1', base_game=True, image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305617/snake_h396qr.jpg")
-   
+        owner_id='1',
+        name='Snake',  
+        description='snake',
+        hostile=False, 
+        reward=15,
+        planet_id='1',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305617/snake_h396qr.jpg",
+        )
+    
+    card_three = Card(
+        owner_id='1',
+        name='Desolation', 
+        description='enemy', 
+        hostile=True,
+        reward=30,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732314910/plains-of-desolation_cm1b8r.jpg",
+        )
+    
+    card_four = Card(
+        owner_id='1',
+        name='Ship',  
+        description='ship',
+        hostile=False, 
+        reward=15,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732209186/sky_javelin_gtbevf.jpg",
+        )
+    
+    card_five = Card(
+        owner_id='1',
+        name='Alien Group', 
+        description='enemy', 
+        hostile=True,
+        reward=30,
+        planet_id='3',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551243/alien_enemy_group_ivn8er.jpg",
+        )
+    
+    card_six = Card(
+        owner_id='1',
+        name='Spectral Cactus',  
+        description='Cacti',
+        hostile=False, 
+        reward=15,
+        planet_id='3',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551246/cactus_zjslv4.jpg",
+        )
+
     db.session.add(card_one)
     db.session.add(card_two)
+    db.session.add(card_three)
+    db.session.add(card_four)
+    db.session.add(card_five)
+    db.session.add(card_six)
     db.session.commit()
 
 

@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getAllPlanets } from "../../redux/planet";
 import { thunkFetchCards } from "../../redux/cards";
+import { MdSdCard } from "react-icons/md";
 import { IoPlanet } from "react-icons/io5";
+import { TiDelete } from "react-icons/ti";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import EditModal from "./EditModal";
-import DeleteConfirmModal from "./DeleteConfirmModal";
-import './ManagePlanets.css'
+import CardEditModal from "../Card/CardEditModal";
+import CardDeleteConfirmModal from "../Card/CardDeleteConfirmModal";
+import './ViewPlanet.css'
 
 
 
-function ManagePlanets() {
+function ManageCards() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [error, setErrors] = useState(null)
@@ -26,6 +28,7 @@ function ManagePlanets() {
   console.log("Planet ID Use Params////////", planetId)
   console.log("Current Planet/////////////",currentPlanet)
   console.log("PLanets/////", planets)
+  console.log("Cards ////////", currentCards)
 
   if (!user) navigate(`/login`)
 
@@ -53,23 +56,34 @@ function ManagePlanets() {
   }
   
   return (
-    <div className="page-wrapper">
+    <div className="card-page-wrapper">
       
-      <div className="planets-content-area">
-      <h1 className="manage-planet-header">{currentPlanet.name}</h1>
-      <h2 className="create-planet-btn">      <Link to={"/planets/new"}>Create A New Card</Link>
+      <div className="cards-content-area">
+      <h1 className="manage-cards-header"><IoPlanet />  {currentPlanet.name}</h1>
+      <h2 className="create-card-btn">      
+        <Link to={"/planets/new"}><MdSdCard /> Create A New Card</Link>
       </h2>
-        <div className="planets-area">
+      <h2 className="manage-planets-btn">      
+        <Link to={"/planets"}><IoPlanet /> Return to Planets</Link>
+      </h2>
+        <div className="cards-area">
               {currentCards.map((card) => (
                 <div className="card-instance" key={card.id}>
-                  <div className="card-title ubuntu-regular"><IoPlanet />{card.name}</div>
                   <Link to={`/cards/${card.id}`}>
                   <div className="crop-container"><img className="crop-container" src={card.image_url}></img></div>
                   
                   </Link>
+                  <div className="card-title ubuntu-regular"><MdSdCard />{card.name}</div>
+                  <div className="card-stats">
+                    <h4>Planet: {currentPlanet.name}</h4>
+                    <h4>Name: {card.name}</h4>
+                    <h4>Hostile: {card.hostile ? "True" : "False"}</h4>
+                    <h4>Match Reward: {card.reward * 2}</h4>
+                    
+                  </div>
                   <div className="edit-delete-btn-area">
-                  <OpenModalButton buttonText="Edit"  modalComponent={<EditModal card={card}/>}/>
-                  <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal cardId={card.id}/>}/>
+                  <OpenModalButton buttonText="Edit"  modalComponent={<CardEditModal card={card}/>}/>
+                  <OpenModalButton buttonText="Delete"  modalComponent={<CardDeleteConfirmModal cardId={card.id}/>}/>
                     {/* {cardsOncard[card.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeletecardConfirmModal cardId={card.id}/>}/>} */}
                   </div>      
                   <div className="manage-card-title">
@@ -85,4 +99,4 @@ function ManagePlanets() {
 
 )
 }
-export default ManagePlanets;
+export default ManageCards;

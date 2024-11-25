@@ -1,10 +1,10 @@
-.page-wrapper{
+.card-page-wrapper{
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to bottom, rgba(35, 147, 162, 0.32), rgba(67, 15, 116, 0.47)), 
-    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg') no-repeat center center;
+    background: linear-gradient(to bottom, rgba(2, 39, 84, 0.92), rgba(52, 13, 99, 0.47)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg') no-repeat center center;
     background-size: cover; 
 }
 
@@ -19,15 +19,15 @@
     padding-top: 25px;
 }
 
-.planets-content-area{
+.cards-content-area{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.planets-area{
+.cards-area{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 20px;
     gap: 20px;
@@ -46,7 +46,7 @@
     color: white; 
  }
 
-.manage-planet-header{
+.manage-cards-header{
     text-align: center;
     margin: 25px 0px 25px 0px;
     padding: 10px;
@@ -61,8 +61,39 @@
     background-size: cover;  
 }
 
+.manage-planets-btn{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top:11%;
+    right:4%;
+    text-align: center;
+    margin: 25px 0px 0px 0px;
+    padding: 10px;
+    color: rgb(171, 245, 255);
+    text-shadow:  rgb(166, 249, 249) 0px 0px 6px;
+    width: 10%;
+    height: 35px;
+    border-radius: 85px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover; 
+    text-decoration: none;
+    z-index: 1;
+    font-size: 15px;
+}
 
-.create-planet-btn{
+
+.manage-planets-btn a:visited {
+    color: white;
+    text-decoration: none; 
+  }
+
+
+.create-card-btn{
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top:11%;
     left:4%;
@@ -83,20 +114,20 @@
     font-size: 15px;
 }
 
-.create-planet-btn a:visited {
+.create-card-btn a:visited {
     color: white;
     text-decoration: none; 
   }
 
   
-.create-planet-btn a:hover {
+.create-card-btn a:hover {
     color: white;
     text-decoration: underline;
     background-color: aqua;
     border-radius: 10px;
   }
 
-.planet-icon{
+.card-icon{
     position: relative;
     font-size: 55px;
     transform: translateY(-150px);
@@ -104,12 +135,12 @@
     margin: 0px;
 }
 
-.planet-img{
+.card-img{
     width: 200px;
     overflow: hidden;
 }
 
-.manage-planet-title{
+.manage-card-title{
     display: flex;
     flex-direction: row;
     height: 50px;
@@ -118,21 +149,22 @@
     font-size: 15px;
 }
 
-.planet-instance{
+.card-instance{
     display: flex;
     padding: 25px 10px 10px 10px;
+    height: 490px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 35px;
     border: 4px rgb(171, 245, 255) solid;
-    background: linear-gradient(to bottom, rgba(69, 7, 113, 0.819), rgba(12, 26, 132, 0.8)), 
-    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg') no-repeat center center;
+    background: linear-gradient(to bottom, rgba(28, 235, 235, 0.319), rgba(11, 202, 227, 0.068)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
     background-size: cover;  
 } 
 
 
-.planet-title{
+.card-title{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -143,10 +175,28 @@
 }
 
 
+.card-stats{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.card-stats h4{
+    margin: 0px;
+    padding: 0px;
+}
+
+.hidden{
+    display: none;
+}
+
 .edit-delete-btn-area{
     display: flex;
     flex-direction: row;
     gap: 25px;
+    margin-top:35px;
+    margin-bottom: 25px;
 }
 
 

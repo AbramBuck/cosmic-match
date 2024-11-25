@@ -41,15 +41,16 @@ function ManagePlanets() {
       {/* NavBar End */}
       
       <div className="planets-content-area">
-      <h1 className="manage-planet-header">PLANETS </h1>
+      <h1 className="manage-planet-header"><IoPlanet /> PLANETS </h1>
       <h2 className="create-planet-btn">      <Link to={"/planets/new"}>Create A New Planet</Link>
       </h2>
         <div className="planets-area">
               {planets.map((planet) => (
-                <div className="planet-instance" key={planet.id}>
+                <div className="planet-instance" key={planet.id} style={{
+                  background: `linear-gradient(to bottom, rgba(17, 85, 133, 0.5), rgba(17, 85, 133, 0.8)), url(${planet.image_url})`,backgroundSize: 'cover',}}>
                   <div className="planet-title ubuntu-regular"><IoPlanet />{planet.name}</div>
                   <Link to={`/planets/${planet.id}`}>
-                  <div className="crop-container"><img className="crop-container" src={planet.image_url}></img></div>
+                  <div className="crop-container"><img className="crop-container" src={planet.image_url} title="Click to visit Planet"></img></div>
                   
                   </Link>
                   <div className="edit-delete-btn-area">
