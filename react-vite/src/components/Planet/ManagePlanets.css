@@ -27,7 +27,7 @@
 
 .planets-area{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
     grid-gap: 20px;
     gap: 20px;
@@ -198,18 +198,18 @@
     margin: 10px 0px 0px 0px;
 }
 
-.crop-container {
-width: 200px;       
-height: 200px;      
+.planet-crop-container {
+width: 250px;       
+height: 250px;      
 overflow: hidden;    
 position: relative;
-border-radius: 25px;
-border: 4px rgb(171, 245, 255) solid;
-box-shadow: rgb(159, 255, 241) 4px 3px 13px;
+border-radius: 125px;
 margin-bottom: 25px;
+border: 2px rgb(171, 245, 255) solid;
+box-shadow: rgb(159, 255, 241) 4px 3px 13px;
 }
 
-.crop-container img {
+.planet-crop-container img {
 width: auto;        
 height: 100%;       
 position: absolute; 

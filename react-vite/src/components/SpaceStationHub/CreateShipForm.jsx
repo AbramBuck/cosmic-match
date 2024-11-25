@@ -20,9 +20,6 @@ function CreateShipForm({User}) {
   const [fuel, setFuel] = useState(5);
   const [previewUrl, setPreviewUrl] = useState("");
   const [errors, setErrors] = useState({});
-
-    console.log("From Ship Form: USER", User)
-
   const { closeModal } = useModal();
   let createdShip = null;
 
@@ -31,15 +28,8 @@ function CreateShipForm({User}) {
     setFuel(8 - shields);
     const addedShip = { name, shields, fuel, image_url: previewUrl, runs_completed: 0 };
 
-    console.log("ADDED SHIP!/////////",addedShip);
+    
     try {
-        // const formData = new FormData();
-        // formData.append("image", image);
-        // aws uploads can be a bit slow—displaying
-        // some sort of loading message is a good idea
-        // setImageLoading(true);
-        // await dispatch(createImage(formData));
-        // navigate("/api/ships");
 
         createdShip = await dispatch(createShip(addedShip));
         // Handle success

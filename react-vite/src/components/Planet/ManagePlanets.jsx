@@ -21,8 +21,6 @@ function ManagePlanets() {
 
   if (!user) navigate(`/login`);
 
-
-
   
   const alertDelete = () =>{
     alert('You Cannot Delete a Planet that has Cards')
@@ -62,7 +60,7 @@ const cardsOnPlanet = cards.reduce((acc, card) => {
                   background: `linear-gradient(to bottom, rgba(17, 85, 133, 0.5), rgba(17, 85, 133, 0.8)), url(${planet.image_url})`,backgroundSize: 'cover',}}>
                   <div className="planet-title ubuntu-regular"><IoPlanet />{planet.name}</div>
                   <Link to={`/planets/${planet.id}`}>
-                  <div className="crop-container"><img className="crop-container" src={planet.image_url} title="Click to visit Planet"></img></div>
+                  <div className="planet-crop-container"><img src={planet.image_url} title="Click to visit Planet"></img></div>
                   
                   </Link>
                   <div className="edit-delete-btn-area">

@@ -103,6 +103,10 @@ input[type="radio"]{
   color: white;
 }
 
+.hidden{
+  display: none;
+}
+
 /* Font Classes */
 .zen-dots-regular {
     font-family: "Zen Dots", sans-serif;
