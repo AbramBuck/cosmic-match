@@ -54,6 +54,7 @@ def create_card():
     
     new_card = Card(
         planet_id=planet_id,
+        owner_id=current_user.id,
         name=data['name'],
         image_url=data['image_url'],
         description=data['description'],

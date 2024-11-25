@@ -5,7 +5,6 @@ import { getAllPlanets } from "../../redux/planet";
 import { thunkFetchCards } from "../../redux/cards";
 import { MdSdCard } from "react-icons/md";
 import { IoPlanet } from "react-icons/io5";
-import { TiDelete } from "react-icons/ti";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import CardEditModal from "../Card/CardEditModal";
 import CardDeleteConfirmModal from "../Card/CardDeleteConfirmModal";
@@ -62,7 +61,7 @@ function ManageCards() {
       <div className="cards-content-area">
       <h1 className="manage-cards-header"><IoPlanet />  {currentPlanet ? currentPlanet.name : "Planet View" }</h1>
       <h2 className="create-card-btn">      
-        <Link to={"/planets/new"}><MdSdCard /> Create A New Card</Link>
+        <Link to={"/cards/new"}><MdSdCard /> Create A New Card</Link>
       </h2>
       <h2 className="manage-planets-btn">      
         <Link to={"/planets"}><IoPlanet /> Return to Planets</Link>

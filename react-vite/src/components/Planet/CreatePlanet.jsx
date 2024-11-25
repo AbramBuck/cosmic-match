@@ -2,6 +2,7 @@ import  { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createPlanet } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
+import { IoPlanet } from "react-icons/io5";
 import './CreatePlanet.css'
 
 
@@ -42,7 +43,7 @@ const CreatePlanet = () => {
     <div className="create-planet-page-wrapper">
         <div className='frosted-glass create-planet-form-glass'>
             <div className="create-container">
-            <h1>Create a New Planet</h1>
+            <h1><IoPlanet /> Create a New Planet</h1>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                 <label htmlFor="name">Planet Name:</label>
