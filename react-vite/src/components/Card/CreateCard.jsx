@@ -1,6 +1,6 @@
 import  { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { thunkCreateCard } from '../../redux/cards';
+import { thunkCreateCard, thunkFetchCards } from '../../redux/cards';
 import { getAllPlanets } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
 import { FaSdCard } from "react-icons/fa";
@@ -17,6 +17,7 @@ const CreateCard = () => {
     const [planetId, setPlanetId] = useState(1);
     const [error, setErrors] = useState(null); 
     const planets = useSelector((state) => state.planets.planets)
+
 
     if (!user) navigate(`/login`);
 
@@ -35,16 +36,17 @@ const CreateCard = () => {
         planet_id: planetId,
         image_url: image,
         hostile: hostileRating,
-        reward: hostileRating === true ? 40 : 15,
+        reward: 20,
         description: "description",
-        base_game: 0,
+        base_game: false,
         };
 
         try {
-            await dispatch(thunkCreateCard(cardData))
-            navigate('/planets')
+            dispatch(thunkCreateCard(cardData))
+            dispatch(thunkFetchCards())
+            navigate(`/planets/${planetId}`)
         } catch (error) {
-            setErrors({ submission: "Error when trying to create a planet." })
+            setErrors({ submission: "Error when trying to create a card." });
         }
     };
 
@@ -122,7 +124,7 @@ const CreateCard = () => {
                 <button type="submit">Create Card</button>
             </form>
 
-            {error && <p className="error">{error}</p>}
+            {error?.submission && <p className="error">{error.submission}</p>}
             </div>
         </div>
     </div>

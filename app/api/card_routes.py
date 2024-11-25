@@ -1,6 +1,7 @@
 from flask import Blueprint, request, jsonify, abort
 from flask_login import login_required, current_user
 from app.models import db, Card, Planet
+from sqlalchemy import desc
 
 card_routes = Blueprint('cards', __name__, url_prefix="/api/cards")
 
@@ -13,12 +14,12 @@ def get_cards():
         planet = Planet.query.filter_by(
             id=planet_id,
             owner_id=current_user.id
-        ).first_or_404()
-        cards = Card.query.filter_by(planet_id=planet_id).all()
+        ).order_by(desc(Card.created_at)).all().first_or_404()
+        cards = Card.query.filter_by(planet_id=planet_id).order_by(desc(Card.created_at)).all()
     else:
         cards = Card.query.join(Planet).filter(
             Planet.owner_id == current_user.id
-        ).all()
+        ).order_by(desc(Card.created_at)).all()
 
     return jsonify([{
             'id': card.id,
