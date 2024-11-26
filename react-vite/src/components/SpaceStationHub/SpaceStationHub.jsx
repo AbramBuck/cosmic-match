@@ -7,17 +7,19 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import '../SpaceStationHub/SpaceStationHub.css';
 import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
+import { getAllPlanets } from "../../redux/planet";
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
+    const planets = useSelector((state) => state.planets.planets)
     const [level, setLevel] = useState(1);
     const [shipLevel, setShipLevel] = useState(1);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
-
+    const [planetId, setPlanetId] = useState(1);
 
     if (!User) navigate(`/login`);
 
@@ -26,6 +28,9 @@ function SpaceStationHub() {
         dispatch(fetchShips())
       },[dispatch]);
 
+      useEffect(() => { 
+        dispatch(getAllPlanets())
+    }, [dispatch], planets);
 
       useEffect(() => {
         if (Ships.length && User.current_ship) {
@@ -104,7 +109,8 @@ function SpaceStationHub() {
     }
   }, [Ships, User.current_ship]);
     
-
+  //handle Launch Mission, change current deck to planetId, the mission will load the deck from the cards in planetId
+  // call update user thunk (see mission for example)
 
     return (
         <div className="hub-page-wrapper">
@@ -130,6 +136,27 @@ function SpaceStationHub() {
                     <h2 className="stat-bar-stat-lvl">Level: {level}</h2>
                     <h2 className="stat-bar-stat-gold">Credits: {User.gold}</h2>
                     <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
+                    <h2 className="stat-bar-select-text">Choose a Planet to Explore:</h2>
+                    <div className="stat-bar-planet-select">
+                    <form >
+                        <div className="form-group">
+                            <label htmlFor="card_id"></label>
+                                <select
+                                id="card_id"
+                                value={planetId}
+                                onChange={(e) => setPlanetId(e.target.value)}
+                                required
+                                >
+                                <option value="">Select a Planet</option>
+                                {planets.map((planet) => (
+                                    <option key={planet.id} value={planet.id}>
+                                    {planet.name} 
+                                    </option>
+                                ))}
+                                </select>
+                        </div>
+            </form>
+                    </div>
                     <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
                     <Link to={"/planets"} className="stat-bar-btn-2">Manage Planets</Link>
                     <button onClick={updateShipInfo} className="stat-bar-btn-3">ADD 20 RUNS TO SHIP</button>

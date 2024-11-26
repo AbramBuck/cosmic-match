@@ -107,6 +107,9 @@ input[type="radio"]{
   display: none;
 }
 
+.margin-top-add{
+  margin-top: 45px;
+}
 /* Font Classes */
 .zen-dots-regular {
     font-family: "Zen Dots", sans-serif;

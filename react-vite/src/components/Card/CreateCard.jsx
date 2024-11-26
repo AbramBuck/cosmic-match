@@ -121,7 +121,7 @@ const CreateCard = () => {
                                 </select>
                         </div>
                 </div>
-                <button type="submit">Create Card</button>
+                <button className='margin-top-add' type="submit">Create Card</button>
             </form>
 
             {error?.submission && <p className="error">{error.submission}</p>}
