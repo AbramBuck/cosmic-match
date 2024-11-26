@@ -1,12 +1,17 @@
 .card{
     position: relative;
+    width: 150px;       
+    height: 150px;      
+    overflow: hidden;    
+    border-radius: 25px;
+    border: 4px rgb(171, 245, 255) solid;
+    box-shadow: rgb(159, 255, 241) 4px 3px 13px;
+    margin-bottom: 25px;
 }
 
 .card img{
-    width: 100%;
-    display: block;
-    border: 6px solid #c1f7ff;
-    border-radius: 6px;
+    width: 100%;       
+    height: 100%;       
 }
 
 .card .front {

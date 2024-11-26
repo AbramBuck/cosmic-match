@@ -10,7 +10,7 @@ import ManagePlanets from '../components/Planet/ManagePlanets';
 import ViewPlanet from '../components/Planet/ViewPlanet'
 import CreateCard from '../components/Card/CreateCard'
 import ViewAllCards from '../components/Card/ViewAllCards';
-
+import CustomMatchGame from '../components/MatchGame/CustomMatchGame';
 
 export const router = createBrowserRouter([
   {
@@ -31,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path:"mission",
         element: <MatchGame />,
+      },
+      {
+        path:"mission/custom",
+        element: <CustomMatchGame />,
       },
       {
         path:"images",

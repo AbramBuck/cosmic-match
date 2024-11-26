@@ -26,7 +26,7 @@ const useStaticDeck = () => {
     }
   }, [planets, fetchedCards, User]);
   console.log("Static Deck",staticDeck)
-  return staticDeck.current;
+  return structuredClone(staticDeck.current);
 };
 
 export default useStaticDeck;

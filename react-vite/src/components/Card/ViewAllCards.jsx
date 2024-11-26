@@ -16,17 +16,10 @@ function ViewAllCards() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const [error, setErrors] = useState(null)
-  const [currentPlanet, setCurrentPlanet] = useState([]); 
-  const [currentCards, setCurrentCards] = useState([]); 
   const { planetId } = useParams();
   const user = useSelector((store) => store.session.user)
   const planets = useSelector((state) => state.planets.planets)
   const cards = useSelector((state) => state.cards.cards)
-
-  console.log("Planet ID Use Params////////", planetId)
-  console.log("Current Planet/////////////",currentPlanet)
-  console.log("PLanets/////", planets)
-  console.log("Cards ////////", currentCards)
 
   if (!user) navigate(`/login`)
 
@@ -64,11 +57,10 @@ function ViewAllCards() {
                   </div>
                   <div className="card-title ubuntu-regular"><MdSdCard />{card.name}</div>
                   <div className="card-stats">
-                    <h4>Planet: { planets[card.planet_id].name}</h4>
+                    {planets && planets[card.planet_id] ? <h4>Planet: {planets[card.planet_id].name} </h4> : " "}
                     <h4>Name: {card.name}</h4>
                     <h4>Hostile: {card.hostile ? "True" : "False"}</h4>
                     <h4>Match Reward: {card.reward * 2}</h4>
-                    
                   </div>
                   <div className="edit-delete-btn-area">
                   <OpenModalButton buttonText="Edit"  modalComponent={<CardEditModal card={card}/>}/>

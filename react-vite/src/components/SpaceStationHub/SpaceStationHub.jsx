@@ -113,7 +113,7 @@ function SpaceStationHub() {
   const handleLaunch = () => {
       dispatch(thunkUpdate({mission_deck: missionDeck}))
       console.log("Post-button Press::",User.mission_deck)
-      navigate("/mission");
+      navigate("/mission/custom");
   }
     return (
         <div className="hub-page-wrapper">

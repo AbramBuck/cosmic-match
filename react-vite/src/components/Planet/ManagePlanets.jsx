@@ -44,8 +44,6 @@ const cardsOnPlanet = cards.reduce((acc, card) => {
   
   return (
     <div className="page-wrapper">
-   
-      
       <div className="planets-content-area">
       <h1 className="manage-planet-header"><IoPlanet /> PLANETS </h1>
       <h2 className="create-planet-btn">      
