@@ -9,7 +9,7 @@ def seed_planets():
     planet_two = Planet(
         owner_id='1', name='The Expanse', deck_size=12, image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732056608/speedlines_background_hqipae.jpg")
     planet_three = Planet(
-        owner_id='1', name='The Dark Warp', deck_size=6, image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732118724/abstract-space-bg_hltv46.jpg")
+        owner_id='1', name='The Nebula', deck_size=6, image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732119360/space-bg_xuo1go.jpg")
    
     db.session.add(planet_one)
     db.session.add(planet_two)

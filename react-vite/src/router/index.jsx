@@ -9,6 +9,8 @@ import CreatePlanet from '../components/Planet/CreatePlanet';
 import ManagePlanets from '../components/Planet/ManagePlanets';
 import ViewPlanet from '../components/Planet/ViewPlanet'
 import CreateCard from '../components/Card/CreateCard'
+import ViewAllCards from '../components/Card/ViewAllCards';
+
 
 export const router = createBrowserRouter([
   {
@@ -47,8 +49,16 @@ export const router = createBrowserRouter([
         element: <ViewPlanet />,
       },
       {
+        path:"cards",
+        element: <ViewAllCards />,
+      },
+      {
         path:"cards/new",
         element: <CreateCard />,
+      },
+      {
+        path: "*",
+        element: <SpaceStationHub />,
       },
     ],
   },

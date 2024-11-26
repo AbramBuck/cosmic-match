@@ -18,7 +18,7 @@ function SignleCard({card, handleChoice, flipped, disabled, hostile}) {
             <div className="card">
             <div className={ flipped && hostile ? "hostile" : ""}>
             <div className={ flipped ? "flipped" : ""}>
-                <img className="front" src={card.src} alt="card front" />
+                <img className="front" src={card?.image_url || card.src} alt="card front" />
                 <img 
                     className="back" 
                     src="../../../src/images/items/cosmic-match-bg2.jpg" 

@@ -28,6 +28,7 @@ def upgrade():
     sa.Column('hostile', sa.Boolean(), nullable=False),
     sa.Column('reward', sa.Integer(), nullable=False),
     sa.Column('base_game', sa.Boolean(), nullable=False),
+    sa.Column('matched', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),

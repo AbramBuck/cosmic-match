@@ -19,6 +19,7 @@ class Card(db.Model):
     hostile = db.Column(db.Boolean, default=False, nullable=False )
     reward = db.Column(db.Integer, default=15, nullable=False )
     base_game = db.Column(db.Boolean, default=False, nullable=False )
+    matched = db.Column(db.Boolean, default=False, nullable=False )
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
@@ -38,6 +39,7 @@ class Card(db.Model):
             'description': self.description,
             'hostile': self.hostile,
             'reward': self.reward,
+            'matched': self.matched,
             'base_game': self.base_game,
             'created_at': self.created_at,
             'updated_at': self.updated_at,

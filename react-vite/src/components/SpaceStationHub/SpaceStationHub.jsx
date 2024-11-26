@@ -109,12 +109,10 @@ function SpaceStationHub() {
     }
   }, [Ships, User.current_ship]);
     
-  //handle Launch Mission, change current deck to planetId, the mission will load the deck from the cards in planetId
-  // call update user thunk (see mission for example)
-  // link to /mission
 
   const handleLaunch = () => {
       dispatch(thunkUpdate({mission_deck: missionDeck}))
+      console.log("Post-button Press::",User.mission_deck)
       navigate("/mission");
   }
     return (
@@ -164,8 +162,8 @@ function SpaceStationHub() {
                     </div>
                     <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
                     <Link to={"/planets"} className="stat-bar-btn-2">Manage Planets</Link>
-                    <button onClick={updateShipInfo} className="stat-bar-btn-3">ADD 20 RUNS TO SHIP</button>
-                    <Link to={"/mission"} className="stat-bar-btn-4">LAUNCH MISSION</Link>
+                    <Link to={"/cards"} className="stat-bar-btn-3">Manage Cards</Link>
+                    <button onClick={handleLaunch} className="stat-bar-btn-4">LAUNCH MISSION</button>
                     
                 </div>
                 <div className="bottom-planets-bar">

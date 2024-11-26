@@ -31,6 +31,7 @@ def get_cards():
             'hostile': card.hostile,
             'reward': card.reward,
             'base_game': card.base_game,
+            'matched': card.base_game,
             'created_at': card.created_at,
             'updated_at': card.updated_at,
     } for card in cards])
@@ -53,6 +54,10 @@ def create_card():
     if not planet:
         return jsonify({'error': 'Invalid planet or planet not found'}), 404
     
+    # name_check = Planet.query.filter_by(name=data['name']).frist() 
+    # if name_check:
+    #     return jsonify({'error': 'Planet name must be unique'}), 404
+    
     new_card = Card(
         planet_id=planet_id,
         owner_id=current_user.id,
@@ -62,6 +67,7 @@ def create_card():
         hostile=data['hostile'],
         reward=data['reward'],
         base_game=data['base_game'],
+        matched=False,
     )
 
     db.session.add(new_card)

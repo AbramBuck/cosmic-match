@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updatePlanet, getAllPlanets } from "../../redux/planet";
 import "./EditModal.css";
+import { thunkFetchCards, thunkUpdateCard } from "../../redux/cards";
 
 
 
@@ -10,9 +11,12 @@ function EditModal({ card }) {
     const dispatch = useDispatch();
     const [name, setName] = useState(card.name)
     const [imageUrl, setImageUrl] = useState(card.image_url)
+    const [hostileRating, setHostileRating] = useState(card.hostile);
+    const [planetId, setPlanetId] = useState(card.planet_id);
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
-
+    const planets = useSelector((state) => state.planets.planets)
+    
     // useEffect(() => {
     //   if (planet) {
     //     setName(planet.name);
@@ -26,20 +30,21 @@ function EditModal({ card }) {
     const handleSubmit = async (e) => {
       e.preventDefault();
       
-      const planetData = {
-        id: planet.id,
+      const cardData = {
+        planet_id: planetId,
         name: name,
         image_url: imageUrl,
+        hostile: hostileRating,
       };
       
       try {
-        await dispatch(updatePlanet(planet.id, planetData));
-        dispatch(getAllPlanets()); 
+        await dispatch(thunkUpdateCard(card.id, cardData));
+        dispatch(thunkFetchCards()); 
         closeModal();
       } catch (error) {
   
         console.error("Error:", error);
-        setErrors({ general: "An unexpected error occurred." });
+        setErrors({ general: "An error occurred." });
       }
     };
   
@@ -75,6 +80,50 @@ function EditModal({ card }) {
             </div>
             <div className="priority-container">
                         
+                </div>
+                <div className="priority-container">
+                <h2>Hostile</h2>
+                <label><h3>Hostile cards damage player shields if they are not matched</h3></label>
+                <div className="card-options">
+
+                <label className="card-label">
+                    <input
+                    type="radio"
+                    name="enemy"
+                    value={true}
+                    checked={hostileRating === true}
+                    onChange={() => setHostileRating(true)}
+                    />
+                    <span className="card-btn">Hostile</span>
+                </label>
+
+                <label className="card-label">
+                    <input
+                    type="radio"
+                    name="enemy"
+                    value={false}
+                    checked={hostileRating === false}
+                    onChange={() => setHostileRating(false)}
+                    />
+                    <span className="card-btn">Non-Hostile</span>
+                </label>
+                </div>
+                        <div className="form-group">
+                            <label htmlFor="card_id">Planet:</label>
+                                <select
+                                id="card_id"
+                                value={planetId}
+                                onChange={(e) => setPlanetId(e.target.value)}
+                                required
+                                >
+                                <option value="">Select a Planet</option>
+                                {planets.map((planet) => (
+                                    <option key={planet.id} value={planet.id}>
+                                    {planet.name} 
+                                    </option>
+                                ))}
+                                </select>
+                        </div>
                 </div>
             <div className="modal-buttons">
               <button type="submit" onClick={handleSubmit}>Update Card</button>
