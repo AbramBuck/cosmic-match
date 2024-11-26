@@ -78,9 +78,9 @@ export const createShip = (addedShip) => async (dispatch) => {
 
         if (response.ok){
             const data = await response.json();
-            dispatch(addImageToShip(data.ships));
+            dispatch(addShip(data));
             dispatch(getShips());
-            console.log("Data retruend", data)
+            return data;
         }
 
         if (!response.ok) {
@@ -89,12 +89,11 @@ export const createShip = (addedShip) => async (dispatch) => {
                 console.error('Validation Errors:', data.errors);
                 throw data.errors;
             }
-            throw new Error(data.message || 'Failed to create spot');
+            throw new Error(data.message || 'Failed to create Ship');
             
         }
         
-        dispatch(addShip(data)); 
-        return data;
+
 
     } catch (error) {
         console.error('Error creating ship:', error);
@@ -131,34 +130,6 @@ export const thunkShipUpdate = (shipId, updates) => async dispatch => {
     }
   };
   
-
-
-//Add Image Thunk
-export const addImageToShip = (shipId, imageUrl) => async (dispatch) => {
-    let spotId = 1;
-    try {
-      const response = await fetch(`/api/spots/${spotId}/images`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          spotId,
-          url: imageUrl,
-          preview: isPreview
-        })
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to add image');
-      }
-  
-      const image = await response.json();
-      dispatch(addImage(image));
-      return image;
-    } catch (error) {
-      console.error('Error adding image to spot:', error);
-      throw error;
-    }
-  };
 
 
 

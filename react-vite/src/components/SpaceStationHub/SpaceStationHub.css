@@ -120,6 +120,19 @@
     font-family: "Zen Dots", sans-serif;
 }
 
+/* STAT BAR */
+
+.ship-placeholder{
+    font-size: 200px;
+    width: 200px;
+    height: 200px;
+    color: whitesmoke;
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgb(86, 41, 92);
+
+}
+
 .stat-bar-stat-lvl{
     grid-column: 1;
     grid-row: 2;
@@ -146,6 +159,28 @@
     grid-column: 3/ 5;
     grid-row: 3;
     padding-top: 15px;
+}
+
+.stat-bar-ship-select{
+    display: flex;
+    padding: 10px 0px;
+    margin: 0px 0px 10px 0px;
+}
+.stat-bar-ship-select select{
+    font-family: "Zen Dots", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    width: 300px;
+    min-width: 200px;
+    max-width: 400px;
+    margin-bottom: 15px;
+}  
+
+.stat-bar-ship-select button{
+    font-size: 20px;
 }
 
 #card_id{
@@ -245,7 +280,30 @@
     text-align: center;
 }
 
-
+.create-ship-button button{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    top:12%;
+    left:3%;
+    text-align: center;
+    margin: 25px 0px 0px 0px;
+    padding: 30px 10px;
+    color: rgb(171, 245, 255);
+    text-shadow:  rgb(166, 249, 249) 0px 0px 6px;
+    width: 10%;
+    height: 35px;
+    border-radius: 85px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgb(6, 201, 201, .8), rgb(6, 55, 85, .7)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732118808/cosmic-match-bg2_unas9o.jpg') no-repeat center center;
+    background-size: cover; 
+    text-decoration: none;
+    z-index: 1;
+    font-size: 15px;
+}
 
 .create-a-ship{
     grid-column: 4;

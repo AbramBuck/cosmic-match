@@ -9,6 +9,7 @@ import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
 import { getAllPlanets } from "../../redux/planet";
 import { FaDailymotion } from "react-icons/fa";
+import { GiSpaceship } from "react-icons/gi";
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ function SpaceStationHub() {
     const Ships = useSelector((state) => state.ships.ships);
     const planets = useSelector((state) => state.planets.planets)
     const [level, setLevel] = useState(1);
-    const [shipLevel, setShipLevel] = useState(1);
+    const [shipLevel, setShipLevel] = useState(0);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
     const [missionDeck, setMissionDeck] = useState(1);
@@ -34,7 +35,7 @@ function SpaceStationHub() {
     }, [dispatch], planets);
 
       useEffect(() => {
-        if (Ships.length && User.current_ship) {
+        if (Ships && Ships.length && User && User.current_ship) {
             const foundShip = Ships.find((e) => e.id === User.current_ship)
             setCurrentShip(foundShip || null);
         }
@@ -103,11 +104,13 @@ function SpaceStationHub() {
     }, [User.total_runs]);
 
     useEffect(() => {
-      if (currentShip && currentShip.runs_completed < 20) {
-        setShipLevel(0)
-    } else {
+      if (Ships && currentShip && currentShip.runs_completed) {
+        if (currentShip.runs_completed < 20) {
+            setShipLevel(0)
+        } else {
         setShipLevel(Math.floor(currentShip.runs_completed / 20))
-    }
+        }
+      }
   }, [Ships, User.current_ship]);
     
 
@@ -121,18 +124,40 @@ function SpaceStationHub() {
             <div className="hub-title-area"><h1 className="hub-title">SPACE STATION HUB</h1></div>
             <div className="hub-page-grid">
                 <div className="left-ship-bar">
-                    <h2>Current Ship</h2>
-                    <img className="current-ship-img" src="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid" alt="current ship" />
+                <h2>Current Ship</h2>
+                    { Ships && currentShip && currentShip.image_url ? <img className="current-ship-img" src={currentShip.image_url}alt="current ship" /> : <div className="ship-placeholder"><GiSpaceship /></div>} 
                     <div className="ship-info-div">
-                        <h2>{currentShip.name}</h2>
+                        <h2>{Ships && currentShip ? currentShip.name : "Create a Ship to Begin"}</h2>
                         <h2>Ship Level: {shipLevel}  </h2>
-                        <h2>Shields: {currentShip.shields}</h2>
-                        <h2>Fuel: {currentShip.fuel}</h2>
-                        <h2>Runs: {currentShip.runs_completed}</h2>
+                        <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2>
+                        <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2>
+                        <h2>Runs: {Ships && currentShip && currentShip.runs_completed ? currentShip.runs_completed : 0 }</h2>
                         <div className="button-div">
-                        <OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/>
-                        </div> 
+                        <div className="create-ship-button"><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
+                    </div> 
+                    <div className="stat-bar-ship-select">
+                    <form >
+                        <div className="form-group">
+                            <label htmlFor="card_id"></label>
+                                <select
+                                id="ship_id"
+                                value={currentShip}
+                                onChange={(e) => setCurrentShip(e.target.value)}
+                                title="Change your ship"
+                                required
+                                >
+                                <option value="">Select a Planet</option>
+                                {planets.map((planet) => (
+                                    <option key={planet.id} value={planet.id}>
+                                    {planet.name} 
+                                    </option>
+                                ))}
+                                </select>
+                                <button>Lock In</button>
+                        </div>
+                    </form>
                     </div>
+                  </div>
 
                 </div>
                 <div className="top-stat-bar">

@@ -4,11 +4,10 @@ import { useModal } from '../../context/Modal';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { createImage } from "../../redux/imageThunk";
-import { createShip } from '../../redux/ship';
-// import * as spotActions from '../../store/spotActions';
+import { createShip, fetchShips } from '../../redux/ship';
+import { thunkUpdate } from '../../redux/session';
 import '../../components/SpaceStationHub/CreateShipForm.css';
-// import { createSpot } from '../../store/spotActions';
-// import defaultPreview from '../../images/defaultImage-00-Preview.jpg'
+
 
 function CreateShipForm({User}) {
   const navigate = useNavigate();
@@ -26,21 +25,23 @@ function CreateShipForm({User}) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setFuel(8 - shields);
-    const addedShip = { name, shields, fuel, image_url: previewUrl, runs_completed: 0 };
+    const addedShip = { name, shields, fuel, image_url: previewUrl, runs_completed: 0 }
 
     
     try {
 
         createdShip = await dispatch(createShip(addedShip));
-        // Handle success
+        if (createdShip && createdShip.id) {
+          dispatch(thunkUpdate({current_ship: createdShip.id}))
+          dispatch(fetchShips())
+          console.log("Created Ship",createdShip)
+          }
     } catch (error) {
-        setErrors({ submission: "Error when trying to create a review." });
+        setErrors({ submission: "Error when trying to create a review." })
     }
 
 
-      if (createdShip) {
-        console.log("Created Ship",createdShip)
-        }
+
         closeModal();
         // window.location.href = `/spots/${createdSpot.id}`;
   };
