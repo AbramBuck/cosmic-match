@@ -19,7 +19,7 @@ function SpaceStationHub() {
     const [shipLevel, setShipLevel] = useState(1);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
-    const [planetId, setPlanetId] = useState(1);
+    const [missionDeck, setMissionDeck] = useState(1);
 
     if (!User) navigate(`/login`);
 
@@ -111,7 +111,12 @@ function SpaceStationHub() {
     
   //handle Launch Mission, change current deck to planetId, the mission will load the deck from the cards in planetId
   // call update user thunk (see mission for example)
+  // link to /mission
 
+  const handleLaunch = () => {
+      dispatch(thunkUpdate({mission_deck: missionDeck}))
+      navigate("/mission");
+  }
     return (
         <div className="hub-page-wrapper">
             <div className="hub-title-area"><h1 className="hub-title">SPACE STATION HUB</h1></div>
@@ -143,8 +148,8 @@ function SpaceStationHub() {
                             <label htmlFor="card_id"></label>
                                 <select
                                 id="card_id"
-                                value={planetId}
-                                onChange={(e) => setPlanetId(e.target.value)}
+                                value={missionDeck}
+                                onChange={(e) => setMissionDeck(e.target.value)}
                                 required
                                 >
                                 <option value="">Select a Planet</option>

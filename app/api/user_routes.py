@@ -42,7 +42,7 @@ def update_user():
         return jsonify({'error': 'No data provided'}), 400
 
     
-    updatable_fields = ['gold', 'current_ship', 'total_runs']
+    updatable_fields = ['gold', 'current_ship', 'total_runs', 'mission_deck']
     for field in updatable_fields:
         if field in data:
             setattr(user, field, data[field])

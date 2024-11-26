@@ -43,7 +43,7 @@ function ProfileButton() {
   return (
     <>
         <button className="nav-button" onClick={toggleMenu}>
-          <div className="button-icon"><BiSolidPlanet font-size="50px" />{user ? "User Info" : "Login"}</div>
+          <div className="button-icon"><BiSolidPlanet fontSize="50px" />{user ? "User Info" : "Login"}</div>
         </button>
         {showMenu && (
           <ul className={"profile-dropdown"} ref={ulRef}>
