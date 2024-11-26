@@ -17,8 +17,8 @@ function SignleCard({card, handleChoice, flipped, disabled, hostile}) {
     return(
         <>
             {console.log(card)}
-            <div className="card">
-            <div className={ flipped && hostile ? "hostile" : ""}>
+            <div className={card.hostile && flipped ? "card hostile" : "card"}>
+            <div className={ flipped && card.hostile ? "hostile" : ""}>
             <div className={ flipped ? "flipped" : ""}>
                 <img className="front" src={card.src} alt="card front" />
                 <img 

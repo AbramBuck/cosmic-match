@@ -75,6 +75,54 @@ def seed_cards():
         base_game=True,
         image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551246/cactus_zjslv4.jpg",
         )
+    
+    card_seven = Card(
+        owner_id='1',
+        name='Desolation', 
+        description='enemy', 
+        hostile=True,
+        reward=30,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732314910/plains-of-desolation_cm1b8r.jpg",
+        )
+    
+    card_eight = Card(
+        owner_id='1',
+        name='Ship',  
+        description='ship',
+        hostile=False, 
+        reward=15,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732209186/sky_javelin_gtbevf.jpg",
+        )
+    
+    card_nine = Card(
+        owner_id='1',
+        name='Alien Group', 
+        description='enemy', 
+        hostile=True,
+        reward=30,
+        matched=False,
+        planet_id='3',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551243/alien_enemy_group_ivn8er.jpg",
+        )
+    
+    card_ten = Card(
+        owner_id='1',
+        name='Spectral Cactus',  
+        description='Cacti',
+        hostile=False, 
+        reward=15,
+        matched=False,
+        planet_id='3',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551246/cactus_zjslv4.jpg",
+        )
 
     db.session.add(card_one)
     db.session.add(card_two)
@@ -82,6 +130,10 @@ def seed_cards():
     db.session.add(card_four)
     db.session.add(card_five)
     db.session.add(card_six)
+    db.session.add(card_seven)
+    db.session.add(card_eight)
+    db.session.add(card_nine)
+    db.session.add(card_ten)
     db.session.commit()
 
 

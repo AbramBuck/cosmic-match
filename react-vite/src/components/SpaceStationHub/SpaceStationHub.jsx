@@ -8,6 +8,7 @@ import '../SpaceStationHub/SpaceStationHub.css';
 import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
 import { getAllPlanets } from "../../redux/planet";
+import { FaDailymotion } from "react-icons/fa";
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
@@ -139,7 +140,7 @@ function SpaceStationHub() {
                     <h2 className="stat-bar-stat-lvl">Level: {level}</h2>
                     <h2 className="stat-bar-stat-gold">Credits: {User.gold}</h2>
                     <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
-                    <h2 className="stat-bar-select-text">Choose a Planet to Explore:</h2>
+                    <h2 className="stat-bar-select-text" title="Custom missions explore planets that you created">Choose Custom Mission Location:</h2>
                     <div className="stat-bar-planet-select">
                     <form >
                         <div className="form-group">
@@ -148,6 +149,7 @@ function SpaceStationHub() {
                                 id="card_id"
                                 value={missionDeck}
                                 onChange={(e) => setMissionDeck(e.target.value)}
+                                title="Custom missions explore planets that you created"
                                 required
                                 >
                                 <option value="">Select a Planet</option>
@@ -160,10 +162,10 @@ function SpaceStationHub() {
                         </div>
             </form>
                     </div>
-                    <Link to={"/images"} className="stat-bar-btn-1">Upload Picture</Link>
-                    <Link to={"/planets"} className="stat-bar-btn-2">Manage Planets</Link>
-                    <Link to={"/cards"} className="stat-bar-btn-3">Manage Cards</Link>
-                    <button onClick={handleLaunch} className="stat-bar-btn-4">LAUNCH MISSION</button>
+                    <Link to={"/planets"} className="stat-bar-btn-1">Manage Planets</Link>
+                    <Link to={"/cards"} className="stat-bar-btn-2">Manage Cards</Link>
+                    <Link onClick={handleLaunch}  className="stat-bar-btn-3">CUSTOM MISSION</Link>
+                    <Link to={"/mission"}  className="stat-bar-btn-4">STANDARD MISSION</Link>
                     
                 </div>
                 <div className="bottom-planets-bar">

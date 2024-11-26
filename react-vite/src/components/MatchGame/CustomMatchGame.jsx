@@ -13,24 +13,6 @@ import SignleCard from "../SingleCard/SingleCard"
 import YouDiedModal from "./YouDiedModal"
 import YouWonModal from "./YouWonModal"
 
-const testDeck = [
-    { "src" : "../../../src/images/helmet-1.png", matched: false },
-    { "src" : "../../../src/images/potion-1.png", matched: false },
-    { "src" : "../../../src/images/ring-1.png", matched: false },
-    { "src" : "../../../src/images/scroll-1.png", matched: false },
-    { "src" : "../../../src/images/shield-1.png", matched: false },
-    { "src" : "../../../src/images/sword-1.png", matched: false },
-]
-
-const cardDeck= [
-    { "src" : "../../../src/images/enemies/alien_enemy.jpg", matched: false, hostile: true, reward: 30 },
-    { "src" : "../../../src/images/enemies/alien_green_enemy.jpg", matched: false, hostile: true, reward: 30 },
-    { "src" : "../../../src/images/items/cosmic-blossom.jpg", matched: false, hostile: false, reward: 10 },
-    { "src" : "../../../src/images/terrain/cold_planet.jpg", matched: false, hostile: false, reward: 10 },
-    { "src" : "../../../src/images/terrain/space_city.jpg", matched: false, hostile: false, reward: 10  },
-    { "src" : "../../../src/images/terrain/majestic_forest.jpg", matched: false, hostile: false, reward: 10 },
-]
-
 
 function CustomMatchGame() {
     const matchedAudio = new Audio(matchSnd);
@@ -55,10 +37,10 @@ function CustomMatchGame() {
     const [gold, setGold] = useState(0);
     const [currentShip, setCurrentShip] = useState([]);
     const [customDeck, setCustomDeck] = useState([]);
-    const allMatched = cards.every((card) => card.matched === true);
     const deckRef = useRef(null);
-  
+    const allMatched = cards.every(card => card.matched);
 
+    console.log("CARDS ARRAY",cards)
     if (!User) navigate(`/login`);
   
  
@@ -97,10 +79,11 @@ function CustomMatchGame() {
       }
     }, [currentShip]);
   
-
+    
     useEffect(() => {
       if (allMatched && turns > 0) {
         setGold((prevGold) => prevGold + 100);
+        setTimeout(() => setShowModal(true), 1000);
       }
     }, [allMatched]);
   
@@ -179,6 +162,7 @@ function CustomMatchGame() {
       }
     }, [choiceOne, choiceTwo]);
   
+    
 
     // useEffect(() => {
     //     console.log("fetchedCards////////",fetchedCards)
@@ -190,7 +174,7 @@ function CustomMatchGame() {
 
     return(
         <div className="game-page-wrapper">
-            <h1 className="mg-title">Planet Zarros</h1>
+            <h1 className="mg-title">Exploration Mission</h1>
             <div className="game-area">
             <div className="hud">
             <h2>Shields: {shields}</h2>
@@ -211,7 +195,7 @@ function CustomMatchGame() {
                         handleChoice={handleChoice}
                         flipped={card === choiceOne || card === choiceTwo || card.matched}
                         disabled={disabled}
-                        hostile={card.hostile}
+            
                          /> 
                 )) : ""
                 }
