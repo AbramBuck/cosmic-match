@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
+import { fetchShips } from "../../redux/ship";
 import "./Modal.css";
 
 
@@ -36,6 +37,7 @@ function YouDiedModal({gold,turns, shields, fuel }) {
 
       
       await dispatch(thunkShipUpdate(shipId, shipUpdates))
+      await dispatch(fetchShips())
         navigate("/");
     };
   

@@ -146,12 +146,12 @@ function SpaceStationHub() {
                                 title="Change your ship"
                                 required
                                 >
-                                <option value="">Select a Planet</option>
-                                {planets.map((planet) => (
-                                    <option key={planet.id} value={planet.id}>
-                                    {planet.name} 
+                                <option value="">Change Your Current Ship</option>
+                                { Ships && Ships.id ? Ships.map((ship) => (
+                                    <option key={ship.id} value={ship.id}>
+                                    {ship.name } | LVL: { shipLevel}
                                     </option>
-                                ))}
+                                )) : ""}
                                 </select>
                                 <button>Lock In</button>
                         </div>
