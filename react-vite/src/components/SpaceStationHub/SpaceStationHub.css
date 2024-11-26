@@ -122,6 +122,20 @@
 
 /* STAT BAR */
 
+/* .shield-upgrade-btn{
+    position: absolute;
+    top: 56%;
+    left:20%;
+    padding-top: 15px;
+}
+
+.fuel-upgrade-btn{
+    position: absolute;
+    top: 64%;
+    left:20%;
+    padding-top: 15px;
+} */
+
 .ship-placeholder{
     font-size: 200px;
     width: 200px;

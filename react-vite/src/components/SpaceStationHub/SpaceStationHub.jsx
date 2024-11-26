@@ -7,6 +7,7 @@ import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import '../SpaceStationHub/SpaceStationHub.css';
 import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
+import { thunkAuthenticate } from "../../redux/session";
 import { getAllPlanets } from "../../redux/planet";
 import { FaDailymotion } from "react-icons/fa";
 import { GiSpaceship } from "react-icons/gi";
@@ -21,6 +22,7 @@ function SpaceStationHub() {
     const [shipLevel, setShipLevel] = useState(0);
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
+    const [changeShip, setChangeShip] = useState(1)
     const [missionDeck, setMissionDeck] = useState(1);
 
     if (!User) navigate(`/login`);
@@ -116,9 +118,54 @@ function SpaceStationHub() {
 
   const handleLaunch = () => {
       dispatch(thunkUpdate({mission_deck: missionDeck}))
-      console.log("Post-button Press::",User.mission_deck)
       navigate("/mission/custom");
   }
+
+  const handleShipChange = () => {
+    dispatch(thunkUpdate({current_ship: changeShip}))
+    dispatch(fetchShips())
+  }
+
+  const handleShieldUpgrade = async () => {
+    if (User.gold >= 500) {
+      const updatedGold = User.gold - 500;
+      const updatedShields = currentShip.shields + 1;
+  
+      try {
+        await dispatch(thunkUpdate({ gold: updatedGold }));
+        await dispatch(thunkShipUpdate(currentShip.id, { shields: updatedShields }));
+        await dispatch(fetchShips()); 
+  
+        console.log("Shields Upgraded!!", "GOLD:", updatedGold);
+      } catch (error) {
+        console.error("Error upgrading shields:", error);
+      }
+    } else {
+      alert("You don't have enough gold to buy that upgrade");
+    }
+  };
+
+  const handleFuelUpgrade = async () => {
+    if (User.gold >= 500) {
+      
+      const updatedGold = User.gold -= 500;
+      const updatedFuel = currentShip.fuel += 1;
+      const updates = { fuel: updatedFuel };
+  
+      try {
+        
+        await dispatch(thunkUpdate({ gold: updatedGold }));
+        await dispatch(thunkShipUpdate(currentShip.id, updates));
+  
+        console.log("Fuel Upgraded!!", "GOLD:", updatedGold);
+      } catch (error) {
+        console.error("Error upgrading fuel:", error);
+      }
+    } else {
+      alert("You don't have enough gold to buy that upgrade");
+    }
+  };
+
     return (
         <div className="hub-page-wrapper">
             <div className="hub-title-area"><h1 className="hub-title">SPACE STATION HUB</h1></div>
@@ -129,33 +176,34 @@ function SpaceStationHub() {
                     <div className="ship-info-div">
                         <h2>{Ships && currentShip ? currentShip.name : "Create a Ship to Begin"}</h2>
                         <h2>Ship Level: {shipLevel}  </h2>
-                        <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2>
-                        <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2>
+                        <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2><button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 500$</button>
+                        <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2><button className="fuel-upgrade-btn" onClick={handleFuelUpgrade}>+1 Fuel | 500$</button>
                         <h2>Runs: {Ships && currentShip && currentShip.runs_completed ? currentShip.runs_completed : 0 }</h2>
                         <div className="button-div">
                         <div className="create-ship-button"><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
                     </div> 
                     <div className="stat-bar-ship-select">
+                      {Ships && Ships.length && currentShip ?
                     <form >
                         <div className="form-group">
                             <label htmlFor="card_id"></label>
                                 <select
                                 id="ship_id"
-                                value={currentShip}
-                                onChange={(e) => setCurrentShip(e.target.value)}
+                                value={changeShip}
+                                onChange={(e) => setChangeShip(e.target.value)}
                                 title="Change your ship"
                                 required
                                 >
                                 <option value="">Change Your Current Ship</option>
-                                { Ships && Ships.id ? Ships.map((ship) => (
+                                {Ships.map((ship) => (
                                     <option key={ship.id} value={ship.id}>
-                                    {ship.name } | LVL: { shipLevel}
+                                    {ship.name } | LVL: { Math.floor(ship.runs_completed / 20)}
                                     </option>
-                                )) : ""}
+                                ))}
                                 </select>
-                                <button>Lock In</button>
+                                <button onClick={handleShipChange}>Lock In</button>
                         </div>
-                    </form>
+                    </form> : ""}
                     </div>
                   </div>
 
@@ -177,7 +225,7 @@ function SpaceStationHub() {
                                 title="Custom missions explore planets that you created"
                                 required
                                 >
-                                <option value="">Select a Planet</option>
+                                <option value="">Select a Created Planet</option>
                                 {planets.map((planet) => (
                                     <option key={planet.id} value={planet.id}>
                                     {planet.name} 
