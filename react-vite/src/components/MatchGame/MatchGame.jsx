@@ -10,23 +10,21 @@ import gameAudio from '../../audio/gameAudio.mp3'
 import SignleCard from "../SingleCard/SingleCard"
 import YouDiedModal from "./YouDiedModal"
 import YouWonModal from "./YouWonModal"
+import card1 from '../../../src/images/enemies/alien_enemy.jpg'
+import card2 from '../../../src/images/enemies/alien_green_enemy.jpg'
+import card3 from '../../../src/images/items/cosmic-blossom.jpg'
+import card4 from '../../../src/images/terrain/cold_planet.jpg'
+import card5 from '../../../src/images/terrain/space_city.jpg'
+import card6 from '../../../src/images/terrain/majestic_forest.jpg'
 
-const testDeck = [
-    { "src" : "../../../src/images/helmet-1.png", matched: false },
-    { "src" : "../../../src/images/potion-1.png", matched: false },
-    { "src" : "../../../src/images/ring-1.png", matched: false },
-    { "src" : "../../../src/images/scroll-1.png", matched: false },
-    { "src" : "../../../src/images/shield-1.png", matched: false },
-    { "src" : "../../../src/images/sword-1.png", matched: false },
-]
 
 const cardDeck= [
-    { "src" : "../../../src/images/enemies/alien_enemy.jpg", matched: false, hostile: true, reward: 30 },
-    { "src" : "../../../src/images/enemies/alien_green_enemy.jpg", matched: false, hostile: true, reward: 30 },
-    { "src" : "../../../src/images/items/cosmic-blossom.jpg", matched: false, hostile: false, reward: 10 },
-    { "src" : "../../../src/images/terrain/cold_planet.jpg", matched: false, hostile: false, reward: 10 },
-    { "src" : "../../../src/images/terrain/space_city.jpg", matched: false, hostile: false, reward: 10  },
-    { "src" : "../../../src/images/terrain/majestic_forest.jpg", matched: false, hostile: false, reward: 10 },
+    { "src" : card1, matched: false, hostile: true, reward: 30 },
+    { "src" : card2, matched: false, hostile: true, reward: 30 },
+    { "src" : card3, matched: false, hostile: false, reward: 10 },
+    { "src" : card4, matched: false, hostile: false, reward: 10 },
+    { "src" : card5, matched: false, hostile: false, reward: 10  },
+    { "src" : card6, matched: false, hostile: false, reward: 10 },
 ]
 
 
