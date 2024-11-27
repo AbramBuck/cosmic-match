@@ -43,19 +43,19 @@ function SpaceStationHub() {
         }
     }, [Ships, User]);
 
-    const updateUserInfo = async () => {
-      console.log("FIRED OFF Update User Info")
-      const amount = User.gold += 150
-      const shipId = currentShip.id
-      const userUpdates = {
-        gold: User.gold += gold,
-        total_runs: User.total_runs += turns
-      }
+    // const updateUserInfo = async () => {
+    //   console.log("FIRED OFF Update User Info")
+    //   const amount = User.gold += 150
+    //   const shipId = currentShip.id
+    //   const userUpdates = {
+    //     gold: User.gold += gold,
+    //     total_runs: User.total_runs += turns
+    //   }
 
-      await dispatch(thunkUpdate(userUpdates))
-      await dispatch(thunkUpdate(amount))
+    //   await dispatch(thunkUpdate(userUpdates))
+    //   await dispatch(thunkUpdate(amount))
      
-    };
+    // };
 
 
     const updateShipInfo = async () => {
@@ -98,12 +98,15 @@ function SpaceStationHub() {
 
 
     useEffect(() => {
-        if (User.total_runs < 20) {
+      if (User && User.total_runs) {
+            
+          if (User.total_runs < 20){
             setLevel(0);
-        } else {
+          } else {
             setLevel(Math.floor(User.total_runs / 20));
-        }
-    }, [User.total_runs]);
+          }
+      }
+    }, [User]);
 
     useEffect(() => {
       if (Ships && currentShip && currentShip.runs_completed) {
@@ -113,7 +116,7 @@ function SpaceStationHub() {
         setShipLevel(Math.floor(currentShip.runs_completed / 20))
         }
       }
-  }, [Ships, User.current_ship]);
+  }, [Ships, User]);
     
 
   const handleLaunch = () => {
@@ -201,7 +204,7 @@ function SpaceStationHub() {
                                     </option>
                                 ))}
                                 </select>
-                                <button onClick={handleShipChange}>Lock In</button>
+                                <button onClick={handleShipChange}>Change</button>
                         </div>
                     </form> : ""}
                     </div>
@@ -209,10 +212,10 @@ function SpaceStationHub() {
 
                 </div>
                 <div className="top-stat-bar">
-                    <h2 className="cpt-name-hub">Commander {User.username}</h2>
+                    <h2 className="cpt-name-hub">Commander {User ? User.username : " "}</h2>
                     <h2 className="stat-bar-stat-lvl">Level: {level}</h2>
-                    <h2 className="stat-bar-stat-gold">Credits: {User.gold}</h2>
-                    <h2 className="stat-bar-stat-runs">Total Runs: {User.total_runs}</h2>
+                    <h2 className="stat-bar-stat-gold">Credits: {User ? User.gold : " "}</h2>
+                    <h2 className="stat-bar-stat-runs">Total Runs: {User ? User.total_runs : " "}</h2>
                     <h2 className="stat-bar-select-text" title="Custom missions explore planets that you created">Choose Custom Mission Location:</h2>
                     <div className="stat-bar-planet-select">
                     <form >

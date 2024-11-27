@@ -11,6 +11,18 @@ function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+
+  const handleDemoLogin = () => {
+    setEmail('demo@aa.io')
+    setPassword('password')
+
+    const user = {
+      email:'demo@aa.io',
+      password:'password'
+    };
+    return dispatch(thunkLogin(user));
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,6 +68,7 @@ function LoginFormModal() {
         </label>
         {errors.password && <p>{errors.password}</p>}
         <button type="submit">Log In</button>
+        <button className="demo-user-login" onClick={handleDemoLogin}>Log In as Demo User</button>
       </form>
     </div>
   </div>

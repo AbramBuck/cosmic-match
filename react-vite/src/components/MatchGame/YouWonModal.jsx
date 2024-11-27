@@ -34,10 +34,14 @@ function YouDiedModal({gold,turns, shields, fuel }) {
           runs_completed: currentShip.runs_completed += turns,
         }
       const shipId = currentShip.id
-
+      const userUpdates = {
+        gold: User.gold += gold,
+        total_runs: User.total_runs += turns
+      }
       
+      await dispatch(thunkUpdate(userUpdates))
       await dispatch(thunkShipUpdate(shipId, shipUpdates))
-      await dispatch(fetchShips())
+      // await dispatch(fetchShips())
         navigate("/");
     };
   
