@@ -13,5 +13,5 @@ class Planet(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
   
-    owner = db.relationship('User', back_populates='planets')
+    owner = db.relationship('User', back_populates='planet')
     cards = db.relationship('Card', back_populates='planet')
