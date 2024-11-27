@@ -1,5 +1,5 @@
 import './SingleCard.css'
-
+import cardBack from '../../../src/images/items/cosmic-match-bg2.jpg'
 
 function SignleCard({card, handleChoice, flipped, disabled, hostile}) {
 
@@ -23,7 +23,7 @@ function SignleCard({card, handleChoice, flipped, disabled, hostile}) {
                 <img className="front" src={card.src} alt="card front" />
                 <img 
                     className="back" 
-                    src="../../../src/images/items/cosmic-match-bg2.jpg" 
+                    src={cardBack}
                     alt="card back"
                     onClick={handleClick}
                     />

@@ -3,6 +3,7 @@ import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
 import Layout from './Layout';
 import MatchGame from '../components/MatchGame/MatchGame';
+import ImageForm from '../components/ImageForm/ImageForm'
 import SpaceStationHub from '../components/SpaceStationHub/SpaceStationHub';
 import CreatePlanet from '../components/Planet/CreatePlanet';
 import ManagePlanets from '../components/Planet/ManagePlanets';
@@ -34,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path:"mission/custom",
         element: <CustomMatchGame />,
+      },
+      {
+        path:"images",
+        element: <ImageForm />,
       },
       {
         path:"planets",
