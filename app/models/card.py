@@ -11,7 +11,7 @@ class Card(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     planet_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('planets.id')), nullable=False)
     name = db.Column(db.String(80), nullable=False)
     image_url = db.Column(db.String(255))
