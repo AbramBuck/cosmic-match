@@ -25,7 +25,7 @@ def upgrade():
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('username', sa.String(length=40), nullable=False),
-    sa.Column('gold', sa.Integer(), nullable=False, default=500),
+    sa.Column('gold', sa.Integer(), nullable=False, default=450),
     sa.Column('current_ship', sa.Integer(), nullable=False, default=1),
     sa.Column('mission_deck', sa.Integer(), nullable=False, default=1),
     sa.Column('total_runs', sa.Integer(), nullable=False, default=0),

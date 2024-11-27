@@ -27,7 +27,7 @@ def upgrade():
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('image_url', sa.String(length=255), nullable=True),
-    sa.Column('deck_size', sa.Integer(), nullable=False),
+    sa.Column('deck_size', sa.Integer(), nullable=False, default=6),
     sa.Column('created_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
