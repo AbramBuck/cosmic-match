@@ -9,8 +9,13 @@ import { thunkShipUpdate } from "../../redux/ship";
 import { thunkUpdate } from "../../redux/session";
 import { thunkAuthenticate } from "../../redux/session";
 import { getAllPlanets } from "../../redux/planet";
+import { thunkFetchCards } from "../../redux/cards";
 import { FaDailymotion } from "react-icons/fa";
 import { GiSpaceship } from "react-icons/gi";
+import { IoPlanet } from "react-icons/io5";
+import { FaSdCard } from "react-icons/fa";
+import '../Planet/ManagePlanets.css'
+
 
 function SpaceStationHub() {
     const dispatch = useDispatch();
@@ -18,6 +23,7 @@ function SpaceStationHub() {
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
     const planets = useSelector((state) => state.planets.planets)
+    const cards = useSelector((state) => state.cards.cards )
     const [level, setLevel] = useState(1);
     const [shipLevel, setShipLevel] = useState(0);
     const [showMenu, setShowMenu] = useState(false);
@@ -27,6 +33,11 @@ function SpaceStationHub() {
 
     if (!User) navigate(`/login`);
 
+    const cardsOnPlanet = cards.reduce((acc, card) => {
+      const id = card.planet_id;
+      acc[id] = (acc[id] || 0) + 1; 
+      return acc;
+    }, {});
 
     useEffect(() => {
         dispatch(fetchShips())
@@ -244,7 +255,25 @@ function SpaceStationHub() {
                     <Link to={"/mission"}  className="stat-bar-btn-4">STANDARD MISSION</Link>
                     
                 </div>
+                
                 <div className="bottom-planets-bar">
+                  <div className="planets-area-station">
+                  <h1 className="recent-planets-heading">Recent Planets</h1>
+                  {!planets ? <h1 className="no-planets-test">You don't have any planets...</h1> : ""}
+                { planets.slice(0,3).map((planet) => (
+                  <div className="planet-instance-station" key={planet.id} style={{
+                    background: `linear-gradient(to bottom, rgba(17, 85, 133, 0.5), rgba(17, 85, 133, 0.8)), url(${planet.image_url})`,backgroundSize: 'cover',}}>
+                    <div className="planet-title ubuntu-regular"><IoPlanet />{planet.name}</div>
+                    <Link to={`/planets/${planet.id}`}>
+                    <div className="planet-crop-container"><img src={planet.image_url} title="Click to visit Planet"></img></div>
+                    </Link>     
+                    <div className="manage-planet-title">
+                    { console.log("Cards On Planet",cardsOnPlanet)}
+                      <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } </h3>
+                    </div>
+                  </div>
+                ))}
+                </div>
                 </div>
             </div>
         </div>
