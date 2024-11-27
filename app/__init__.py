@@ -13,6 +13,7 @@ from .api.planet_routes import planet_routes
 from .api.card_routes import card_routes
 from .seeds import seed_commands
 from .config import Config
+from flask_sqlalchemy import SQLAlchemy
 
 
 app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
@@ -26,6 +27,8 @@ login.login_view = 'auth.unauthorized'
 def load_user(id):
     return User.query.get(int(id))
 
+
+db = SQLAlchemy(app)
 
 # Tell flask about our seed commands
 app.cli.add_command(seed_commands)
