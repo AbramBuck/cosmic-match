@@ -1,19 +1,13 @@
-import { useState, useSelector, useEffect, React } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
-import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
-import { createImage } from "../../redux/imageThunk";
 import { createShip, fetchShips } from '../../redux/ship';
 import { thunkUpdate } from '../../redux/session';
 import '../../components/SpaceStationHub/CreateShipForm.css';
 
 
-function CreateShipForm({User}) {
-  const navigate = useNavigate();
+function CreateShipForm() {
   const dispatch = useDispatch(); 
-//   const [image, setImage] = useState(null);
-  const [imageLoading, setImageLoading] = useState(false);
   const [name, setName] = useState("");
   const [shields, setShields] = useState(3);
   const [fuel, setFuel] = useState(5);

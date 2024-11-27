@@ -27,10 +27,6 @@ const updateShip = (ships) => ({
     payload: ships
 });
 
-const addImage = (image) => ({
-    type: ADD_IMAGE_TO_SHIP,
-    image,
-});
 
 // const deleteShip = (shipId) => ({
 //     type: DELETE_A_SHIP,
