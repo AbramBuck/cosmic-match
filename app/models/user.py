@@ -20,7 +20,6 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     ships = db.relationship('Ship', back_populates='owner')
-    image = db.relationship('Image', back_populates='owner')
     planets = db.relationship('Planet', back_populates='owner')
     card = db.relationship('Card', back_populates='owner')
 
