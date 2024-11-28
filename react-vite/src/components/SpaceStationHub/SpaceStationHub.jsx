@@ -255,7 +255,7 @@ function SpaceStationHub() {
                                 <option value="">Select a Created Planet</option>
                                 {planets.map((planet) => (
                                     <option key={planet.id} value={planet.id}>
-                                    {planet.name} 
+                                    {planet.name} <FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""}
                                     </option>
                                 ))}
                                 </select>
