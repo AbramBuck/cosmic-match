@@ -29,7 +29,7 @@ function SpaceStationHub() {
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
     const [changeShip, setChangeShip] = useState(1)
-    const [missionDeck, setMissionDeck] = useState(1);
+    const [missionDeck, setMissionDeck] = useState(null);
 
     if (!User) navigate(`/login`);
 
@@ -46,6 +46,10 @@ function SpaceStationHub() {
       useEffect(() => { 
         dispatch(getAllPlanets())
     }, [dispatch], planets);
+
+    useEffect(() => { 
+      dispatch(thunkFetchCards())
+  }, [dispatch], cards);
 
       useEffect(() => {
         if (Ships && Ships.length && User && User.current_ship) {
@@ -128,11 +132,20 @@ function SpaceStationHub() {
         }
       }
   }, [Ships, User]);
-    
 
-  const handleLaunch = () => {
-      dispatch(thunkUpdate({mission_deck: missionDeck}))
-      navigate("/mission/custom");
+
+  const handleLaunch = async () => {
+    const planetCheck = planets?.filter((planet) => planet.id == missionDeck)
+    const cardsAtMax = cardsOnPlanet[missionDeck] == planetCheck[0]?.deck_size
+
+      await dispatch(thunkUpdate({mission_deck: missionDeck}))
+      if (missionDeck === null) {
+        alert("Select a Planet to Run Custom Missions")
+      }else if ( missionDeck !== null && cardsAtMax === false) {
+        alert("Your planet needs a full deck to use in a Custom Mission")
+      } else {
+        navigate("/mission/custom");
+      }
   }
 
   const handleShipChange = () => {
