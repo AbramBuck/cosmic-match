@@ -58,21 +58,6 @@ function SpaceStationHub() {
         }
     }, [Ships, User]);
 
-    // const updateUserInfo = async () => {
-    //   console.log("FIRED OFF Update User Info")
-    //   const amount = User.gold += 150
-    //   const shipId = currentShip.id
-    //   const userUpdates = {
-    //     gold: User.gold += gold,
-    //     total_runs: User.total_runs += turns
-    //   }
-
-    //   await dispatch(thunkUpdate(userUpdates))
-    //   await dispatch(thunkUpdate(amount))
-     
-    // };
-
-
     const updateShipInfo = async () => {
       console.log("FIRED OFF Update Ship Info")
       const updates = { runs_completed: currentShip.runs_completed += 20, }

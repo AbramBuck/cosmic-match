@@ -44,3 +44,48 @@ form label{
     font-size: 20px;
     
 }
+
+.create-planet-crop-container {
+    width: 250px;       
+    height: 250px;
+    top:-80px;
+    right:-80px;      
+    overflow: hidden;    
+    position: absolute;
+    border-radius: 125px;
+    margin-bottom: 25px;
+    border: 2px rgb(171, 245, 255) solid;
+    box-shadow: rgb(159, 255, 241) 4px 3px 13px;
+    }
+    
+    .create-planet-crop-container img {
+    width: auto;        
+    height: 100%;       
+    position: absolute; 
+    top: 50%;           
+    left: 50%;          
+    transform: translate(-50%, -50%);
+    }
+    
+    .create-planet-crop-container:hover {   
+        overflow: hidden;
+        filter: brightness(4.1) contrast(0.9);
+        filter: drop-shadow(8px 8px 10px gray);
+        filter: contrast(200%);
+        filter: hue-rotate(90deg);
+        filter: saturate(8);
+    }
+
+    .form-group select {
+        font-family: "Zen Dots", sans-serif;
+        font-weight: 200;
+        font-style: normal;
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 8px;
+        width: 300px;
+        min-width: 200px;
+        max-width: 400px;
+        margin-bottom: 15px;
+        margin-left: 10px;
+    }

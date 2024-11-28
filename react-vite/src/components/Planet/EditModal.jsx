@@ -77,32 +77,43 @@ function EditModal({ planet }) {
             />
             </div>
             <div className="priority-container">
-                        <label><h4>Deck Size</h4></label>
-                        <div className="deck-options">
+                <label><h4>Deck Size</h4></label>
+                <div className="deck-options">
+                  <label className="deck-label">
+                      <input
+                      type="radio"
+                      name="deck"
+                      value="3"
+                      checked={deckSize === 3}
+                      onChange={handleChange}
+                      title='The amount of cards on your planet is doubled for match missions'
+                      />
+                      <span className="deck-btn">3</span>
+                  </label>
 
-                        <label className="deck-label">
-                            <input
-                            type="radio"
-                            name="deck"
-                            value="6"
-                            checked={deckSize === 6}
-                            onChange={handleChange}
-                            />
-                            <span className="deck-btn">6</span>
-                        </label>
+                  <label className="deck-label">
+                      <input
+                      type="radio"
+                      name="deck"
+                      value="4"
+                      checked={deckSize === 4}
+                      onChange={handleChange}
+                      />
+                      <span className="deck-btn">4</span>
+                  </label>
 
-                        <label className="deck-label">
-                            <input
-                            type="radio"
-                            name="deck"
-                            value="12"
-                            checked={deckSize === 12}
-                            onChange={handleChange}
-                            />
-                            <span className="deck-btn">12</span>
-                        </label>
-                        </div>
+                  <label className="deck-label">
+                      <input
+                      type="radio"
+                      name="deck"
+                      value="6"
+                      checked={deckSize === 6}
+                      onChange={handleChange}
+                      />
+                      <span className="deck-btn">6</span>
+                  </label>
                 </div>
+              </div>
             <div className="modal-buttons">
               <button type="submit" onClick={handleSubmit}>Update Planet</button>
               <button type="submit" onClick={() => closeModal()}>Cancel</button>

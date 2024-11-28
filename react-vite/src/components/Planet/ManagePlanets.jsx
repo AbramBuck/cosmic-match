@@ -9,6 +9,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import EditModal from "./EditModal";
 import DeleteConfirmModal from "./DeleteConfirmModal";
 import './ManagePlanets.css'
+// import image1 from '../../../src/images/planets/radiant planet.jpg'
 
 
 function ManagePlanets() {
@@ -18,6 +19,8 @@ function ManagePlanets() {
   const user = useSelector((store) => store.session.user)
   const planets = useSelector((state) => state.planets.planets)
   const cards = useSelector((state) => state.cards.cards )
+  // const defaultImage = image1
+
 
   if (!user) navigate(`/login`);
 

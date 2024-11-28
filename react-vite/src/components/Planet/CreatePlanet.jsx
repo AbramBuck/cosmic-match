@@ -4,16 +4,19 @@ import { createPlanet } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
 import { IoPlanet } from "react-icons/io5";
 import './CreatePlanet.css'
-
+import './ManagePlanets.css'
+import PlanetImages from "../../../src/components/Planet/DefaultPlanetImages"
+import image1 from "../../../src/images/planets/none-selected-image-msg.jpg"
 
 const CreatePlanet = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const user = useSelector((state) => state.session.user);
-    const [name, setName] = useState('');
-    const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg");
-    const [deckSize, setDeckSize] = useState(6);
-    const [error, setErrors] = useState(null); 
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const user = useSelector((state) => state.session.user)
+    const [name, setName] = useState('')
+    const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg")
+    const [deckSize, setDeckSize] = useState(3)
+    const [error, setErrors] = useState(null)
+    const noneSelected = image1
 
     if (!user) navigate(`/login`);
 
@@ -42,6 +45,7 @@ const CreatePlanet = () => {
   return (
     <div className="create-planet-page-wrapper">
         <div className='frosted-glass create-planet-form-glass'>
+        <div className="create-planet-crop-container"><img src={image != "" ? image : noneSelected} title="Add a planet image to preview it"></img></div>
             <div className="create-container">
             <h1><IoPlanet /> Create a New Planet</h1>
             <form onSubmit={handleSubmit}>
@@ -55,6 +59,24 @@ const CreatePlanet = () => {
                     required
                 />
                 </div>
+
+                <div className="form-group">
+                    <label htmlFor="planet images">Image Select</label>
+                    <select
+                    id="planet_images"
+                    value={image}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    title="Select a Planet Image"
+                    >
+                    <option value="">Select a Planet Image</option>
+                    {PlanetImages.map((planet) => (
+                        <option key={planet.src} value={planet.src}>
+                        {planet.name}
+                        </option>
+                    ))}
+                    </select>
+                </div>
+
                 <div className="form-group">
                 <label htmlFor="url">Image url:</label>
                 <input
@@ -65,9 +87,33 @@ const CreatePlanet = () => {
                     required
                 />
                 </div>
+
                 <div className="priority-container">
-                        <label><h4>Deck Size</h4></label>
+                        <label>Deck Size </label>
                         <div className="deck-options">
+                        
+                        <label className="deck-label">
+                            <input
+                            type="radio"
+                            name="deck"
+                            value="3"
+                            checked={deckSize === 3}
+                            onChange={handleChange}
+                            title='The amount of cards on your planet is doubled for match missions'
+                            />
+                            <span className="deck-btn">3</span>
+                        </label>
+
+                        <label className="deck-label">
+                            <input
+                            type="radio"
+                            name="deck"
+                            value="4"
+                            checked={deckSize === 4}
+                            onChange={handleChange}
+                            />
+                            <span className="deck-btn">4</span>
+                        </label>
 
                         <label className="deck-label">
                             <input
@@ -78,17 +124,6 @@ const CreatePlanet = () => {
                             onChange={handleChange}
                             />
                             <span className="deck-btn">6</span>
-                        </label>
-
-                        <label className="deck-label">
-                            <input
-                            type="radio"
-                            name="deck"
-                            value="12"
-                            checked={deckSize === 12}
-                            onChange={handleChange}
-                            />
-                            <span className="deck-btn">12</span>
                         </label>
                         </div>
                 </div>
