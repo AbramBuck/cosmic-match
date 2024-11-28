@@ -74,7 +74,7 @@ export const updatePlanet = (planetId, planet) => async (dispatch) => {
             return updatedPlanet;
         }
     } catch (err) {
-        console.error(`Error updating planet: ${err}`);
+        console.error("Error updating planet");
     }
 };
 

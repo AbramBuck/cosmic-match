@@ -82,10 +82,12 @@ def handle_planet(planet_id):
         data = request.get_json()
         name = data.get('name')
         image_url = data.get('image_url')
+        deck_size = data.get('deck_size')
         if not name:
             return jsonify({'error': 'Planet name is required'}), 400
         planet.name = name
         planet.image_url = image_url
+        planet.deck_size = deck_size
         db.session.commit()
         return jsonify({
             'id': planet.id,

@@ -11,18 +11,21 @@ const CreateCard = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const user = useSelector((state) => state.session.user);
+    const planets = useSelector((state) => state.planets.planets)
+    const cards = useSelector((state) => state.cards.cards )
     const [name, setName] = useState('');
     const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg");
     const [hostileRating, setHostileRating] = useState("false");
     const [planetId, setPlanetId] = useState(1);
     const [error, setErrors] = useState(null); 
-    const planets = useSelector((state) => state.planets.planets)
-
 
     if (!user) navigate(`/login`);
 
-  console.log("Hostile Rating",hostileRating)
-  console.log("PLanet ID Chosen",planetId)
+    const cardsOnPlanet = cards.reduce((acc, card) => {
+        const id = card.planet_id;
+        acc[id] = (acc[id] || 0) + 1; 
+        return acc;
+      }, {});
 
   useEffect(() => { 
     dispatch(getAllPlanets())
@@ -115,7 +118,7 @@ const CreateCard = () => {
                                 <option value="">Select a Planet</option>
                                 {planets.map((planet) => (
                                     <option key={planet.id} value={planet.id}>
-                                    {planet.name} 
+                                    {planet.name} <FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""}
                                     </option>
                                 ))}
                                 </select>
