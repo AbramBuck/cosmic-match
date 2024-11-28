@@ -186,7 +186,9 @@ function CustomMatchGame() {
             <h2>|</h2>
             <h2>Turns: {turns}</h2>
             </div>
-            <div className="card-grid">
+            {console.log("Cards Test", customDeck.length)}
+            {/* need to test cards.length if it is going to be 3 or 6 cards need to chagne class to three-card-grid */}
+            <div className={ customDeck && customDeck.length && customDeck.length !== 3 ? "card-grid" : "three-card-grid"}> 
                 {showModal && allMatched ? < YouWonModal gold={gold} turns={turns}/> : "" }
                 {showModal && !allMatched ? <YouDiedModal fuel={fuel} shields={shields} gold={gold} turns={turns}/> : "" }
                 { !showModal ? cards.map(card =>(

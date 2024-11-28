@@ -42,6 +42,14 @@
     grid-gap: 20px;
 }
 
+.three-card-grid{
+    align-self: center;
+    margin: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+}
+
 .hud{
     position: relative;
     top:-25px;
