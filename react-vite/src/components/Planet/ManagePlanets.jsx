@@ -21,20 +21,17 @@ function ManagePlanets() {
 
   if (!user) navigate(`/login`);
 
-  
   const alertDelete = () =>{
     alert('You Cannot Delete a Planet that has Cards')
   }
 
   useEffect(() => { 
-    dispatch(thunkFetchCards())
-}, [dispatch], cards);
-
-
-  useEffect(() => { 
     dispatch(getAllPlanets())
 }, [dispatch], planets);
 
+useEffect(() => { 
+  dispatch(thunkFetchCards())
+}, [dispatch], cards);
 
 const cardsOnPlanet = cards.reduce((acc, card) => {
   const id = card.planet_id;
@@ -66,8 +63,7 @@ const cardsOnPlanet = cards.reduce((acc, card) => {
                     {cardsOnPlanet[planet.id] ? <button onClick={alertDelete}>Delete</button> : <OpenModalButton buttonText="Delete"  modalComponent={<DeleteConfirmModal planetId={planet.id}/>}/>}
                   </div>      
                   <div className="manage-planet-title">
-                   { console.log("Cards On Planet",cardsOnPlanet)}
-                    <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } </h3>
+                    <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planet && planet.deck_size ? planet.deck_size : " " }</h3>
                   </div>
           
                 </div>

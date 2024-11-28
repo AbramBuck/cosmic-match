@@ -1,6 +1,7 @@
 import React from "react"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
 import { fetchShips } from "../../redux/ship";
 import "../MatchGame/MatchGame.css"
 import confetti from 'https://cdn.skypack.dev/canvas-confetti'
@@ -32,12 +33,10 @@ function MatchGame() {
     let matchedAudio = new Audio(matchSnd);
     let noMatchedAudio = new Audio(noMatchSnd);
     let gameMusic = new Audio(gameAudio);
-    
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
-
-
     const [cards, setCards] = useState([])
     const [turns, setTurns] = useState(0)
     const [choiceOne, setChoiceOne] = useState(null)

@@ -268,8 +268,7 @@ function SpaceStationHub() {
                     <div className="planet-crop-container"><img src={planet.image_url} title="Click to visit Planet"></img></div>
                     </Link>     
                     <div className="manage-planet-title">
-                    { console.log("Cards On Planet",cardsOnPlanet)}
-                      <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } </h3>
+                      <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""} </h3>
                     </div>
                   </div>
                 ))}

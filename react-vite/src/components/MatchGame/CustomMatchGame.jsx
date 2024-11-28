@@ -1,6 +1,7 @@
 import React from "react"
 import { useEffect, useState, useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom";
 import { fetchShips } from "../../redux/ship";
 import { getAllPlanets } from "../../redux/planet";
 import { thunkFetchCards } from "../../redux/cards";
@@ -14,11 +15,12 @@ import YouDiedModal from "./YouDiedModal"
 import YouWonModal from "./YouWonModal"
 
 
+
 function CustomMatchGame() {
     const matchedAudio = new Audio(matchSnd);
     const noMatchedAudio = new Audio(noMatchSnd);
     const gameMusic = new Audio(gameAudio);
-  
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const User = useSelector((state) => state.session.user);
     const Ships = useSelector((state) => state.ships.ships);
@@ -42,7 +44,6 @@ function CustomMatchGame() {
 
     console.log("CARDS ARRAY",cards)
     if (!User) navigate(`/login`);
-  
  
     useEffect(() => {
       if (customDeck.length && !deckRef.current) {
