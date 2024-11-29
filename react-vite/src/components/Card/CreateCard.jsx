@@ -129,6 +129,7 @@ const CreateCard = () => {
                         </div>
                 </div>
                 <button className='margin-top-add' type="submit">Create Card</button>
+                <button className='margin-top-add' onClick={() => navigate('/cards')} >Cancel</button>
             </form>
 
             {error?.submission && <p className="error">{error.submission}</p>}

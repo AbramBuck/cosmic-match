@@ -93,3 +93,9 @@ form label{
     .create-card-border-radius{
         border-radius: 25px !important;
     }
+
+    .create-cancel-btns{
+        display: flex;
+        flex-direction: row;
+        gap: 50px;
+    }

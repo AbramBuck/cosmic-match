@@ -129,7 +129,10 @@ const CreatePlanet = () => {
                         </label>
                         </div>
                 </div>
-                <button type="submit">Create Planet</button>
+                <div className='create-cancel-btns'>
+                    <button type="submit">Create Planet</button>
+                    <button onClick={() => navigate('/planets')}>Cancel</button>
+                </div>
             </form>
 
             {error && <p className="error">{error}</p>}
