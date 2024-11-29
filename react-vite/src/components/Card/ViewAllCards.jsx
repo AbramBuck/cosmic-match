@@ -32,10 +32,14 @@ function ViewAllCards() {
         dispatch(thunkFetchCards())
     }, [dispatch], cards);
 
+  const planetNamesById = planets.reduce((acc, planet) =>{
+    acc[planet.id] = planet.name
+    return acc
+  }, {})
 
-
-  const alertDelete = () =>{
-    alert('You Cannot Delete a Planet that has Cards')
+console.log("PLanet Names By Id", planetNamesById)
+  const alertAdd = () =>{
+    alert('That Planet has the maximum deck size. Delete some cards from that Planet to add more')
   }
   
   return (
@@ -57,7 +61,7 @@ function ViewAllCards() {
                   </div>
                   <div className="card-title ubuntu-regular"><MdSdCard />{card.name}</div>
                   <div className="card-stats">
-                    {planets && planets[card.planet_id] ? <h4>Planet: {planets[card.planet_id].name} </h4> : " "}
+                    {planets && planets[card.planet_id] ? <h4>Planet: {planetNamesById[card.planet_id]} </h4> : " "}
                     <h4>Name: {card.name}</h4>
                     <h4>Hostile: {card.hostile ? "True" : "False"}</h4>
                     <h4>Match Reward: {card.reward * 2}</h4>

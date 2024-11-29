@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { updatePlanet, getAllPlanets } from "../../redux/planet";
+import { FaSdCard } from "react-icons/fa";
 import "./EditModal.css";
 import { thunkFetchCards, thunkUpdateCard } from "../../redux/cards";
 
@@ -16,38 +17,41 @@ function EditModal({ card }) {
     const [errors, setErrors] = useState({});
     const { closeModal } = useModal();
     const planets = useSelector((state) => state.planets.planets)
-    
-    // useEffect(() => {
-    //   if (planet) {
-    //     setName(planet.name);
-    //   }
-    // }, [planet]);
-
-    
-
-
-
+    const cards = useSelector((state) => state.cards.cards )
+    const cardsOnPlanet = cards.reduce((acc, card) => {
+      const id = card.planet_id;
+      acc[id] = (acc[id] || 0) + 1; 
+      return acc;
+    }, {});
+    const thisCardsPlanet = planets.filter((planet) => planet.id === card.planet_id);
+    const cardsAtMax = cardsOnPlanet >= thisCardsPlanet.deck_size
     const handleSubmit = async (e) => {
       e.preventDefault();
       
-      const cardData = {
-        planet_id: planetId,
-        name: name,
-        image_url: imageUrl,
-        hostile: hostileRating,
-      };
-      
-      try {
-        await dispatch(thunkUpdateCard(card.id, cardData));
-        dispatch(thunkFetchCards()); 
-        closeModal();
-      } catch (error) {
-  
-        console.error("Error:", error);
-        setErrors({ general: "An error occurred." });
+
+      if (cardsAtMax === true) {
+        alert("This planet's deck is maxed out. Delete some cards on this planet to add more")
+      } else {
+
+        const cardData = {
+          planet_id: planetId,
+          name: name,
+          image_url: imageUrl,
+          hostile: hostileRating,
+        };
+
+        try {
+          await dispatch(thunkUpdateCard(card.id, cardData));
+          dispatch(thunkFetchCards()); 
+          closeModal();
+        } catch (error) {
+    
+          console.error("Error:", error);
+          setErrors({ general: "An error occurred." });
+        }
       }
     };
-  
+
     return (
       <>
       <div className='edit-modal-content'>
@@ -119,7 +123,7 @@ function EditModal({ card }) {
                                 <option value="">Select a Planet</option>
                                 {planets.map((planet) => (
                                     <option key={planet.id} value={planet.id}>
-                                    {planet.name} 
+                                    {planet.name} <FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""}
                                     </option>
                                 ))}
                                 </select>
