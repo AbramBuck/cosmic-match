@@ -82,3 +82,27 @@
     color: rgb(137, 6, 6);
     background-color: rgb(252, 176, 176);
  }
+
+ .edit-planet-crop-container img {
+  width: auto;        
+  height: 100%;       
+  position: absolute; 
+  top: 50%;           
+  left: 50%;          
+  transform: translate(-50%, -50%);
+  }
+  
+  .edit-planet-crop-container:hover {   
+      overflow: hidden;
+      filter: brightness(4.1) contrast(0.9);
+      filter: drop-shadow(8px 8px 10px gray);
+      filter: contrast(200%);
+      filter: hue-rotate(90deg);
+      filter: saturate(8);
+  }
+
+  .z-index-2{
+    z-index: 2;
+    left:480px !important;
+    top:-120px !important;
+  }

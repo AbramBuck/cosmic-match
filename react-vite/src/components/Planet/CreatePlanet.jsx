@@ -111,6 +111,7 @@ const CreatePlanet = () => {
                             value="4"
                             checked={deckSize === 4}
                             onChange={handleChange}
+                            title='The amount of cards on your planet is doubled for match missions'
                             />
                             <span className="deck-btn">4</span>
                         </label>
@@ -122,6 +123,7 @@ const CreatePlanet = () => {
                             value="6"
                             checked={deckSize === 6}
                             onChange={handleChange}
+                            title='The amount of cards on your planet is doubled for match missions'
                             />
                             <span className="deck-btn">6</span>
                         </label>
