@@ -89,3 +89,7 @@ form label{
         margin-bottom: 15px;
         margin-left: 10px;
     }
+
+    .create-card-border-radius{
+        border-radius: 25px !important;
+    }

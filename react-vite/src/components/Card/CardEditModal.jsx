@@ -5,11 +5,13 @@ import { updatePlanet, getAllPlanets } from "../../redux/planet";
 import { FaSdCard } from "react-icons/fa";
 import "./EditModal.css";
 import { thunkFetchCards, thunkUpdateCard } from "../../redux/cards";
-
+import '../SingleCard/SingleCard.css'
+import imageDefault from "../../../src/images/items/default-card-image.jpg"
 
 
 function EditModal({ card }) {
     const dispatch = useDispatch();
+    const noneSelected = imageDefault
     const [name, setName] = useState(card.name)
     const [imageUrl, setImageUrl] = useState(card.image_url)
     const [hostileRating, setHostileRating] = useState(card.hostile);
@@ -56,6 +58,7 @@ function EditModal({ card }) {
       <>
       <div className='edit-modal-content'>
         <div className="shell frosted-glass">
+        <div className={ hostileRating && hostileRating === true ? "create-planet-crop-container create-card-border-radius hostile edit-modal-size" : "create-planet-crop-container create-card-border-radius edit-modal-size" }><img src={imageUrl != "" ? imageUrl : noneSelected} title="Add a planet image to preview it"></img></div>
         <form onSubmit={handleSubmit}>
         <h1>Edit Your Card</h1>
             <div className="form-group">

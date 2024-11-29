@@ -45,7 +45,7 @@
         outline-width: 4px;
     }
     50% {
-        outline-width: 8px; 
+        outline-width: 12px; 
     }
     100% {
         outline-width: 4px; 
@@ -57,4 +57,11 @@
     outline: 4px solid red; 
     outline-offset: -2px;  
     animation: pulseOutline 1s ease-in-out infinite !important;
+}
+
+.edit-modal-size{
+    margin-top: 30px;
+    margin-right: 40px;
+    width: 175px !important;
+    height: 175px !important;
 }

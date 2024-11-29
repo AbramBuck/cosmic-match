@@ -5,19 +5,22 @@ import { getAllPlanets } from '../../redux/planet';
 import { useNavigate } from 'react-router-dom';
 import { FaSdCard } from "react-icons/fa";
 import '../Planet/CreatePlanet.css'
-
+import '../SingleCard/SingleCard.css'
+import imageDefault from "../../../src/images/items/default-card-image.jpg"
 
 const CreateCard = () => {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const user = useSelector((state) => state.session.user);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const noneSelected = imageDefault
+    const user = useSelector((state) => state.session.user)
     const planets = useSelector((state) => state.planets.planets)
     const cards = useSelector((state) => state.cards.cards )
-    const [name, setName] = useState('');
-    const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg");
-    const [hostileRating, setHostileRating] = useState("false");
-    const [planetId, setPlanetId] = useState(1);
-    const [error, setErrors] = useState(null); 
+    const [name, setName] = useState('')
+    const [image, setImageUrl] = useState(noneSelected)
+    const [hostileRating, setHostileRating] = useState("false")
+    const [planetId, setPlanetId] = useState(1)
+    const [error, setErrors] = useState(null);
+    
 
     if (!user) navigate(`/login`);
 
@@ -57,6 +60,7 @@ const CreateCard = () => {
   return (
     <div className="create-planet-page-wrapper">
         <div className='frosted-glass create-planet-form-glass'>
+        <div className={ hostileRating && hostileRating === true ? "create-planet-crop-container create-card-border-radius hostile" : "create-planet-crop-container create-card-border-radius" }><img src={image != "" ? image : noneSelected} title="Add a planet image to preview it"></img></div>
             <div className="create-container">
             <h1><FaSdCard /> Create a New Card</h1>
             <form onSubmit={handleSubmit}>
