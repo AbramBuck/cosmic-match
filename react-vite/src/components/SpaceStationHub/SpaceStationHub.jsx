@@ -137,13 +137,17 @@ function SpaceStationHub() {
   const handleLaunch = async () => {
     const planetCheck = planets?.filter((planet) => planet.id == missionDeck)
     const cardsAtMax = cardsOnPlanet[missionDeck] == planetCheck[0]?.deck_size
+    const cardsOverMax = cardsOnPlanet[missionDeck] > planetCheck[0]?.deck_size
+
 
       await dispatch(thunkUpdate({mission_deck: missionDeck}))
       if (missionDeck === null) {
         alert("Select a Planet to Run Custom Missions")
+      }else if (cardsOverMax == true) {
+        alert("Your planet cannot have more cards than it's max deck size in a Custom Mission")
       }else if ( missionDeck !== null && cardsAtMax === false) {
         alert("Your planet needs a full deck to use in a Custom Mission")
-      } else {
+      }else {
         navigate("/mission/custom");
       }
   }
