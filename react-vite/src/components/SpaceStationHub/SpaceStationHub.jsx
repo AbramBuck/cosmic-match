@@ -29,7 +29,7 @@ function SpaceStationHub() {
     const [showMenu, setShowMenu] = useState(false);
     const [currentShip, setCurrentShip] = useState([]);
     const [changeShip, setChangeShip] = useState(1)
-    const [missionDeck, setMissionDeck] = useState(null);
+    const [missionDeck, setMissionDeck] = useState(1);
 
     if (!User) navigate(`/login`);
 
@@ -47,16 +47,27 @@ function SpaceStationHub() {
         dispatch(getAllPlanets())
     }, [dispatch], planets);
 
-    useEffect(() => { 
-      dispatch(thunkFetchCards())
-  }, [dispatch], cards);
-
       useEffect(() => {
         if (Ships && Ships.length && User && User.current_ship) {
             const foundShip = Ships.find((e) => e.id === User.current_ship)
             setCurrentShip(foundShip || null);
         }
     }, [Ships, User]);
+
+    // const updateUserInfo = async () => {
+    //   console.log("FIRED OFF Update User Info")
+    //   const amount = User.gold += 150
+    //   const shipId = currentShip.id
+    //   const userUpdates = {
+    //     gold: User.gold += gold,
+    //     total_runs: User.total_runs += turns
+    //   }
+
+    //   await dispatch(thunkUpdate(userUpdates))
+    //   await dispatch(thunkUpdate(amount))
+     
+    // };
+
 
     const updateShipInfo = async () => {
       console.log("FIRED OFF Update Ship Info")
@@ -117,20 +128,11 @@ function SpaceStationHub() {
         }
       }
   }, [Ships, User]);
+    
 
-
-  const handleLaunch = async () => {
-    const planetCheck = planets?.filter((planet) => planet.id == missionDeck)
-    const cardsAtMax = cardsOnPlanet[missionDeck] == planetCheck[0]?.deck_size
-
-      await dispatch(thunkUpdate({mission_deck: missionDeck}))
-      if (missionDeck === null) {
-        alert("Select a Planet to Run Custom Missions")
-      }else if ( missionDeck !== null && cardsAtMax === false) {
-        alert("Your planet needs a full deck to use in a Custom Mission")
-      } else {
-        navigate("/mission/custom");
-      }
+  const handleLaunch = () => {
+      dispatch(thunkUpdate({mission_deck: missionDeck}))
+      navigate("/mission/custom");
   }
 
   const handleShipChange = () => {
@@ -185,11 +187,15 @@ function SpaceStationHub() {
                 <div className="left-ship-bar">
                 <h2>Current Ship</h2>
                     { Ships && currentShip && currentShip.image_url ? <img className="current-ship-img" src={currentShip.image_url}alt="current ship" /> : <div className="ship-placeholder"><GiSpaceship /></div>} 
+                    <div className="upgrade-ship-btns">
+                      <button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 700$</button>
+                      <button className="fuel-upgrade-btn" onClick={handleFuelUpgrade}>+1 Fuel | 500$</button>
+                    </div>
                     <div className="ship-info-div">
                         <h2>{Ships && currentShip ? currentShip.name : "Create a Ship to Begin"}</h2>
                         <h2>Ship Level: {shipLevel}  </h2>
-                        <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2><button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 500$</button>
-                        <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2><button className="fuel-upgrade-btn" onClick={handleFuelUpgrade}>+1 Fuel | 500$</button>
+                        <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2>
+                        <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2>
                         <h2>Runs: {Ships && currentShip && currentShip.runs_completed ? currentShip.runs_completed : 0 }</h2>
                         <div className="button-div">
                         <div className="create-ship-button"><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
@@ -240,7 +246,7 @@ function SpaceStationHub() {
                                 <option value="">Select a Created Planet</option>
                                 {planets.map((planet) => (
                                     <option key={planet.id} value={planet.id}>
-                                    {planet.name} <FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""}
+                                    {planet.name} 
                                     </option>
                                 ))}
                                 </select>
@@ -266,7 +272,8 @@ function SpaceStationHub() {
                     <div className="planet-crop-container"><img src={planet.image_url} title="Click to visit Planet"></img></div>
                     </Link>     
                     <div className="manage-planet-title">
-                      <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } | {planets ? planet.deck_size : ""} </h3>
+                    { console.log("Cards On Planet",cardsOnPlanet)}
+                      <h3 className="card-count-icon"><FaSdCard />: { cardsOnPlanet[planet.id] ? cardsOnPlanet[planet.id] : 0 } </h3>
                     </div>
                   </div>
                 ))}
