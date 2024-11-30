@@ -27,7 +27,7 @@ function SpaceStationHub() {
     const [level, setLevel] = useState(1);
     const [shipLevel, setShipLevel] = useState(0);
     const [showMenu, setShowMenu] = useState(false);
-    const [currentShip, setCurrentShip] = useState([]);
+    const [currentShip, setCurrentShip] = useState(null);
     const [changeShip, setChangeShip] = useState(1)
     const [missionDeck, setMissionDeck] = useState(null);
 
