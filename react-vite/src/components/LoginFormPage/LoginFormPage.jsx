@@ -2,6 +2,7 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import { PiPlanetBold } from "react-icons/pi";
 import "./LoginForm.css";
 
 function LoginFormPage() {
@@ -45,7 +46,9 @@ function LoginFormPage() {
   return (
     <div className="login-page-wrapper">
       <div className="login-page-glass">
-        <h1>Log In</h1>
+      <div className="logo-login"><PiPlanetBold /></div>
+        <h1 className="title-login">Cosmic Match</h1>
+        <h2>Log In </h2>
         {errors.length > 0 &&
           errors.map((message) => <p key={message}>{message}</p>)}
         <form onSubmit={handleSubmit}>
@@ -71,8 +74,11 @@ function LoginFormPage() {
             />
           </label>
           {errors.password && <p>{errors.password}</p>}
-          <button type="submit">Log In</button>
-          <button className="demo-user-login" onClick={handleDemoLogin}>Log In as Demo User</button>
+          <div className="login-btns">
+            <button type="submit">Log In</button>
+            <button className="demo-user-login" onClick={handleDemoLogin}>Log In as Demo User</button>
+          </div>
+          
         </form>
       </div>
     </div>
