@@ -4,14 +4,17 @@ import { useModal } from '../../context/Modal';
 import { createShip, fetchShips } from '../../redux/ship';
 import { thunkUpdate } from '../../redux/session';
 import '../../components/SpaceStationHub/CreateShipForm.css';
-
+import ShipImages from '../SpaceStationHub/DefaultShipImages';
+import image1 from "../../../src/images/planets/none-selected-image-msg.jpg"
+import bgimaage from "../../../src/images/ships/ship_bg_image.jpg"
 
 function CreateShipForm() {
   const dispatch = useDispatch(); 
   const [name, setName] = useState("");
   const [shields, setShields] = useState(3);
   const [fuel, setFuel] = useState(5);
-  const [previewUrl, setPreviewUrl] = useState("");
+  const noneSelected = image1
+  const [previewUrl, setPreviewUrl] = useState(noneSelected);
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
   let createdShip = null;
@@ -44,8 +47,8 @@ function CreateShipForm() {
     <>
     <div className='ship-modal-container'>
       <div className='create-ship-form-glass'>
+      <div className="create-planet-crop-container create-card-border-radius create-ship-image-preview"><img src={previewUrl != "" ? previewUrl : noneSelected} title="Add a ship image to preview it"></img></div>
       <h1 className='titleText'>Create a New Ship</h1>
-      <h2 className='subhead'>Give your ship name some flair!</h2>
       <form 
             onSubmit={handleSubmit}
             // encType="multipart/form-data"
@@ -73,6 +76,22 @@ function CreateShipForm() {
           />
         </label>
         {errors.name && <p className="error-message">{errors.name}</p>}
+        <div className="form-group margin-top-20">
+            <label htmlFor="ship images">Image Select</label>
+            <select
+            id="ship_images"
+            value={previewUrl}
+            onChange={(e) => setPreviewUrl(e.target.value)}
+            title="Select a Ship Image"
+            >
+            <option value="">Select a Ship Image</option>
+            {ShipImages.map((ship) => (
+                <option key={ship.src} value={ship.src}>
+                {ship.name}
+                </option>
+            ))}
+            </select>
+        </div>
         <h2 className='subhead'>Photo URL</h2>
         <caption className='caption'>Add a photo url here</caption>
         <label className='label'>
