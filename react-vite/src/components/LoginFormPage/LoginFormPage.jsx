@@ -2,6 +2,8 @@ import { useState } from "react";
 import { thunkLogin } from "../../redux/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate, useNavigate } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import SignupFormModal from "../SignupFormModal";
 import { PiPlanetBold } from "react-icons/pi";
 import "./LoginForm.css";
 
@@ -78,7 +80,7 @@ function LoginFormPage() {
             <button type="submit">Log In</button>
             <button className="demo-user-login" onClick={handleDemoLogin}>Log In as Demo User</button>
           </div>
-          
+          <OpenModalButton buttonText="Sign Up"  modalComponent={<SignupFormModal />}/>
         </form>
       </div>
     </div>

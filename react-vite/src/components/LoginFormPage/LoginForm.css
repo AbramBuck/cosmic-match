@@ -101,6 +101,7 @@ create-container{
     display: flex;
     flex-direction: row;
     gap: 50px;
+    margin-bottom: 20px;
 }
 
 .login-btns button{
