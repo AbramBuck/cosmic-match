@@ -141,7 +141,9 @@ function SpaceStationHub() {
 
 
       await dispatch(thunkUpdate({mission_deck: missionDeck}))
-      if (missionDeck === null) {
+      if (currentShip === null){
+        alert("Create a ship to run missions")
+      } else if (missionDeck === null) {
         alert("Select a Planet to Run Custom Missions")
       }else if (cardsOverMax == true) {
         alert("Your planet cannot have more cards than it's max deck size in a Custom Mission")
@@ -150,6 +152,19 @@ function SpaceStationHub() {
       }else {
         navigate("/mission/custom");
       }
+  }
+
+  const handleStandardLaunch = () => {
+
+    if (Ships && currentShip){
+      if ( currentShip === null){
+        alert("Create a ship to run missions")
+      } else {
+        navigate("/mission")
+      }
+    } 
+
+
   }
 
   const handleShipChange = () => {
@@ -203,19 +218,19 @@ function SpaceStationHub() {
             <div className="hub-page-grid">
                 <div className="left-ship-bar">
                 <h2>Current Ship</h2>
-                    { Ships && currentShip && currentShip.image_url ? <img className="current-ship-img" src={currentShip.image_url}alt="current ship" /> : <div className="ship-placeholder"><GiSpaceship /></div>} 
+                    { Ships && currentShip && currentShip.image_url ? <img className="current-ship-img" src={currentShip.image_url}alt="current ship" /> : <div className="ship-placeholder"><GiSpaceship /> </div>} 
                     <div className="upgrade-ship-btns">
                       <button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 700$</button>
                       <button className="fuel-upgrade-btn" onClick={handleFuelUpgrade}>+1 Fuel | 500$</button>
                     </div>
                     <div className="ship-info-div">
-                        <h2>{Ships && currentShip ? currentShip.name : "Create a Ship to Begin"}</h2>
+                        {Ships && currentShip !== null ? <h2> {currentShip.name} </h2> : <h2 className="pulse">Create a Ship to Begin Running Missions</h2>}
                         <h2>Ship Level: {shipLevel}  </h2>
                         <h2>Shields: {Ships && currentShip && currentShip.shields ? currentShip.shields : 0}</h2>
                         <h2>Fuel: {Ships && currentShip && currentShip.fuel ? currentShip.fuel : 0}</h2>
                         <h2>Runs: {Ships && currentShip && currentShip.runs_completed ? currentShip.runs_completed : 0 }</h2>
                         <div className="button-div">
-                        <div className="create-ship-button"><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
+                        <div className={Ships && currentShip !== null ? "create-ship-button" : "create-ship-button pulse-btn"}><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
                     </div> 
                     <div className="stat-bar-ship-select">
                       {Ships && Ships.length && currentShip ?
@@ -273,7 +288,7 @@ function SpaceStationHub() {
                     <Link to={"/planets"} className="stat-bar-btn-1">Manage Planets</Link>
                     <Link to={"/cards"} className="stat-bar-btn-2">Manage Cards</Link>
                     <Link onClick={handleLaunch}  className="stat-bar-btn-3">CUSTOM MISSION</Link>
-                    <Link to={"/mission"}  className="stat-bar-btn-4">STANDARD MISSION</Link>
+                    <Link onClick={handleStandardLaunch}  className="stat-bar-btn-4">STANDARD MISSION</Link>
                     
                 </div>
                 
