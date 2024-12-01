@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     gold = db.Column(db.Integer, default=450)
-    current_ship = db.Column(db.Integer, default=1)
+    current_ship = db.Column(db.Integer, default=0)
     mission_deck = db.Column(db.Integer, default=1)
     total_runs = db.Column(db.Integer, default=0)
     hashed_password = db.Column(db.String(255), nullable=False)
