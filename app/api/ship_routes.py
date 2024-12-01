@@ -37,7 +37,7 @@ def handle_ship(ship_id):
         })
 
 
-    if request.method == "PUT":
+    elif request.method == "PUT":
         data = request.get_json()
         if not data:
             return jsonify({'error': 'No data provided'}), 400
@@ -51,6 +51,11 @@ def handle_ship(ship_id):
         db.session.commit()
 
         return jsonify(ship.to_dict()), 200
+    
+    elif request.method == 'DELETE':
+        db.session.delete(ship)
+        db.session.commit()
+        return jsonify({'message': 'ship deleted successfully'}), 204
 
 
 @ship_routes.route('/all', methods=['GET'])

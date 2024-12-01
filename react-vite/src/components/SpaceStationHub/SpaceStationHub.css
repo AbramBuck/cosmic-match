@@ -301,6 +301,11 @@
     text-align: center;
 }
 
+.create-ship-page-button-div{
+    text-align: center;
+    left: 8% !important;
+}
+
 .create-ship-button button{
     display: flex;
     flex-direction: column;

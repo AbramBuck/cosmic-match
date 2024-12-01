@@ -49,9 +49,6 @@ const cardsOnPlanet = cards.reduce((acc, card) => {
       <h2 className="create-planet-btn">      
         <Link to={"/planets/new"}>Create A New Planet</Link>
       </h2>
-      <h2 className="return-station-btn">      
-        <Link to={"/"}><IoPlanet /> Return to Station</Link>
-      </h2>
         <div className="planets-area">
               {planets.map((planet) => (
                 <div className="planet-instance" key={planet.id} style={{

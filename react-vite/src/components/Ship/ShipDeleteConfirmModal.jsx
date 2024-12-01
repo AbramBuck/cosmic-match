@@ -1,18 +1,18 @@
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import "../Card/EditModal.css";
-import { thunkDeleteCard, thunkFetchCards } from '../../redux/cards';
+import {  deleteASHIP, fetchShips } from '../../redux/ship';
 import { RiSpaceShipFill } from "react-icons/ri";
 
 
-function ShipDeleteConfirmModal({ cardId }) {
+function ShipDeleteConfirmModal({ shipId }) {
 const dispatch = useDispatch();
   const { closeModal } = useModal();
 
-  const handleDelete = (cardId) => {
+  const handleDelete = async (shipId) => {
     try {
-      dispatch(thunkDeleteCard(cardId));
-      dispatch(thunkFetchCards())
+      await dispatch(deleteASHIP(shipId));
+      await dispatch(fetchShips())
       closeModal();
     } catch (error) {
 
@@ -27,8 +27,8 @@ const dispatch = useDispatch();
           <h1>Confirm Delete</h1>
           <h2 className='subhead'>Are you sure you want to destory this Ship? <RiSpaceShipFill /></h2>
           <div className='modal-buttons'>
-            <button type="submit" onClick={() => closeModal()}>{"No (Keep Card)"}</button>
-            <button className='del-btn' type='button' onClick={() => handleDelete(cardId)}>{"Yes (Delete Card)"}</button>
+            <button type="submit" onClick={() => closeModal()}>{"No (Keep Ship)"}</button>
+            <button className='del-btn' type='button' onClick={() => handleDelete(shipId)}>{"Yes (Delete Ship)"}</button>
           </div>
         </div>
       </div>

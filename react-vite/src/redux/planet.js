@@ -1,8 +1,8 @@
 //// Action Type
 const GET_PLANETS = "planets/getPlanets";
 const ADD_PLANET = "planets/addPlanet";
-const DELETE_A_PLANET = "planets/deletePlanet"
 const UPDATE_PLANET = "planets/updatePlanet";
+const DELETE_A_PLANET = "planets/deletePlanet"
 
 //// Action creator
 const getPlanets = (planets) => ({

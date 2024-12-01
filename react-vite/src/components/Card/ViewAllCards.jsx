@@ -50,9 +50,6 @@ console.log("PLanet Names By Id", planetNamesById)
       <h2 className="create-card-btn">      
         <Link to={"/cards/new"}><MdSdCard /> Create A New Card</Link>
       </h2>
-      <h2 className="manage-planets-btn">      
-        <Link to={"/planets"}><IoPlanet /> Return to Planets</Link>
-      </h2>
         <div className="cards-area">
               {cards.map((card) => (
                 <div className="card-instance" key={card.id}>

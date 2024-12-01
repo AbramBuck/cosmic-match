@@ -64,16 +64,13 @@ function ViewAllShips() {
 
 
   return (
-    <div className="card-page-wrapper">
+    <div className="ship-page-wrapper">
       
       <div className="cards-content-area">
       <h1 className="manage-cards-header"><RiSpaceShipFill /> Ships</h1>
-      <div className="button-div">
+      <div className="ship-page-button-div">
             <div className={ships ? "create-ship-button" : "create-ship-button pulse-btn"}><OpenModalButton buttonText="Create A Ship"  modalComponent={<CreateShipForm User={User} />}/></div>
       </div> 
-      <h2 className="manage-planets-btn">      
-        <Link to={"/"}> Return to SpaceStation</Link>
-      </h2>
 
         <div className="cards-area">
               {ships.map((ship) => (

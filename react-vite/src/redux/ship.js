@@ -9,6 +9,7 @@ const initialState = {
 const GET_SHIPS = "ships/getShips"
 const ADD_SHIP = "ships/addShip";
 const UPDATE_SHIP = "ships/updateShip";
+const DELETE_A_SHIP = "ships/deleteShip"
 
 
 //Action Creators - the func that returns the variable that holds the action type
@@ -28,10 +29,10 @@ const updateShip = (ships) => ({
 });
 
 
-// const deleteShip = (shipId) => ({
-//     type: DELETE_A_SHIP,
-//     shipId,
-// });
+const deleteShip = (shipId) => ({
+    type: DELETE_A_SHIP,
+    payload: shipId,
+});
 
 // const updateShip = (updatedShip) => ({
 //     type: UPDATE_SHIP,
@@ -98,6 +99,25 @@ export const createShip = (addedShip) => async (dispatch) => {
 };
 
 
+///////////Delete A SHIP THUNK
+export const deleteASHIP = (shipId) => async (dispatch) => {
+
+    try {
+        const response = await fetch(`/api/ships/${shipId}`, {
+            method: "DELETE",
+        });
+
+        if (response.ok) {
+            dispatch(deleteShip(shipId));
+            dispatch(fetchShips());
+        } else {
+            throw new Error('Failed to delete the Ship');
+        }
+    } catch (error) {
+        console.error('Error deleting the Ship', error);
+    }
+};
+
 export const thunkShipUpdate = (shipId, updates) => async dispatch => {
     console.log("In the User Update Thunk");
     try {
@@ -150,6 +170,12 @@ const shipsReducer = (state = initialState, action) => {
                 ...state,
                 ships: action.payload
             }
+
+        case DELETE_A_SHIP:
+            return {
+                ...state,
+                ships: state.ships.filter(ship => ship.id !== action.payload.id)
+            };
 
         default: 
         return state;
