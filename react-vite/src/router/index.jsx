@@ -10,6 +10,8 @@ import ViewPlanet from '../components/Planet/ViewPlanet'
 import CreateCard from '../components/Card/CreateCard'
 import ViewAllCards from '../components/Card/ViewAllCards';
 import CustomMatchGame from '../components/MatchGame/CustomMatchGame';
+import ViewAllShips from '../components/Ship/ViewAllShips';
+
 
 export const router = createBrowserRouter([
   {
@@ -50,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path:"cards",
         element: <ViewAllCards />,
+      },
+      {
+        path:"ships",
+        element: <ViewAllShips />,
       },
       {
         path:"cards/new",
