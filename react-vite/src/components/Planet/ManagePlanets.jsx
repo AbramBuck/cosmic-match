@@ -50,7 +50,7 @@ const cardsOnPlanet = cards.reduce((acc, card) => {
         <Link to={"/planets/new"}>Create A New Planet</Link>
       </h2>
         <div className="planets-area">
-              {planets.map((planet) => (
+              {!planets.length ? <h1 className="no-stuff-message">When you Create Planets they will show up here.</h1>: planets.map((planet) => (
                 <div className="planet-instance" key={planet.id} style={{
                   background: `linear-gradient(to bottom, rgba(17, 85, 133, 0.5), rgba(17, 85, 133, 0.8)), url(${planet.image_url})`,backgroundSize: 'cover',}}>
                   <div className="planet-title ubuntu-regular"><IoPlanet />{planet.name}</div>

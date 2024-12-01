@@ -16,18 +16,18 @@ import '../Planet/ManagePlanets.css'
 
 
 function SpaceStationHub() {
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const User = useSelector((state) => state.session.user);
-    const Ships = useSelector((state) => state.ships.ships);
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    const User = useSelector((state) => state.session.user)
+    const Ships = useSelector((state) => state.ships.ships)
     const planets = useSelector((state) => state.planets.planets)
     const cards = useSelector((state) => state.cards.cards )
-    const [level, setLevel] = useState(1);
+    const [level, setLevel] = useState(1)
     const [shipLevel, setShipLevel] = useState(0);
-    const [showMenu, setShowMenu] = useState(false);
-    const [currentShip, setCurrentShip] = useState(null);
-    const [changeShip, setChangeShip] = useState(1)
-    const [missionDeck, setMissionDeck] = useState(null);
+    const [showMenu, setShowMenu] = useState(false)
+    const [currentShip, setCurrentShip] = useState(null)
+    const [changeShip, setChangeShip] = useState(null)
+    const [missionDeck, setMissionDeck] = useState(null)
 
     if (!User) navigate(`/login`);
 

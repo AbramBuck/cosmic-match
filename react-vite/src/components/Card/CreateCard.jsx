@@ -37,12 +37,18 @@ const CreateCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        let rewardAmount = 20
+
+        if (hostileRating === true) {
+            rewardAmount = 30
+        }
+
         const cardData = {
         name,
         planet_id: planetId,
         image_url: image,
         hostile: hostileRating,
-        reward: 20,
+        reward: rewardAmount,
         description: "description",
         base_game: false,
         };

@@ -167,6 +167,20 @@
     font-size: 15px;
 }
 
+.current-ship-instance{
+    display: flex;
+    padding: 25px 10px 10px 10px;
+    height: 490px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    border: 4px rgb(170, 254, 255) solid;
+    background: linear-gradient(to bottom, rgba(70, 34, 107, 0.808), rgba(33, 48, 66, 0.757)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732925400/ship_bg_image_akpe3r.jpg') no-repeat center center;
+    background-size: cover;   
+} 
+
 .card-instance{
     display: flex;
     padding: 25px 10px 10px 10px;
@@ -181,6 +195,19 @@
     background-size: cover;  
 } 
 
+.ship-instance{
+    display: flex;
+    padding: 25px 10px 10px 10px;
+    height: 490px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 35px;
+    border: 4px rgb(171, 245, 255) solid;
+    background: linear-gradient(to bottom, rgba(70, 34, 107, 0.808), rgba(33, 48, 66, 0.757)), 
+    url('https://res.cloudinary.com/di0fa12vz/image/upload/v1732925400/ship_bg_image_akpe3r.jpg') no-repeat center center;
+    background-size: cover;  
+} 
 
 .card-title{
     display: flex;
@@ -236,4 +263,33 @@
     top: 50%;           
     left: 50%;          
     transform: translate(-50%, -50%);
+  }
+
+
+  .current-ship-crop-container {
+    width: 370px;       
+    height: 250px;      
+    overflow: hidden;    
+    position: relative;
+    border-radius: 25px;
+    border: 4px rgb(171, 245, 255) solid;
+    box-shadow: rgb(159, 255, 241) 4px 3px 13px;
+    margin-bottom: 25px;
+  }
+  
+  .current-ship-crop-container img {
+    width: auto;        
+    height: 100%;       
+    position: absolute; 
+    top: 50%;           
+    left: 50%;          
+    transform: translate(-50%, -50%);
+  }
+
+  .no-stuff-message{
+    align-self: center;
+    font-size: 30px;
+    grid-column: 2;
+    text-align: center;
+    text-shadow: black 1px 1px 6px;
   }

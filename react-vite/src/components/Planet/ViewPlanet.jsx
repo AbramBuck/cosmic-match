@@ -24,11 +24,6 @@ function ManageCards() {
   const { planetId } = useParams();
   
 
-  console.log("Planet ID Use Params////////", planetId)
-  console.log("Current Planet/////////////",currentPlanet)
-  console.log("PLanets/////", planets)
-  console.log("Cards ////////", currentCards)
-
   if (!user) navigate(`/login`)
 
 
@@ -67,7 +62,7 @@ function ManageCards() {
         <Link to={"/planets"}><IoPlanet /> Return to Planets</Link>
       </h2>
         <div className="cards-area">
-              {currentCards.map((card) => (
+              { !currentCards.length ? <h1 className="no-stuff-message">Assign cards to this planet to see them here.</h1> : currentCards.map((card) => (
                 <div className="card-instance" key={card.id}>
                   <div>
                   <div className="crop-container"><img className="crop-container" src={card.image_url}></img></div>

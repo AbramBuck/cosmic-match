@@ -51,7 +51,7 @@ console.log("PLanet Names By Id", planetNamesById)
         <Link to={"/cards/new"}><MdSdCard /> Create A New Card</Link>
       </h2>
         <div className="cards-area">
-              {cards.map((card) => (
+              {!cards.length ? <h1 className="no-stuff-message">When you Create Cards they will show up here.</h1> : cards.map((card) => (
                 <div className="card-instance" key={card.id}>
                   <div>
                   <div className="crop-container"><img className="crop-container" src={card.image_url}></img></div>
