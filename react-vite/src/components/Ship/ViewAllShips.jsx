@@ -81,14 +81,14 @@ function ViewAllShips() {
         <div className="current-ship-instance">
         <h1 ><RiSpaceShipFill /> Current Ship:</h1>
                   <div>
-                  <div className="current-ship-crop-container">{ ships.length && currentShip && currentShip != null && currentShip !== 0 ? <img className="current-ship-crop-container" src={currentShip.image_url}></img> : ""}</div>
+                  <div className="current-ship-crop-container">{ ships && ships.length && currentShip && currentShip != null && currentShip !== 0 ? <img className="current-ship-crop-container" src={currentShip.image_url}></img> : ""}</div>
                   </div>
                   <div className="card-title ubuntu-regular"><RiSpaceShipFill />{ships && currentShip && currentShip.name ? currentShip.name : "No Ship Selected"}</div>
                 </div>
               {ships && shipLevelById && ships.length ? ships.map((ship) => (
                 <div className="ship-instance" key={ship.id}>
                   <div>
-                  <div className="current-ship-crop-container"><img className="current-ship-crop-container" src={ships ? ship.image_url : ""}></img></div>
+                  <div className="current-ship-crop-container"><img src={ships ? ship.image_url : ""}></img></div>
                   </div>
                   <div className="card-title ubuntu-regular"><RiSpaceShipFill />{ship.name}</div>
                   <div className="card-stats">

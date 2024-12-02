@@ -107,6 +107,10 @@ input[type="radio"]{
   display: none;
 }
 
+.margin-top-add-twenty{
+  margin-top: 20px;
+}
+
 .margin-top-add{
   margin-top: 45px;
 }

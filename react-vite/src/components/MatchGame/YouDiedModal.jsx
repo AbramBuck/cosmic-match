@@ -41,7 +41,7 @@ function YouDiedModal({gold,turns, shields, fuel }) {
 
       await dispatch(thunkUpdate(userUpdates))
       await dispatch(thunkShipUpdate(shipId, shipUpdates))
-      navigate("/");
+      navigate("/station");
       
     };
   

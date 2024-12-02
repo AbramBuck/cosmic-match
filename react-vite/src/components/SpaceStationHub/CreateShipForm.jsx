@@ -7,9 +7,11 @@ import '../../components/SpaceStationHub/CreateShipForm.css';
 import ShipImages from '../SpaceStationHub/DefaultShipImages';
 import image1 from "../../../src/images/planets/none-selected-image-msg.jpg"
 import bgimaage from "../../../src/images/ships/ship_bg_image.jpg"
+import '../Planet/CreatePlanet.css'
+
 
 function CreateShipForm() {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [shields, setShields] = useState(3);
   const [fuel, setFuel] = useState(5);
@@ -29,16 +31,13 @@ function CreateShipForm() {
 
         createdShip = await dispatch(createShip(addedShip));
         if (createdShip && createdShip.id) {
-          dispatch(thunkUpdate({current_ship: createdShip.id}))
-          dispatch(fetchShips())
+          await dispatch(thunkUpdate({current_ship: createdShip.id}))
+          await dispatch(fetchShips())
           console.log("Created Ship",createdShip)
           }
     } catch (error) {
         setErrors({ submission: "Error when trying to create a review." })
     }
-
-
-
         closeModal();
         // window.location.href = `/spots/${createdSpot.id}`;
   };
@@ -104,7 +103,11 @@ function CreateShipForm() {
           />
         </label>
         {errors.previewUrl && <p>{errors.previewUrl}</p>}
-        <button type="submit" onClick={handleSubmit}>Create Ship</button>
+        <div className='create-cancel-btns margin-top-add'>
+          <button type="submit" onClick={handleSubmit}>Create Ship</button>
+          <button type="submit" onClick={() => closeModal()}>Cancel</button>
+        </div>
+
     </form>
     </div>
     </div>

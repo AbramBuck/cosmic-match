@@ -134,8 +134,11 @@ const CreateCard = () => {
                                 </select>
                         </div>
                 </div>
-                <button className='margin-top-add' type="submit">Create Card</button>
-                <button className='margin-top-add' onClick={() => navigate('/cards')} >Cancel</button>
+                <div className='create-cancel-btns'>
+                    <button className='margin-top-add' type="submit">Create Card</button>
+                    <button className='margin-top-add' onClick={() => navigate('/cards')} >Cancel</button>
+                </div>
+                
             </form>
 
             {error?.submission && <p className="error">{error.submission}</p>}

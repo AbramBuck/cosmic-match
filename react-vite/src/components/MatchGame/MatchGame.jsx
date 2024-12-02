@@ -124,7 +124,7 @@ function MatchGame() {
 
     const noMatch = () => {
         console.log(choiceOne.hostile)
-        if (choiceOne.hostile === true && choiceTwo.hostile !==true || choiceOne.hostile !== true && choiceTwo.hostile ===true){
+        if (choiceOne.hostile === true && choiceTwo.hostile !==true || choiceOne.hostile !== true && choiceTwo.hostile ===true || choiceOne.hostile && choiceTwo.hostile && choiceOne.src !== choiceTwo.src){
             setShields(prevShields => prevShields - 1)
         }
         noMatchedAudio.play()

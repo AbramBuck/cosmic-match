@@ -283,8 +283,8 @@ function SpaceStationHub() {
                         </div>
             </form>
                     </div>
-                    <Link to={"/planets"} className="stat-bar-btn-1">Manage Planets</Link>
-                    <Link to={"/cards"} className="stat-bar-btn-2">Manage Cards</Link>
+                    <Link to={"/planets"} className="stat-bar-btn-1">View Planets</Link>
+                    <Link to={"/cards"} className="stat-bar-btn-2">View Cards</Link>
                     <Link onClick={handleLaunch}  className="stat-bar-btn-3">CUSTOM MISSION</Link>
                     <Link onClick={handleStandardLaunch}  className="stat-bar-btn-4">STANDARD MISSION</Link>
                     

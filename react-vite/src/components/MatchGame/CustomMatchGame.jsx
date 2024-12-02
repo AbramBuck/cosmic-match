@@ -137,7 +137,8 @@ function CustomMatchGame() {
     const noMatch = () => {
       if (
         (choiceOne.hostile && !choiceTwo.hostile) ||
-        (!choiceOne.hostile && choiceTwo.hostile)
+        (!choiceOne.hostile && choiceTwo.hostile) || 
+        (choiceOne.hostile && choiceTwo.hostile && choiceOne.src !== choiceTwo.src)
       ) {
         setShields((prevShields) => prevShields - 1);
       }
