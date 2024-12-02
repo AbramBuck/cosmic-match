@@ -15,7 +15,7 @@ function Navigation() {
       <div>        
       {!User ? "" : 
       <>
-        <NavLink to="/">Go To Space Station Hub</NavLink>
+        <NavLink to="/station">Go To Space Station Hub</NavLink>
         <NavLink to="/ships">< RiSpaceShipFill/> Ships</NavLink>
         <NavLink to="/planets">< IoPlanet/> Planets</NavLink>
         <NavLink to="/cards">< FaSdCard/> Cards</NavLink>

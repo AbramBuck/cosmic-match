@@ -19,6 +19,10 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
+        element: <LoginFormPage />,
+      },
+      {
+        path: "station",
         element: <SpaceStationHub />,
       },
       {

@@ -17,7 +17,9 @@ function LoginFormPage() {
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
-  const handleDemoLogin = () => {
+  const handleDemoLogin = async (e) => {
+    e.preventDefault();
+    
     setEmail('demo@aa.io')
     setPassword('password')
 
@@ -25,7 +27,8 @@ function LoginFormPage() {
       email:'demo@aa.io',
       password:'password'
     };
-    return dispatch(thunkLogin(user));
+    await dispatch(thunkLogin(user));
+    navigate("/station");
   }
   
   const handleSubmit = async (e) => {
@@ -41,7 +44,7 @@ function LoginFormPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      navigate("/");
+      navigate("/station");
     }
   };
 
