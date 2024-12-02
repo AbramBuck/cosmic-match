@@ -4,16 +4,16 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_ships():
-    demoShip = Ship(
-        owner_id='1', name='Star Striker', fuel = 4, shields = 4, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
-    marnieShip = Ship(
-        owner_id='2', name='Star Drifter', fuel = 5, shields = 3, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
-    bobbieShip = Ship(
-        owner_id='3', name='Orbital Boater', fuel = 5, shields = 3, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
+    # demoShip = Ship(
+    #     owner_id='1', name='Star Striker', fuel = 4, shields = 4, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
+    # marnieShip = Ship(
+    #     owner_id='2', name='Star Drifter', fuel = 5, shields = 3, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
+    # bobbieShip = Ship(
+    #     owner_id='3', name='Orbital Boater', fuel = 5, shields = 3, image_url="https://img.freepik.com/premium-photo/spaceship-flying-sky-with-full-moon-background-generative-ai_902338-27035.jpg?uid=R12082531&ga=GA1.1.2099741159.1700972044&semt=ais_hybrid")
 
-    db.session.add(demoShip)
-    db.session.add(marnieShip)
-    db.session.add(bobbieShip)
+    # db.session.add(demoShip)
+    # db.session.add(marnieShip)
+    # db.session.add(bobbieShip)
     db.session.commit()
 
 

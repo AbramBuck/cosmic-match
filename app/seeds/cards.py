@@ -4,136 +4,381 @@ from sqlalchemy.sql import text
 
 # Adds a demo user, you can add other users here if you want
 def seed_cards():
-    card_one = Card(
+    skyw_one_d = Card(
         owner_id='1',
-        name='Female Alien', 
-        description='enemy', 
-        hostile=True,
-        reward=30,
+        name='Big-Beak',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110025/big-beak_htzygv.jpg",
+        )
+    
+    skyw_two_d = Card(
+        owner_id='1',
+        name='Pink Passion Parrot',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110123/pink-passion_ejgud7.jpg",
+        )
+    
+    skyw_three_d = Card(
+        owner_id='1',
+        name='Death Mouth',  
+        description='None',
+        hostile=True, 
+        reward=60,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110221/death-mouth_nhk4gq.jpg",
+        )
+    
+    skyw_four_d = Card(
+        owner_id='1',
+        name='Night Owls',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110311/owls_xwd6m4.jpg",
+        )
+    
+    skyw_five_d = Card(
+        owner_id='1',
+        name='Parrot Prime',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110467/parrot-prime_u738ty.jpg",
+        )
+    
+    skyw_five_d = Card(
+        owner_id='1',
+        name='Cloud Plains',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733112026/skyplains_rbosrk.jpg",
+        )
+    
+    skyw_six_d = Card(
+        owner_id='1',
+        name='Terrorsaur',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='2',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733112111/terrorsaur_wttxfe.jpg",
+        )
+    
+    sag_one_d = Card(
+        owner_id='1',
+        name='Azul Alien',  
+        description='None',
+        hostile=True, 
+        reward=40,
         matched=False,
         planet_id='1',
         base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305611/alien_female_blue_twozql.jpg",
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113359/alien_enemy_weyosi.jpg",
         )
     
-    card_two = Card(
+    sag_two_d = Card(
         owner_id='1',
-        name='Snake',  
-        description='snake',
-        hostile=False, 
-        reward=15,
+        name='Crimson Alien',  
+        description='None',
+        hostile=True, 
+        reward=40,
         matched=False,
         planet_id='1',
         base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732305617/snake_h396qr.jpg",
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113411/alien_green_enemy_plv5gn.jpg",
         )
     
-    card_three = Card(
+    sag_three_d = Card(
         owner_id='1',
-        name='Desolation', 
-        description='enemy', 
-        hostile=True,
-        reward=30,
-        matched=False,
-        planet_id='2',
-        base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732314910/plains-of-desolation_cm1b8r.jpg",
-        )
-    
-    card_four = Card(
-        owner_id='1',
-        name='Ship',  
-        description='ship',
+        name='Cosmic Blossom',  
+        description='None',
         hostile=False, 
-        reward=15,
+        reward=20,
         matched=False,
-        planet_id='2',
+        planet_id='1',
         base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732209186/sky_javelin_gtbevf.jpg",
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113448/cosmic-blossom_qvo81p.jpg",
         )
     
-    card_five = Card(
+    sag_four_d = Card(
         owner_id='1',
-        name='Alien Group', 
-        description='enemy', 
-        hostile=True,
-        reward=30,
+        name='Majestic Forrest',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='1',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113519/majestic_forest_isbq0f.jpg",
+        )
+    
+    hy_one_d = Card(
+        owner_id='1',
+        name='Alien Patrol',  
+        description='None',
+        hostile=True, 
+        reward=120,
         matched=False,
         planet_id='3',
         base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551243/alien_enemy_group_ivn8er.jpg",
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115552/alien_enemy_group_tdq8ab.jpg",
         )
     
-    card_six = Card(
+    hy_two_d = Card(
         owner_id='1',
-        name='Spectral Cactus',  
-        description='Cacti',
-        hostile=False, 
-        reward=15,
+        name='Female Grey',  
+        description='None',
+        hostile=True, 
+        reward=120,
         matched=False,
         planet_id='3',
         base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551246/cactus_zjslv4.jpg",
-        )
-    
-    card_seven = Card(
-        owner_id='1',
-        name='Desolation', 
-        description='enemy', 
-        hostile=True,
-        reward=30,
-        matched=False,
-        planet_id='2',
-        base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732314910/plains-of-desolation_cm1b8r.jpg",
-        )
-    
-    card_eight = Card(
-        owner_id='1',
-        name='Ship',  
-        description='ship',
-        hostile=False, 
-        reward=15,
-        matched=False,
-        planet_id='2',
-        base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732209186/sky_javelin_gtbevf.jpg",
-        )
-    
-    card_nine = Card(
-        owner_id='1',
-        name='Alien Group', 
-        description='enemy', 
-        hostile=True,
-        reward=30,
-        matched=False,
-        planet_id='3',
-        base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551243/alien_enemy_group_ivn8er.jpg",
-        )
-    
-    card_ten = Card(
-        owner_id='1',
-        name='Spectral Cactus',  
-        description='Cacti',
-        hostile=False, 
-        reward=15,
-        matched=False,
-        planet_id='3',
-        base_game=True,
-        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1732551246/cactus_zjslv4.jpg",
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115614/female-grey_gfxxzk.jpg",
         )
 
-    db.session.add(card_one)
-    db.session.add(card_two)
-    db.session.add(card_three)
-    db.session.add(card_four)
-    db.session.add(card_five)
-    db.session.add(card_six)
-    db.session.add(card_seven)
-    db.session.add(card_eight)
-    db.session.add(card_nine)
-    db.session.add(card_ten)
+    hy_three_d = Card(
+        owner_id='1',
+        name='Spawning Grounds',  
+        description='None',
+        hostile=False, 
+        reward=60,
+        matched=False,
+        planet_id='3',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115657/alien-breeding-world_jwunc4.jpg",
+        )
+    
+    skyw_one = Card(
+        owner_id='3',
+        name='Big-Beak',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110025/big-beak_htzygv.jpg",
+        )
+    
+    skyw_two = Card(
+        owner_id='3',
+        name='Pink Passion Parrot',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110123/pink-passion_ejgud7.jpg",
+        )
+    
+    skyw_three = Card(
+        owner_id='3',
+        name='Death Mouth',  
+        description='None',
+        hostile=True, 
+        reward=60,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110221/death-mouth_nhk4gq.jpg",
+        )
+    
+    skyw_four = Card(
+        owner_id='3',
+        name='Night Owls',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110311/owls_xwd6m4.jpg",
+        )
+    
+    skyw_five = Card(
+        owner_id='3',
+        name='Parrot Prime',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733110467/parrot-prime_u738ty.jpg",
+        )
+    
+    skyw_five = Card(
+        owner_id='3',
+        name='Cloud Plains',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733112026/skyplains_rbosrk.jpg",
+        )
+    
+    skyw_six = Card(
+        owner_id='3',
+        name='Terrorsaur',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='5',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733112111/terrorsaur_wttxfe.jpg",
+        )
+    
+    sag_one = Card(
+        owner_id='3',
+        name='Azul Alien',  
+        description='None',
+        hostile=True, 
+        reward=40,
+        matched=False,
+        planet_id='4',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113359/alien_enemy_weyosi.jpg",
+        )
+    
+    sag_two = Card(
+        owner_id='3',
+        name='Crimson Alien',  
+        description='None',
+        hostile=True, 
+        reward=40,
+        matched=False,
+        planet_id='4',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113411/alien_green_enemy_plv5gn.jpg",
+        )
+    
+    sag_three = Card(
+        owner_id='3',
+        name='Cosmic Blossom',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='4',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113448/cosmic-blossom_qvo81p.jpg",
+        )
+    
+    sag_four = Card(
+        owner_id='3',
+        name='Majestic Forrest',  
+        description='None',
+        hostile=False, 
+        reward=20,
+        matched=False,
+        planet_id='4',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733113519/majestic_forest_isbq0f.jpg",
+        )
+    
+    hy_one = Card(
+        owner_id='3',
+        name='Alien Patrol',  
+        description='None',
+        hostile=True, 
+        reward=120,
+        matched=False,
+        planet_id='6',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115552/alien_enemy_group_tdq8ab.jpg",
+        )
+    
+    hy_two = Card(
+        owner_id='3',
+        name='Female Grey',  
+        description='None',
+        hostile=True, 
+        reward=120,
+        matched=False,
+        planet_id='6',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115614/female-grey_gfxxzk.jpg",
+        )
+
+    hy_three = Card(
+        owner_id='3',
+        name='Spawning Grounds',  
+        description='None',
+        hostile=False, 
+        reward=60,
+        matched=False,
+        planet_id='6',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733115657/alien-breeding-world_jwunc4.jpg",
+        )
+    
+    credits = Card(
+        owner_id='3',
+        name='Credits',  
+        description='None',
+        hostile=False, 
+        reward=1000,
+        matched=False,
+        planet_id='7',
+        base_game=True,
+        image_url="https://res.cloudinary.com/di0fa12vz/image/upload/v1733116088/credit-card_x3osg4.jpg",
+        )
+
+    db.session.add(skyw_one_d)
+    db.session.add(skyw_two_d)
+    db.session.add(skyw_three_d)
+    db.session.add(skyw_four_d)
+    db.session.add(skyw_five_d)
+    db.session.add(skyw_six_d)
+    db.session.add(sag_one_d)
+    db.session.add(sag_two_d)
+    db.session.add(sag_three_d)
+    db.session.add(sag_four_d)
+    db.session.add(hy_one_d)
+    db.session.add(hy_two_d)
+    db.session.add(hy_three_d)
+    db.session.add(skyw_one)
+    db.session.add(skyw_two)
+    db.session.add(skyw_three)
+    db.session.add(skyw_four)
+    db.session.add(skyw_five)
+    db.session.add(skyw_six)
+    db.session.add(sag_one)
+    db.session.add(sag_two)
+    db.session.add(sag_three)
+    db.session.add(sag_four)
+    db.session.add(hy_one)
+    db.session.add(hy_two)
+    db.session.add(hy_three)
+    db.session.add(credits)
     db.session.commit()
 
 
