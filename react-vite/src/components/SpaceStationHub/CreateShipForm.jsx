@@ -28,7 +28,7 @@ function CreateShipForm() {
       alert("Add a name to create a ship")
     } else if ( name.length < 4){ 
       alert("Name must be longer than 4 characters")
-    } else if ( previewUrl === noneSelected){
+    } else if ( previewUrl === noneSelected || previewUrl === ''){
        alert("Select an image from dropdown or add a custom url")
     }else {
       setFuel(8 - shields);
