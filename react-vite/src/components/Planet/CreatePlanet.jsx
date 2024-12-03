@@ -13,7 +13,7 @@ const CreatePlanet = () => {
     const navigate = useNavigate()
     const user = useSelector((state) => state.session.user)
     const [name, setName] = useState('')
-    const [image, setImageUrl] = useState("https://res.cloudinary.com/di0fa12vz/image/upload/v1732376498/default_planet_fzsx8x.jpg")
+    const [image, setImageUrl] = useState(image1)
     const [deckSize, setDeckSize] = useState(3)
     const [error, setErrors] = useState(null)
     const noneSelected = image1
@@ -27,17 +27,21 @@ const CreatePlanet = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const planetData = {
-        name,
-        image_url: image,
-        deck_size: deckSize,
-        };
-
-        try {
-            await dispatch(createPlanet(planetData))
-            navigate('/planets')
-        } catch (error) {
-            setErrors({ submission: "Error when trying to create a planet." })
+        if (image === image1){
+            alert("Select an image from dropdown or add a custom url")
+        }else {
+            const planetData = {
+                name,
+                image_url: image,
+                deck_size: deckSize,
+                };
+        
+                try {
+                    await dispatch(createPlanet(planetData))
+                    navigate('/planets')
+                } catch (error) {
+                    setErrors({ submission: "Error when trying to create a planet." })
+                }
         }
     };
 
@@ -57,6 +61,7 @@ const CreatePlanet = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    minLength={4}
                 />
                 </div>
 

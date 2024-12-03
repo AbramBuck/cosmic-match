@@ -218,7 +218,7 @@ function SpaceStationHub() {
                 <h2>Current Ship</h2>
                     { Ships && currentShip && currentShip.image_url ? <img className="current-ship-img" src={currentShip.image_url}alt="current ship" /> : <div className="ship-placeholder"><GiSpaceship /> </div>} 
                     <div className="upgrade-ship-btns">
-                      <button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 700$</button>
+                      <button className="shield-upgrade-btn" onClick={handleShieldUpgrade}>+1 Shields | 500$</button>
                       <button className="fuel-upgrade-btn" onClick={handleFuelUpgrade}>+1 Fuel | 500$</button>
                     </div>
                     <div className="ship-info-div">

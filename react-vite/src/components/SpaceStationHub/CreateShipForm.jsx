@@ -12,7 +12,7 @@ import '../Planet/CreatePlanet.css'
 
 function CreateShipForm() {
   const dispatch = useDispatch();
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [shields, setShields] = useState(3);
   const [fuel, setFuel] = useState(5);
   const noneSelected = image1
@@ -23,23 +23,31 @@ function CreateShipForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFuel(8 - shields);
-    const addedShip = { name, shields, fuel, image_url: previewUrl, runs_completed: 0 }
 
-    
-    try {
+    if (name === null || name === ''){
+      alert("Add a name to create a ship")
+    } else if ( name.length < 4){ 
+      alert("Name must be longer than 4 characters")
+    } else if ( previewUrl === noneSelected){
+       alert("Select an image from dropdown or add a custom url")
+    }else {
+      setFuel(8 - shields);
+      const addedShip = { name, shields, fuel, image_url: previewUrl, runs_completed: 0 }
 
-        createdShip = await dispatch(createShip(addedShip));
-        if (createdShip && createdShip.id) {
-          await dispatch(thunkUpdate({current_ship: createdShip.id}))
-          await dispatch(fetchShips())
-          console.log("Created Ship",createdShip)
-          }
-    } catch (error) {
-        setErrors({ submission: "Error when trying to create a review." })
-    }
-        closeModal();
-        // window.location.href = `/spots/${createdSpot.id}`;
+      
+      try {
+
+          createdShip = await dispatch(createShip(addedShip));
+          if (createdShip && createdShip.id) {
+            await dispatch(thunkUpdate({current_ship: createdShip.id}))
+            await dispatch(fetchShips())
+            console.log("Created Ship",createdShip)
+            }
+      } catch (error) {
+          setErrors({ submission: "Error when trying to create a review." })
+      }
+          closeModal();
+   }
   };
 
   return (
@@ -51,27 +59,18 @@ function CreateShipForm() {
       <form 
             onSubmit={handleSubmit}
             // encType="multipart/form-data"
-        >
-        {/* <label className='label'>
-          Upload an Image
-          <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => setImage(e.target.files[0])}
-            />
-            
-            {(imageLoading)&& <p>Loading...</p>}
-        </label> */}
+            >
 
         <h2 className='subhead'>Give your ship a name... Like Star Flayer or something cool.</h2>
 
-        <label className='label'>
+        <label htmlFor="name" className='label'>
           <input className='fullInputWidth'
             placeholder='Name your ship'
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            minLength={4}
           />
         </label>
         {errors.name && <p className="error-message">{errors.name}</p>}

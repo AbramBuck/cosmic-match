@@ -37,28 +37,35 @@ const CreateCard = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let rewardAmount = 20
+        if (image === noneSelected){
+            alert("Add a url to create a card")
+        }else if (hostileRating !== true && hostileRating !== false){
+            alert("Select if the card is hostile")
+        }else {
 
-        if (hostileRating === true) {
-            rewardAmount = 30
-        }
+            let rewardAmount = 20
 
-        const cardData = {
-        name,
-        planet_id: planetId,
-        image_url: image,
-        hostile: hostileRating,
-        reward: rewardAmount,
-        description: "description",
-        base_game: false,
-        };
+            if (hostileRating === true) {
+                rewardAmount = 30
+            }
 
-        try {
-            dispatch(thunkCreateCard(cardData))
-            dispatch(thunkFetchCards())
-            navigate(`/planets/${planetId}`)
-        } catch (error) {
-            setErrors({ submission: "Error when trying to create a card." });
+            const cardData = {
+            name,
+            planet_id: planetId,
+            image_url: image,
+            hostile: hostileRating,
+            reward: rewardAmount,
+            description: "description",
+            base_game: false,
+            };
+
+            try {
+                dispatch(thunkCreateCard(cardData))
+                dispatch(thunkFetchCards())
+                navigate(`/planets/${planetId}`)
+            } catch (error) {
+                setErrors({ submission: "Error when trying to create a card." });
+            }
         }
     };
 
@@ -78,6 +85,7 @@ const CreateCard = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required
+                    minLength={4}
                 />
                 </div>
                 <div className="form-group">
