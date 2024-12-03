@@ -25,8 +25,15 @@ function ShipEditModal({ ship }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const shipData = {
+        if (name === null || name === "" || name  === " "){
+          alert("Your ship must have a name")
+        } else if( name.length < 4){
+          alert("Name must be greater than 4 characters")
+        } else if( imageUrl === null || imageUrl === " " || imageUrl === imageDefault || imageUrl === ''){
+          alert("Select an image from the dropdown or add a url to a custom ship image")
+        }
+        else {
+          const shipData = {
             name: name,
             image_url: imageUrl,
           }
@@ -38,6 +45,7 @@ function ShipEditModal({ ship }) {
         } catch (error) {
           console.error("Error:", error)
           setErrors({ general: "An error occurred." })
+        }
         }
       }
 
@@ -58,7 +66,7 @@ function ShipEditModal({ ship }) {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
+                required={true}
             />
              <div className="form-group margin-top-20">
             <label htmlFor="ship images">Image Select</label>
@@ -67,6 +75,7 @@ function ShipEditModal({ ship }) {
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
             title="Select a Ship Image"
+            required={true}
             >
             <option value="">Select a Ship Image</option>
             {ShipImages.map((ship) => (
